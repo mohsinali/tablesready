@@ -7,3 +7,9 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 user = CreateAdminService.new.call
 puts 'CREATED ADMIN USER: ' << user.email
+
+# Create Country
+Country.create(name: "United States of America",code: "USA",phone_code: "+1")
+Country.create(name: "Canada",code: "CA",phone_code: "+1")
+Country.create(name: "United Kingdom",code: "UK",phone_code: "+44")
+Country.create(name: "Pakistan",code: "PK",phone_code: "+92")
