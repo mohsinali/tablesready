@@ -31,6 +31,7 @@ gem 'pg'
 gem 'simple_form'
 gem 'slim-rails'
 gem 'therubyracer', :platform=>:ruby
+gem 'rails_script', '~> 2.0'
 group :development do
   gem 'better_errors'
   gem 'hub', :require=>nil
