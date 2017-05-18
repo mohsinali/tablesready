@@ -1,3 +1,4 @@
+window.App ||= {}
 class App.Base
 
   constructor: ->
