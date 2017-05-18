@@ -1,6 +1,7 @@
 .authform
-  = form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: { role: 'form'}) do |f|
+  = form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: { role: 'form',id: "signup_form"}) do |f|
     h3 Sign up
+    = f.hidden_field :role,value:'restaurant'
     = devise_error_messages!
     .form-group
       = f.label :restaurant_name
@@ -8,6 +9,9 @@
     .form-group
       = f.label :country
       = f.select :country_id, Country.all.collect{|c| [c.name,c.id]},{},class: "form-control"
+    .form-group
+      = f.label :phone
+      = f.text_field :phone,class: 'form-control'
     .form-group
       = f.label :email
       = f.email_field :email, class: 'form-control'
