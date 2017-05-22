@@ -12,7 +12,7 @@
         li
           = link_to 'Logout', destroy_user_session_path, :method=>'delete'
   li class="#{is_active_controller('dashboards')}"
-    = link_to "Dashboard v.1", root_path
+    = link_to "Home", root_path
 - else
   li
     = link_to 'Login', new_user_session_path
