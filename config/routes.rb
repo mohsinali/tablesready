@@ -87,5 +87,4 @@ Rails.application.routes.draw do
   get "gallery/bootstrap_carusela"
 
   get "cssanimations/index"
-
 end

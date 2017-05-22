@@ -1,5 +1,5 @@
 #----------------------------------------------------------------------------
-# Ignore these files when commiting to a git repository.
+# Ignore these files when committing to a git repository.
 #
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 #
@@ -14,26 +14,6 @@
 /.bundle
 /vendor/bundle/
 /vendor/ruby/
-/vendor/bin
-/vendor/build_info
-/vendor/cache
-/vendor/doc
-/vendor/extensions
-/vendor/gems
-/vendor/specifications
-/vendor/bin/
-/vendor/cache/
-/vendor/extensions/
-/vendor/specifications/
-/vendor/gems/
-/vendor/build_info/
-/vendor/doc/
-/vendor/bundler/
-
-
-# precompiled assets
-/public/assets/
-
 
 # minimal Rails specific artifacts
 db/*.sqlite3
@@ -42,7 +22,7 @@ db/*.sqlite3
 /tmp/*
 
 # add /config/database.yml if it contains passwords
-/config/database.yml
+# /config/database.yml
 
 # various artifacts
 **.war
@@ -51,6 +31,9 @@ db/*.sqlite3
 .redcar/
 .sass-cache
 /config/config.yml
+/config/database.yml
+/config/secrets.yml
+/config/application.yml
 /coverage.data
 /coverage/
 /db/*.javadb/
@@ -102,7 +85,3 @@ pickle-email-*.html
 
 # tilde files are usually backup files from a text editor
 *~
-
-# Ignore application configuration
-/config/application.yml
-/config/secrets.yml
