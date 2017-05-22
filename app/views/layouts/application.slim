@@ -13,13 +13,13 @@ html
     /! Skin configuration box
     = render 'layouts/skinconfig'
     /! Wrapper
-    #wrapper class=("<%= params[:controller] %>.<%= params[:action] %>") 
+    #wrapper class="#{params[:controller]}.#{params[:action]}"
       /! Navigation
       = render 'layouts/navigation'
       /! Page wraper
-      #page-wrapper.gray-bg class=("<%= @extra_class %>") 
+      #page-wrapper.gray-bg class="#{@extra_class}" 
         /! Page wrapper
-        = render 'layouts/topnavbar'
+        = render 'layouts/topnavbar' if user_signed_in?
         /! Main view
         = yield
         /! Footer
