@@ -34,6 +34,8 @@ gem 'therubyracer', :platform=>:ruby
 gem 'jquery-validation-rails'
 gem "font-awesome-rails"
 gem 'rails_script', '~> 2.0'
+gem 'stripe-rails'
+gem "figaro"
 group :development do
   gem 'better_errors'
   gem 'hub', :require=>nil

@@ -8,6 +8,9 @@
 user = CreateAdminService.new.call
 puts 'CREATED ADMIN USER: ' << user.email
 
+CreatePlanService.new.call
+puts "Plans created!"
+
 # Create Country
 Country.create(name: "United States of America",code: "USA",phone_code: "+1")
 Country.create(name: "Canada",code: "CA",phone_code: "+1")

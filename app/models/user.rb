@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+# Added by Koudoku.
+  has_one :subscription
+
   enum role: [:user, :restaurant, :admin]
   after_initialize :set_default_role, :if => :new_record?
   belongs_to :restaurant
