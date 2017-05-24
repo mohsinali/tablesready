@@ -10,6 +10,7 @@ development:
   AUTHORIZATION: "sdfsdfsdf"
   STRIPE_PUBLISHABLE_KEY: "pk_test_oZFibScUyN5lSHeTxAyy2DbU"
   STRIPE_SECRET_KEY: "sk_test_MbXsFCHEpPEBOHyomiyYnC6y"
+  domain_name: example.com
 test:
   ADMIN_USERNAME: superadmin
   ADMIN_EMAIL: superadmin@test.com
@@ -22,6 +23,7 @@ test:
   AUTHORIZATION: "sdfsdfsdf"
   STRIPE_PUBLISHABLE_KEY: "pk_test_oZFibScUyN5lSHeTxAyy2DbU"
   STRIPE_SECRET_KEY: "sk_test_MbXsFCHEpPEBOHyomiyYnC6y"
+  domain_name: example.com
 production:
   ADMIN_USERNAME: superadmin
   ADMIN_EMAIL: superadmin@test.com
@@ -34,3 +36,4 @@ production:
   AUTHORIZATION: "sdfsdfsdf"
   STRIPE_PUBLISHABLE_KEY: "pk_test_oZFibScUyN5lSHeTxAyy2DbU"
   STRIPE_SECRET_KEY: "sk_test_MbXsFCHEpPEBOHyomiyYnC6y"
+  domain_name: example.com
