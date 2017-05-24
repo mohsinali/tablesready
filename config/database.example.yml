@@ -16,7 +16,7 @@ development:
   adapter:  postgresql
   host:     localhost
   encoding: unicode
-  database: delvo_development
+  database: tablesready_development
   pool:     5
   username: postgres
   password: root
@@ -44,7 +44,7 @@ test:
   adapter:  postgresql
   host:     localhost
   encoding: unicode
-  database: delvo_test
+  database: tablesready_test
   pool:     5
   username: postgres
   password: root
@@ -54,7 +54,7 @@ production:
   adapter:  postgresql
   host:     localhost
   encoding: unicode
-  database: delvo_production
+  database: tablesready_production
   pool:     5
   username: postgres
   password: root
