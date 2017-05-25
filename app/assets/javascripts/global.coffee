@@ -50,6 +50,7 @@ App.signUpFormValidator = ->
         required: true
         email: true
       "user[phone]":
+        required: true
         phoneCheck: true
       "user[password]":
         minlength: 8
