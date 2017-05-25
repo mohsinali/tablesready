@@ -31,20 +31,44 @@
 # This will export any new plans to stripe.com so that you can
 # begin using them in your API calls.
 
+Stripe.plan :basic do |plan|
+  plan.name = 'Basic'
+  plan.amount = 4900 # $49.00
+  plan.interval = 'month'
+end
+
+Stripe.plan :startup do |plan|
+  plan.name = 'Startup'
+  plan.amount = 4900 # $49.00
+  plan.interval = 'month'
+end
+
 Stripe.plan :bronze do |plan|
-  plan.name = 'ACME Bronze'
-  plan.amount = 399 # $3.99
+  plan.name = 'Bronze'
+  plan.amount = 7900 # $79.00
   plan.interval = 'month'
 end
 
 Stripe.plan :silver do |plan|
-  plan.name = 'ACME Silver'
-  plan.amount = 699 # $6.99
+  plan.name = 'Silver'
+  plan.amount = 14000 # $140.00
   plan.interval = 'month'
 end
 
 Stripe.plan :gold do |plan|
-  plan.name = 'ACME Gold'
-  plan.amount = 999 # $9.99
+  plan.name = 'Gold'
+  plan.amount = 28000 # $280.00
+  plan.interval = 'month'
+end
+
+Stripe.plan :platinium do |plan|
+  plan.name = 'Platinium'
+  plan.amount = 42000 # $420.00
+  plan.interval = 'month'
+end
+
+Stripe.plan :diamond do |plan|
+  plan.name = 'Diamond'
+  plan.amount = 56000 # $560.00
   plan.interval = 'month'
 end
