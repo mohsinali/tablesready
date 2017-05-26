@@ -36,6 +36,8 @@ gem "font-awesome-rails"
 gem 'rails_script', '~> 2.0'
 gem 'stripe-rails'
 gem "figaro"
+gem 'country_select'
+gem "yettings"
 group :development do
   gem 'better_errors'
   gem 'hub', :require=>nil

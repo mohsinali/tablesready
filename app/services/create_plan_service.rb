@@ -1,13 +1,24 @@
 class CreatePlanService
 
   def call
+    Plan.destroy_all
     ActiveRecord::Base.connection.execute("ALTER SEQUENCE plans_id_seq RESTART WITH 1")
+    Plan.create({
+      name: 'Trial',
+      price: 0.00,
+      interval: 'month',
+      stripe_id: 'trial',
+      features: "0-100 SMS",
+      display_order: 0,
+      plan_type: "Walkin"
+    })
+
     Plan.create({
       name: 'Basic',
       price: 49.00,
       interval: 'month',
       stripe_id: 'basic',
-      features: "Basic Plan",
+      features: "0-100 SMS",
       display_order: 1,
       plan_type: "Walkin"
     })
