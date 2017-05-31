@@ -34,6 +34,14 @@ class User < ApplicationRecord
     return false
   end
 
+  def valid_subscription
+    if in_trial and !trial_expired?
+      return true
+    else
+      has_subscription?
+    end
+  end
+
   def subscribe plan_id,type="walkin"
     begin
       if self.has_subscription?(type)
@@ -90,8 +98,8 @@ class User < ApplicationRecord
         @stripe_sub = @stripe_sub[:sub]
         @subscription = Subscription.create(stripe_id: @stripe_sub.id,
                         user_id: self.id,
-                        started_at: DateTime.strptime(@stripe_sub.start.to_s,'%s'),
-                        #expired_at: DateTime.strptime(@stripe_sub.next_billing_at.to_s,'%s'),
+                        started_at: DateTime.strptime(@stripe_sub.current_period_start.to_s,'%s'),
+                        expired_at: DateTime.strptime(@stripe_sub.current_period_end.to_s,'%s'),
                         status: @stripe_sub.status,
                         plan_id: @plan.id,
                         card_type: @card.brand,

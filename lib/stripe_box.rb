@@ -65,6 +65,8 @@ module StripeBox
         plan: plan_id,
         trial_end: trial
       )
+      puts "========================== sub: ==================="
+      puts "#{@sub}"
       response = { error: false,  sub: @sub }
     rescue Exception => e
       puts "=========== Exception in StripeBox::create_subscription ==========="

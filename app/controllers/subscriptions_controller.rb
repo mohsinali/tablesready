@@ -1,7 +1,13 @@
 require 'stripe_box'
 class SubscriptionsController < ApplicationController
   before_action :authenticate_user!
+  skip_before_action :check_subscription
   include StripeBox
+
+  def index
+    @walkin_subscriptions = current_user.subscriptions.walkin
+    @marketing_subscriptions = current_user.subscriptions.marketing
+  end
 
   def new
     @subcription = Subscription.new
@@ -44,5 +50,17 @@ class SubscriptionsController < ApplicationController
       response = {error: true, message: e.message}
     end
     render json: response
+  end
+
+  def destroy
+    @subcription = Subscription.find(params[:id])
+    response = cancel_subscription(@subcription.stripe_id)
+    if response[:error]
+      msg = response[:message]
+    else
+      @subcription.destroy
+      msg = "You are unsubscribed successfully!"
+    end
+    redirect_to subscriptions_path, notice: msg
   end
 end

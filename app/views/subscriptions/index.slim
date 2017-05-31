@@ -1,0 +1,86 @@
+.row.wrapper.border-bottom.white-bg.page-heading
+  .col-lg-10
+    h2 Subscriptions
+    ol.breadcrumb
+      li
+        = link_to "Home",root_path
+      li.active
+        strong Subscriptions
+  .col-lg-2
+
+/ walkin subscriptions
+.row
+  .col-lg-12
+    .ibox.float-e-margins
+      .ibox-title
+        h5 Walkin Subscriptions
+      .ibox-content
+        .table-responsive
+          /-  @walkin_subscriptions = []
+          table.table.table-striped
+            - if @walkin_subscriptions.any?
+              thead
+                tr
+                  th Plan
+                  th Amount
+                  th Status
+                  th Started At
+                  th Ended At
+                  th Action
+              tbody
+                - @walkin_subscriptions.each do |subscription|
+                  - plan = subscription.plan
+                  tr
+                    td
+                      = plan.name
+                    td
+                      span.pie = number_to_currency(plan.price)
+                    td = subscription.status
+                    td = subscription.started_at.strftime("%b %d, %Y %H:%M")
+                    td = subscription.expired_at.strftime("%b %d, %Y %H:%M")
+                    td
+                      = link_to subscription_path(subscription),method: :delete,data: {confirm: "Are you sure to cancel your subscription?"} do
+                        i.fa.fa-times.text-navy
+                        = " Cancel"
+            - else
+              tbody
+                tr
+                  td You are not subscribed yet.
+/ marketing subscriptions
+.row
+  .col-lg-12
+    .ibox.float-e-margins
+      .ibox-title
+        h5 Marketing Subscriptions
+      .ibox-content
+        .table-responsive
+          /-  @walkin_subscriptions = []
+          table.table.table-striped
+            - if @marketing_subscriptions.any?
+              thead
+                tr
+                  th Plan
+                  th Amount
+                  th Status
+                  th Started At
+                  th Ended At
+                  th Action
+              tbody
+                - @marketing_subscriptions.each do |subscription|
+                  - plan = subscription.plan
+                  tr
+                    td
+                      = plan.name
+                    td
+                      span.pie = number_to_currency(plan.price)
+                    td = subscription.status
+                    td = subscription.started_at.strftime("%b %d, %Y %H:%M")
+                    td = subscription.expired_at.strftime("%b %d, %Y %H:%M")
+                    td
+                      a href="#" 
+                        i.fa.fa-check.text-navy
+                        | Cancel
+            - else
+              tbody
+                tr
+                  td You are not subscribed yet.

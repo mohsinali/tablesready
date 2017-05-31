@@ -21,6 +21,7 @@ html
       #page-wrapper.gray-bg class="#{@extra_class}" 
         /! Page wrapper
         = render 'layouts/topnavbar' if user_signed_in?
+        == render 'layouts/messages'
         /! Main view
         = yield
         /! Footer
