@@ -1,4 +1,9 @@
 class PagesController < ApplicationController
+  
+  def pricing
+    @plans = Plan.marketing
+  end
+
   def search_results
   end
 

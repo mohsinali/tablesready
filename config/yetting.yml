@@ -3,6 +3,9 @@ defaults: &defaults
     trial: "Trial"
     walkin: "Walkin"
     marketing: "Marketing"
+  plan_types:
+    walkin: "Walkin"
+    marketing: "Marketing"
 development:
   <<: *defaults
 

@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get "pricing" => "pages#pricing"
+
   # All theme routes
   get "dashboards/dashboard_1"
   get "dashboards/dashboard_2"

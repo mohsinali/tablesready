@@ -11,9 +11,8 @@ class SubscriptionsController < ApplicationController
 
   def new
     @subcription = Subscription.new
-    @plan = Plan.find_by(stripe_id: 'basic')
+    @plan = (params[:plan_id].blank? ? Plan.find_by(stripe_id: 'basic') : Plan.find_by(stripe_id: params[:plan_id]))
   end
-
 
   def create_customer
     ## If user doesn't have stripe customer id, then create a new customer at stripe
@@ -43,13 +42,21 @@ class SubscriptionsController < ApplicationController
   end
 
   def create
-    plan = (params[:plan_id].blank? ? Plan.find_by(stripe_id: 'basic') : Plan.find(params[:plan_id]))
+    @plan = (params[:plan_id].blank? ? Plan.find_by(stripe_id: 'basic') : Plan.find(params[:plan_id]))
     begin
-      response = current_user.subscribe(plan.stripe_id)
+      @response = current_user.subscribe(@plan.stripe_id,@plan.plan_type.downcase)
+      @response[:message] = "You are subscribed to #{@plan.name} successfully!"
     rescue Exception => e
-      response = {error: true, message: e.message}
+      @response = {error: true, message: e.message}
     end
-    render json: response
+    if params[:source].blank?
+      render json: @response
+      return
+    else
+      respond_to do |format|
+        format.js {render layout: false}
+      end
+    end
   end
 
   def destroy

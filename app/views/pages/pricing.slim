@@ -1,0 +1,32 @@
+.row.wrapper.border-bottom.white-bg.page-heading
+  .col-lg-10
+    h2 Marketing Plans
+    ol.breadcrumb
+      li
+        = link_to "Home",root_path
+      li
+        = link_to "Subscriptions",subscriptions_path
+      li.active
+        strong Pricing
+  .col-lg-2
+
+.row
+  .col-lg-12
+    .ibox.float-e-margins
+      .ibox-title
+        h5 Marketing Plans
+      .ibox-content
+        .row
+          - @plans.each do |plan|
+            .col-lg-2
+              ul.text-center.list-unstyled.list-group
+                li.list-group-item.active
+                  strong = plan.name
+                li.list-group-item
+                  = "#{number_to_currency(plan.price)}/#{plan.interval}"
+                li.list-group-item
+                  = plan.features
+                li.list-group-item
+                  = subscription_lnk(plan)
+
+.modal-section
