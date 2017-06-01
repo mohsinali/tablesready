@@ -90,11 +90,12 @@ class User < ApplicationRecord
     unless response[:error]
       @card = response[:card]
       ## Create Subscription
-      @stripe_sub = create_subscription(self.stripe_customer_id, plan_id, self.trial_availed?,self)
+      trial = (type == "walkin" ? self.trial_availed? : true)
+      @stripe_sub = create_subscription(self.stripe_customer_id, plan_id, trial,self)
       if @stripe_sub[:error]
         response = @stripe_sub
       else
-        trial_availed!
+        trial_availed! if type == "walkin"
         @stripe_sub = @stripe_sub[:sub]
         @subscription = Subscription.create(stripe_id: @stripe_sub.id,
                         user_id: self.id,
