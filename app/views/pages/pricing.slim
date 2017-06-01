@@ -18,15 +18,7 @@
       .ibox-content
         .row
           - @plans.each do |plan|
-            .col-lg-2
-              ul.text-center.list-unstyled.list-group
-                li.list-group-item.active
-                  strong = plan.name
-                li.list-group-item
-                  = "#{number_to_currency(plan.price)}/#{plan.interval}"
-                li.list-group-item
-                  = plan.features
-                li.list-group-item
-                  = subscription_lnk(plan)
+            .col-lg-2.plan-content plan_id="#{plan.id}"
+              = render partial: "shared/plan",locals: {plan: plan}
 
 .modal-section

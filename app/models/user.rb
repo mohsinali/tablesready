@@ -107,15 +107,33 @@ class User < ApplicationRecord
                         subs_type: Yetting.subscription_types[type],
                         in_trial: false
                         )
-        response = { error: false, sub: @subscription}
+        response = { error: false, sub: @subscription,message: "You are subscribed to #{@plan.name} successfully!"}
       end
     end
     response
   end
 
-  def existing_subscription plan,type
+  def existing_subscription plan_id,type
+    @plan = Plan.get_plan(plan_id)
     response = get_default_card(self.stripe_customer_id)
     # todo
-    response = {error: false, message: "todo:"}
+    unless response[:error]
+      subscription = current_subscription(type)
+      @card = response[:card]
+      @stripe_sub = update_subscription(subscription.stripe_id,plan_id )
+      @stripe_sub = @stripe_sub[:sub]
+      subscription.update_attributes(stripe_id: @stripe_sub.id, 
+                                      started_at: DateTime.strptime(@stripe_sub.current_period_start.to_s,'%s'),
+                                      expired_at: DateTime.strptime(@stripe_sub.current_period_end.to_s,'%s'),
+                                      status: @stripe_sub.status,
+                                      plan_id: @plan.id,
+                                      card_type: @card.brand,
+                                      last_four: @card.last4,
+                                      subs_type: Yetting.subscription_types[type],
+                                      in_trial: false
+                                    )
+      response = { error: false, sub: subscription,message: "Your subscription updated to #{@plan.name} successfully!"}
+    end
+    response
   end
 end

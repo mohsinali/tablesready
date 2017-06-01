@@ -78,15 +78,16 @@ module StripeBox
     return response
   end
 
-  def update_subscription customer, subscription_id, plan_id, trial_availed
+  def update_subscription subscription_id, plan_id
     
     begin
       subscription = Stripe::Subscription.retrieve(subscription_id)
       subscription.plan = plan_id
       subscription.prorate = true
-      subscription.trial_end = "now" if trial_availed
+      subscription.trial_end = "now"
       subscription.save
-
+      puts "========================== sub: ==================="
+      puts "#{subscription}"
       response = { error: false, sub: subscription }
     rescue Exception => e
       puts "=========== Exception ==========="

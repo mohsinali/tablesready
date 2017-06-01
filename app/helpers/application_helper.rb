@@ -37,9 +37,9 @@ module ApplicationHelper
         link_to "CURRENT","javascript:void(0);",class: "btn btn-default btn-xl"
       else
         if Plan.downgrade?(current_plan,plan)
-          link_to "DOWNGRADE",subscription_path(id: current_subscription.id,plan_id: plan.id),method: :put,class: "btn btn-primary btn-xl"
+          link_to "DOWNGRADE",subscription_path(id: current_subscription.id,plan_id: plan.id,source: 'pricing'),method: :put,remote: true,class: "btn btn-primary btn-xl"
         else
-          link_to "UPGRADE",subscription_path(id: current_subscription.id,plan_id: plan.id),method: :put,class: "btn btn-primary btn-xl"
+          link_to "UPGRADE",subscription_path(id: current_subscription.id,plan_id: plan.id,source: 'pricing'),method: :put,remote: true,class: "btn btn-primary btn-xl"
         end
       end
     else

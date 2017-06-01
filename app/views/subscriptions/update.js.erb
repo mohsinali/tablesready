@@ -1,9 +1,9 @@
-<% title = @response[:error] ? "Subscription Failed" : "Subscription Success" %>
+<% title = @response[:error] ? "Subscription Updated Failed" : "Subscription Updated" %>
 $(".modal-section").html("<%= j(render partial: 'shared/subscription_success_modal',locals: {title: title,msg: @response[:message]})%>")
 <% unless @response[:error] %>
   $(".plan-content[plan_id=<%= @plan.id %>]").html("<%= j(render partial: 'shared/plan',locals: {plan: @plan})%>");
   <% if @prev_plan.present? %>
     $(".plan-content[plan_id=<%= @prev_plan.id %>]").html("<%= j(render partial: 'shared/plan',locals: {plan: @prev_plan})%>");
-  <% end %>    
+  <% end %>
 <% end %>
 $("#subscription_success_modal").modal("show");

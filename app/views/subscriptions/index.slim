@@ -52,6 +52,11 @@
       .ibox-title
         h5 Marketing Subscriptions
       .ibox-content
+        - if @marketing_subscriptions.any?
+          .row
+            .col.lg-2
+            .col-lg-10
+              = link_to "Change Plan","/pricing",class: "btn btn-primary btn-xl"
         .table-responsive
           table.table.table-striped
             - if @marketing_subscriptions.any?
@@ -75,10 +80,13 @@
                     td = subscription.started_at.strftime("%b %d, %Y %H:%M")
                     td = subscription.expired_at.strftime("%b %d, %Y %H:%M")
                     td
-                      a href="#" 
-                        i.fa.fa-check.text-navy
-                        | Cancel
+                      = link_to subscription_path(subscription),method: :delete,data: {confirm: "Are you sure to cancel your subscription?"} do
+                        i.fa.fa-times.text-navy
+                        = " Cancel"
             - else
               tbody
                 tr
                   td You are not subscribed yet.
+                tr
+                  td
+                    = link_to "New Subscription","/pricing",class: "btn btn-primary btn-xl"

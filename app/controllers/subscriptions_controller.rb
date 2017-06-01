@@ -43,9 +43,9 @@ class SubscriptionsController < ApplicationController
 
   def create
     @plan = (params[:plan_id].blank? ? Plan.find_by(stripe_id: 'basic') : Plan.find(params[:plan_id]))
+    @prev_plan = current_plan(@plan.plan_type)
     begin
       @response = current_user.subscribe(@plan.stripe_id,@plan.plan_type.downcase)
-      @response[:message] = "You are subscribed to #{@plan.name} successfully!"
     rescue Exception => e
       @response = {error: true, message: e.message}
     end
@@ -59,6 +59,19 @@ class SubscriptionsController < ApplicationController
     end
   end
 
+  def update
+    @plan = (params[:plan_id].blank? ? Plan.find_by(stripe_id: 'basic') : Plan.find(params[:plan_id]))
+    @prev_plan = current_plan(@plan.plan_type)
+    begin
+      @response = current_user.subscribe(@plan.stripe_id,@plan.plan_type.downcase)
+    rescue Exception => e
+      @response = {error: true, message: e.message}
+    end
+    respond_to do |format|
+      format.js {render layout: false}
+    end
+  end
+
   def destroy
     @subcription = Subscription.find(params[:id])
     response = cancel_subscription(@subcription.stripe_id)
@@ -69,5 +82,16 @@ class SubscriptionsController < ApplicationController
       msg = "You are unsubscribed successfully!"
     end
     redirect_to subscriptions_path, notice: msg
+  end
+
+  private
+
+  def current_plan plan_type
+    plan = nil
+    current_subscription = current_user.current_subscription(plan_type.downcase)
+    if current_subscription.present?
+      plan = current_subscription.plan
+    end
+    plan
   end
 end
