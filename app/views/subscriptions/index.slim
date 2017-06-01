@@ -24,7 +24,7 @@
                   th Amount
                   th Status
                   th Started At
-                  th Ended At
+                  th Expired At
                   th Action
               tbody
                 - @walkin_subscriptions.each do |subscription|
@@ -35,8 +35,8 @@
                     td
                       span.pie = number_to_currency(plan.price)
                     td = subscription.status
-                    td = subscription.started_at.strftime("%b %d, %Y %H:%M")
-                    td = subscription.expired_at.strftime("%b %d, %Y %H:%M")
+                    td = subscription.started_at.strftime("%b %d, %Y")
+                    td = subscription.expired_at.strftime("%b %d, %Y")
                     td
                       = link_to subscription_path(subscription),method: :delete,data: {confirm: "Are you sure to cancel your subscription?"} do
                         i.fa.fa-times.text-navy
@@ -66,7 +66,7 @@
                   th Amount
                   th Status
                   th Started At
-                  th Ended At
+                  th Expired At
                   th Action
               tbody
                 - @marketing_subscriptions.each do |subscription|
@@ -77,8 +77,8 @@
                     td
                       span.pie = number_to_currency(plan.price)
                     td = subscription.status
-                    td = subscription.started_at.strftime("%b %d, %Y %H:%M")
-                    td = subscription.expired_at.strftime("%b %d, %Y %H:%M")
+                    td = subscription.started_at.strftime("%b %d, %Y")
+                    td = subscription.expired_at.strftime("%b %d, %Y")
                     td
                       = link_to subscription_path(subscription),method: :delete,data: {confirm: "Are you sure to cancel your subscription?"} do
                         i.fa.fa-times.text-navy
