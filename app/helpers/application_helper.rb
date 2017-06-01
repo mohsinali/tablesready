@@ -37,16 +37,16 @@ module ApplicationHelper
         link_to "CURRENT","javascript:void(0);",class: "btn btn-default btn-xl"
       else
         if Plan.downgrade?(current_plan,plan)
-          link_to "DOWNGRADE",subscription_path(id: current_subscription.id,plan_id: plan.id,source: 'pricing'),method: :put,remote: true,class: "btn btn-primary btn-xl"
+          link_to "DOWNGRADE","javascript:void(0);",lnk: subscription_path(id: current_subscription.id,plan_id: plan.id,source: 'pricing'),method: :put,plan_id: plan.id,class: "btn btn-primary btn-xl subscription_lnk"
         else
-          link_to "UPGRADE",subscription_path(id: current_subscription.id,plan_id: plan.id,source: 'pricing'),method: :put,remote: true,class: "btn btn-primary btn-xl"
+          link_to "UPGRADE","javascript:void(0);",lnk: subscription_path(id: current_subscription.id,plan_id: plan.id,source: 'pricing'),method: :put,plan_id: plan.id,class: "btn btn-primary btn-xl subscription_lnk"
         end
       end
     else
       if current_user.stripe_customer_id.blank?
-        link_to "SUBSCRIBE",new_subscription_path(plan_id: plan.stripe_id),class: "btn btn-primary btn-xl"
+        link_to "SUBSCRIBE",new_subscription_path(plan_id: plan.stripe_id),plan_id: plan.id,class: "btn btn-primary btn-xl"
       else
-        link_to "SUBSCRIBE",subscriptions_path(plan_id: plan.id,source: "pricing"),method: :post,remote: true,class: "btn btn-primary btn-xl"
+        link_to "SUBSCRIBE",subscriptions_path(plan_id: plan.id,source: "pricing"),method: :post,plan_id: plan.id,class: "btn btn-primary btn-xl subscription_lnk"
       end
     end
   end

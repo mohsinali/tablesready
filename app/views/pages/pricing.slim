@@ -16,6 +16,8 @@
       .ibox-title
         h5 Marketing Plans
       .ibox-content
+        / this is hidden form used to update/create subscription
+        = render partial: "shared/subscription_form"
         .row
           - @plans.each do |plan|
             .col-lg-2.plan-content plan_id="#{plan.id}"

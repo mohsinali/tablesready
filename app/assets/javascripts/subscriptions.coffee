@@ -28,7 +28,7 @@ class App.Subscriptions extends App.Base
       if response.error
         # Problem!
         # Show the errors on the form:
-        # hide_loader()
+        hide_loader()
         $alert.html response.error.message
         $alert.addClass("alert-warning")
         $form.find('.submit').prop 'disabled', false
@@ -42,7 +42,7 @@ class App.Subscriptions extends App.Base
         # Submit the form:
         $.post $form.attr("url"), $form.serialize(), (data)->
           if data.error
-            # hide_loader()
+            hide_loader()
             $alert.html data.message
             $alert.addClass("alert-warning")
             $form.find('.submit').prop 'disabled', false
@@ -52,7 +52,7 @@ class App.Subscriptions extends App.Base
             ## Create Subscription
             $.post "/subscriptions",$form.serialize() , (data)->
               if data.error
-                # hide_loader()
+                hide_loader()
                 $alert.html data.message
                 $alert.addClass("alert-warning")
                 $form.find('.submit').prop 'disabled', false
@@ -109,7 +109,7 @@ class App.Subscriptions extends App.Base
             required: "CVC number is required."
             number: "CVC number is not valid."
       if $($form).valid()
-        #show_loader()
+        show_loader()
         # Disable the submit button to prevent repeated clicks:
         $form.find('.submit').prop 'disabled', true
 
@@ -117,6 +117,16 @@ class App.Subscriptions extends App.Base
         Stripe.card.createToken $form, stripeResponseHandler
       # Prevent the form from being submitted:
       false
+    
+
+    hide_loader = ->
+      $("html, body").animate
+        scrollTop: $($alert).offset().top
+      , 200
+      $(".pre-loader").addClass('hide')
+
+    show_loader = ->
+      $(".pre-loader").removeClass('hide')  
     return
 
 

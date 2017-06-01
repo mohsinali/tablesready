@@ -50,7 +50,7 @@
   .col-lg-12
     .ibox.float-e-margins
       .ibox-title
-        h5 Marketing Subscriptions
+        h5 Marketing Addons
       .ibox-content
         - if @marketing_subscriptions.any?
           .row
@@ -86,7 +86,7 @@
             - else
               tbody
                 tr
-                  td You are not subscribed yet.
+                  td You have not added any addon.
                 tr
                   td
-                    = link_to "New Subscription","/pricing",class: "btn btn-primary btn-xl"
+                    = link_to "New Addon","/pricing",class: "btn btn-primary btn-xl"

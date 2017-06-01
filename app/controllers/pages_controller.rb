@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  
+  skip_before_action :check_subscription  
   def pricing
     @plans = Plan.marketing
   end

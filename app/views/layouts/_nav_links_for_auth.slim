@@ -12,11 +12,17 @@
         li
           = link_to 'Logout', destroy_user_session_path, :method=>'delete'
   li class="#{is_active_controller('dashboards')}"
-    = link_to "Home", root_path
+    = link_to root_path do
+      i.fa.fa-th-large
+      span.nav-label Home
   li class="#{is_active_controller('subscriptions')}"
-    = link_to "Subscriptions",subscriptions_path
+    = link_to subscriptions_path do
+      i.fa.fa-cc-stripe
+      span.nav-label Subscriptions
   li class="#{is_active_action('pricing')}"
-    = link_to "Pricing","/pricing"
+    = link_to "/pricing" do
+      i.fa.fa-dollar
+      span.nav-label Pricing
 - else
   li
     = link_to 'Login', new_user_session_path
