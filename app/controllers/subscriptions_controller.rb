@@ -49,9 +49,15 @@ class SubscriptionsController < ApplicationController
     rescue Exception => e
       @response = {error: true, message: e.message}
     end
-    flash[:notice] = @response[:message]
-    render json: @response
-    return
+    if params[:source].blank?
+      flash[:notice] = @response[:message]
+      render json: @response
+      return
+    else
+      respond_to do |format|
+        format.js {render layout: false}
+      end
+    end
   end
 
   def update

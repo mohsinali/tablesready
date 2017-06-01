@@ -46,7 +46,7 @@ module ApplicationHelper
       if current_user.stripe_customer_id.blank?
         link_to "SUBSCRIBE",new_subscription_path(plan_id: plan.stripe_id),plan_id: plan.id,class: "btn btn-primary btn-xl"
       else
-        link_to "SUBSCRIBE",subscriptions_path(plan_id: plan.id,source: "pricing"),method: :post,plan_id: plan.id,class: "btn btn-primary btn-xl subscription_lnk"
+        link_to "SUBSCRIBE","javascript:void(0);",lnk: subscriptions_path(plan_id: plan.id,source: "pricing"),method: :post,plan_id: plan.id,class: "btn btn-primary btn-xl subscription_lnk"
       end
     end
   end

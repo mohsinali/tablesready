@@ -28,9 +28,6 @@ class App.Pages extends App.Base
         data: $("#subscription_form").serialize()
         beforeSend: ->
           show_loader(plan_id)
-        success: (data) ->
-          if data.reload
-            window.location.reload()
 
     
     hide_loader =  ->
