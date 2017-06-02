@@ -13,7 +13,7 @@ module ApplicationHelper
         <div class="alert alert-info">
           <strong> You are using trial account: </strong>
           You trial #{current_user.trial_expired? ?  'has been exprired' : 'will exprire'} on #{current_user.trial_ends_at.to_date},
-          #{link_to "Click here",new_subscription_path} to buy subscription.
+          #{link_to "Click here","/pricing"} to buy subscription.
         </div>
       INFO
       info.html_safe

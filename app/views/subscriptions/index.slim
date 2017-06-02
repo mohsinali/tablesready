@@ -24,7 +24,7 @@
                   th Amount
                   th Status
                   th Started At
-                  th Expired At
+                  th Expiry
                   th Action
               tbody
                 - @walkin_subscriptions.each do |subscription|
@@ -56,7 +56,7 @@
           .row
             .col.lg-2
             .col-lg-10
-              = link_to "Change Plan","/pricing",class: "btn btn-primary btn-xl"
+              = link_to "More Addons","/pricing",class: "btn btn-primary btn-xl"
         .table-responsive
           table.table.table-striped
             - if @marketing_subscriptions.any?
@@ -66,7 +66,7 @@
                   th Amount
                   th Status
                   th Started At
-                  th Expired At
+                  th Expiry
                   th Action
               tbody
                 - @marketing_subscriptions.each do |subscription|
