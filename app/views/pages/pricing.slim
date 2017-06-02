@@ -1,6 +1,7 @@
 .row.wrapper.border-bottom.white-bg.page-heading
   .col-lg-10
-    h2 Marketing Plans
+    h2
+      strong Plan and Addons
     ol.breadcrumb
       li
         = link_to "Home",root_path
@@ -14,7 +15,7 @@
   .col-lg-12
     .ibox.float-e-margins
       .ibox-title
-        h5 Marketing Plans
+        h5 Marketing Addons
       .ibox-content
         / this is hidden form used to update/create subscription
         = render partial: "shared/subscription_form"
