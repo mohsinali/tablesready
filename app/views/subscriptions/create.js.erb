@@ -1,4 +1,5 @@
-<% title = @response[:error] ? "Subscription Failed" : "Subscription Success" %>
+<% sub_title = @plan.walkin? ? "Subscription" : "Addon"%>
+<% title = @response[:error] ? "#{sub_title} Failed" : "#{sub_title} Success" %>
 $(".modal-section").html("<%= j(render partial: 'shared/subscription_success_modal',locals: {title: title,msg: @response[:message]})%>")
 <% unless @response[:error] %>
   $(".plan-content[plan_id=<%= @plan.id %>]").html("<%= j(render partial: 'shared/plan',locals: {plan: @plan})%>");

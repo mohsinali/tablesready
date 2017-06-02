@@ -24,4 +24,13 @@ class Plan < ApplicationRecord
   def self.upgrade? current_plan, target_plan
     current_plan.display_order < target_plan.display_order
   end
+
+
+  def walkin?
+    self.plan_type == Yetting.plan_types["walkin"]
+  end
+
+  def marketing?
+    self.plan_type == Yetting.plan_types["marketing"]
+  end
 end

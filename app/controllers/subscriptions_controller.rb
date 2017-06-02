@@ -80,12 +80,13 @@ class SubscriptionsController < ApplicationController
 
   def destroy
     @subcription = Subscription.find(params[:id])
+    @plan = @subcription.plan
     response = cancel_subscription(@subcription.stripe_id)
     if response[:error]
       msg = response[:message]
     else
       @subcription.destroy
-      msg = "You are unsubscribed successfully!"
+      msg = "Your #{@plan.walkin? ? 'subcription' : 'addon'} has been cancelled!"
     end
     redirect_to subscriptions_path, notice: msg
   end

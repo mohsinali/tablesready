@@ -3,10 +3,26 @@
 .row
   .col-lg-12
     .ibox.float-e-margins
-      .ibox-title
+      .ibox-title.panel-title
         h5
           | Add Your Card
+        /.pull-right
+          span.m-l-xs
+            i class="fa fa-cc-amex text-success"
+          span.m-l-xs
+            i class="fa fa-cc-mastercard text-warning"
+          span.m-l-xs
+            i class="fa fa-cc-discover text-danger"
       .ibox-content
+        ul
+          li
+            =  "You can send #{@plan.features} after subscribing in "
+            strong #{@plan.name} #{@plan.walkin? ? "Plan" : "Addon"}
+          li
+            = "It costs only "
+            strong #{number_to_currency(@plan.price)}/#{@plan.interval}.
+            = " Upgrade, downgrade, or cancel at anytime"
+          li For detail of features Go to: #{link_to "Pricing","/pricing"}
         = simple_form_for @subcription, html: { url: create_customer_subscriptions_path,role: 'form',id: "credit_card_form",class: "form-horizontal",remote: true,autocomplete: "off"} do |f|
           = hidden_field_tag :authenticity_token, form_authenticity_token, id: :form_token
           = hidden_field_tag :plan_id,@plan.id
@@ -16,6 +32,18 @@
             .col-sm-10
               input autocomplete="off" type="text" name="name" data-stripe="name" class="form-control" placeholder="Name on card"
           .hr-line-dashed
+          .form-group.m-b-none
+            .col-sm-2
+            .col-sm-10
+              p.font-32
+                span.m-l-xs
+                  i class="fa fa-cc-visa text-primary"
+                span.m-l-xs
+                  i class="fa fa-cc-amex text-success"
+                span.m-l-xs
+                  i class="fa fa-cc-mastercard text-warning"
+                span.m-l-xs
+                  i class="fa fa-cc-discover text-danger"
           .form-group
             label.col-sm-2.control-label Card Number
             .col-sm-10
@@ -74,4 +102,4 @@
           .form-group
             .col-sm-4.col-sm-offset-2
               = link_to "Cancel",root_path,class: "btn btn-white"
-              button.btn.btn-primary.submit.m-l-sm type="submit"  Save changes
+              button.btn.btn-primary.submit.m-l-sm type="submit"  Continue
