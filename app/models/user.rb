@@ -108,7 +108,12 @@ class User < ApplicationRecord
                         subs_type: Yetting.subscription_types[type],
                         in_trial: false
                         )
-        response = { error: false, sub: @subscription,message: "You are subscribed to #{@plan.name} successfully!"}
+        if type == "walkin"
+          msg = "You are subscribed to #{@plan.name} successfully!"
+        else
+          msg = "An addon #{@plan.name} has been added."
+        end
+        response = { error: false, sub: @subscription,message: msg}
       end
     end
     response
@@ -133,7 +138,7 @@ class User < ApplicationRecord
                                       subs_type: Yetting.subscription_types[type],
                                       in_trial: false
                                     )
-      response = { error: false, sub: subscription,message: "Your subscription updated to #{@plan.name} successfully!"}
+      response = { error: false, sub: subscription,message: "An addon has been updated to #{@plan.name}."}
     end
     response
   end
