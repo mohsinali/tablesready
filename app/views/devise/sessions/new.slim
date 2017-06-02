@@ -4,8 +4,7 @@
       h1.logo-name TR
     h3 Sign in 
     = form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :role => 'form',id: "signin_form",class: "m-t"}) do |f|
-      .text-left.text-danger
-        = devise_error_messages!
+      = render "layouts/messages"
       .form-group.text-left
         = f.email_field :email,placeholder: "Email", :autofocus => true, class: 'form-control'
       .form-group.text-left

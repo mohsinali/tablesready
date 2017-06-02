@@ -11,16 +11,26 @@
         strong Pricing
   .col-lg-2
 
+/ this is hidden form used to update/create subscription
+= render partial: "shared/subscription_form"
+.row
+  .col-lg-12
+    .ibox.float-e-margins
+      .ibox-title
+        h5 Walkin Plans
+      .ibox-content
+        .row
+          - @walkin_plans.each do |plan|
+            .col-lg-2.plan-content plan_id="#{plan.id}"
+              = render partial: "shared/plan",locals: {plan: plan}
 .row
   .col-lg-12
     .ibox.float-e-margins
       .ibox-title
         h5 Marketing Addons
       .ibox-content
-        / this is hidden form used to update/create subscription
-        = render partial: "shared/subscription_form"
         .row
-          - @plans.each do |plan|
+          - @marketing_plans.each do |plan|
             .col-lg-2.plan-content plan_id="#{plan.id}"
               = render partial: "shared/plan",locals: {plan: plan}
 

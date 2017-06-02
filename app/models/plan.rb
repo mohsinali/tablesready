@@ -1,5 +1,6 @@
 class Plan < ApplicationRecord
   has_many :subscriptions
+  scope :trial, -> {where(plan_type: Yetting.plan_types["trial"])}
   scope :walkin, -> {where(plan_type: Yetting.plan_types["walkin"])}
   scope :marketing, -> {where(plan_type: Yetting.plan_types["marketing"])}
 

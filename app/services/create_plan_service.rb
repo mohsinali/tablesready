@@ -10,7 +10,7 @@ class CreatePlanService
       stripe_id: 'trial',
       features: "0-100 SMS",
       display_order: 0,
-      plan_type: "Walkin"
+      plan_type: "Trial"
     })
 
     Plan.create({

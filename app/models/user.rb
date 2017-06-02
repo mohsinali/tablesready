@@ -81,7 +81,7 @@ class User < ApplicationRecord
   private
   def set_trial_mode
     self.update(in_trial:true,trial_ends_at: Time.now + ENV["TRIAL_PERIOD_DAYS"].to_i.days)
-    self.subscriptions.create(in_trial: true,expired_at: self.trial_ends_at,current_price: 0,plan_id: Plan.first.try(:id))
+    self.subscriptions.create(in_trial: true,started_at: Time.now,expired_at: self.trial_ends_at,current_price: 0,plan_id: Plan.first.try(:id),status: "Trial",subs_type: Yetting.subscription_types["trial"])
   end
 
   def new_subscription plan_id,type

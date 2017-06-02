@@ -5,7 +5,12 @@ class SubscriptionsController < ApplicationController
   include StripeBox
 
   def index
+    @is_trial = false
     @walkin_subscriptions = current_user.subscriptions.walkin
+    if @walkin_subscriptions.empty?
+      @walkin_subscriptions = current_user.subscriptions.trial
+      @is_trial = true
+    end
     @marketing_subscriptions = current_user.subscriptions.marketing
   end
 

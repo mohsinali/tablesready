@@ -7,4 +7,9 @@ class Subscription < ApplicationRecord
   scope :walkin, -> {where(subs_type: Yetting.subscription_types["walkin"])}
   scope :marketing, -> {where(subs_type: Yetting.subscription_types["marketing"])}
 
+
+  def expired?
+    self.expired_at.to_i < Time.now.to_i
+  end
+
 end
