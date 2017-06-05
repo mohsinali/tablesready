@@ -117,3 +117,7 @@ App.editPasswordFormValidator = ->
       "user[password_confirmation]":
         required: "Confirm password is required."
         equalTo: "Password and Confirm Password does not match."
+
+# reset form hanlder
+App.resetForm = ($element)->
+  $element.reset()

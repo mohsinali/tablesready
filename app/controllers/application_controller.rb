@@ -5,6 +5,13 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   layout :set_layout
   before_action :check_subscription
+  helper_method :my_restaurant
+
+  def my_restaurant
+    if current_user
+      current_user.restaurant
+    end
+  end
 
   private
 

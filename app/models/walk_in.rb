@@ -1,0 +1,2 @@
+class WalkIn < Booking
+end

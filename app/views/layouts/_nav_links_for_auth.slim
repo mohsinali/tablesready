@@ -23,6 +23,10 @@
     = link_to "/pricing" do
       i.fa.fa-dollar
       span.nav-label Pricing
+  li class="#{is_active_controller('walk_ins')}"
+    = link_to walk_ins_path do
+      i.fa.fa-clock-o
+      span.nav-label Wait List
 - else
   li
     = link_to 'Login', new_user_session_path

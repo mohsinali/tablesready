@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :walk_ins
+
   get "pricing" => "pages#pricing"
 
   # All theme routes
