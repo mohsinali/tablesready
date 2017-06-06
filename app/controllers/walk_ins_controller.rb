@@ -37,10 +37,6 @@ class WalkInsController < ApplicationController
   private
 
     def walk_in_params
-      if params[:time_in_minutes].present?
-        time_in_minutes = params[:time_in_minutes].to_i
-        params[:walk_in][:booking_time] = params[:walk_in][:booking_time].to_datetime + time_in_minutes.minutes
-      end
       params.require(:walk_in).permit(:booking_date,:booking_time,:size,:phone,:party_name,:notes,:restaurant_id)
     end
 
