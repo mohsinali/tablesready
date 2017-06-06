@@ -12,13 +12,13 @@ tr id="booking_#{booking.id}"
       i.fa.fa-bell.m-r-xs
       span Text
   td
-    = link_to "#",class: "btn btn-primary m-r-xs" do
+    = link_to change_status_walk_in_path(booking,status: "seated"),method: :post,remote: true,class: "btn btn-primary m-r-xs" do
       i.fa.fa-check.m-r-xs
       span Seated
-    = link_to "#",class: "btn btn-default m-r-xs" do
+    = link_to change_status_walk_in_path(booking,status: "no_show"),method: :post,remote: true,class: "btn btn-default m-r-xs" do
       i.fa.fa-times.m-r-xs
       span No-Show
-    = link_to "#",class: "btn btn-default m-r-xs" do
+    = link_to walk_in_path(booking),method: :delete,remote: true,data: {confirm: "Are you sure to remove this booking?"},class: "btn btn-default m-r-xs" do
       i.fa.fa-trash.m-r-xs
       span Cancel
     = link_to edit_walk_in_path(booking),remote: true,class: "btn btn-default m-r-xs" do

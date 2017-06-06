@@ -9,7 +9,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :walk_ins
+  resources :walk_ins do
+    member do
+      post :change_status
+    end
+  end
 
   get "pricing" => "pages#pricing"
 

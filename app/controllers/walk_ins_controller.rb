@@ -1,6 +1,6 @@
 class WalkInsController < ApplicationController
 
-  before_action :set_walkin,only: [:edit,:update,:destroy]
+  before_action :set_walkin,only: [:edit,:update,:destroy,:change_status]
 
   def index
     @walk_ins = WalkIn.all
@@ -31,7 +31,19 @@ class WalkInsController < ApplicationController
     end
   end
 
+  def change_status
+    @walk_in.send("#{params[:status]}!")
+    respond_to do |format|
+      format.js {render layout: false}
+    end
+  end
+
   def destroy
+    @walk_in.cancelled!
+    @walk_in.destroy
+    respond_to do |format|
+      format.js {render layout: false}
+    end
   end
 
   private
