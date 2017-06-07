@@ -47,8 +47,8 @@ class SubscriptionsController < ApplicationController
   end
 
   def create
+    get_plans
     @plan = (params[:plan_id].blank? ? Plan.find_by(stripe_id: 'basic') : Plan.find(params[:plan_id]))
-    @prev_plan = current_plan(@plan.plan_type)
     begin
       @response = current_user.subscribe(@plan.stripe_id,@plan.plan_type.downcase)
     rescue Exception => e
@@ -66,8 +66,8 @@ class SubscriptionsController < ApplicationController
   end
 
   def update
+    get_plans
     @plan = (params[:plan_id].blank? ? Plan.find_by(stripe_id: 'basic') : Plan.find(params[:plan_id]))
-    @prev_plan = current_plan(@plan.plan_type)
     begin
       @response = current_user.subscribe(@plan.stripe_id,@plan.plan_type.downcase)
     rescue Exception => e
@@ -100,5 +100,10 @@ class SubscriptionsController < ApplicationController
       plan = current_subscription.plan
     end
     plan
+  end
+
+  def get_plans
+    @walkin_plans = Plan.walkin
+    @marketing_plans = Plan.marketing
   end
 end

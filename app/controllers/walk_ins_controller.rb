@@ -3,7 +3,7 @@ class WalkInsController < ApplicationController
   before_action :set_walkin,only: [:edit,:update,:destroy,:change_status]
 
   def index
-    @walk_ins = WalkIn.all
+    @walk_ins = WalkIn.by_restaurant(my_restaurant)
     @walk_in = WalkIn.new(size: 2,restaurant_id: my_restaurant.id,booking_date: Date.today)
   end
 

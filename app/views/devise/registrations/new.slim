@@ -23,3 +23,7 @@
         = f.password_field :password_confirmation, class: 'form-control',placeholder: "Password Confirmation"
       div
         = f.submit 'Sign up', :class => 'btn btn-primary block full-width m-b'
+        p.text-muted.text-center
+          small Have already an account?
+        = link_to new_user_session_path, class: 'btn btn-sm btn-white btn-block' do
+          small Sign In
