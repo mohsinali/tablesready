@@ -18,7 +18,7 @@
           .form-group
             label.col-sm-3.control-label Size
             .col-sm-9
-              = f.text_field :size,class: 'form-control'
+              = f.number_field :size,min: 0,class: 'form-control'
           .form-group
             label.col-sm-3.control-label Phone (10 digits)
             .col-sm-9
