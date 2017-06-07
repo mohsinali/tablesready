@@ -1,0 +1,71 @@
+.row.wrapper.border-bottom.white-bg.page-heading
+  .col-lg-10
+    h2 Reservations
+    ol.breadcrumb
+      li
+        = link_to "Home",root_path
+      li.active
+        strong Reservation
+  .col-lg-2
+
+/ Add New Walkins
+.row
+  .col-lg-12
+    .ibox.float-e-margins
+      .ibox-title
+        h5 Add New Reservation
+      .ibox-content
+        .table-responsive
+          = simple_form_for @reservation, html: { role: 'form',id: "reservation_form",class: "form-horizontal",remote: true,autocomplete: "off"} do |f|
+            = hidden_field_tag :authenticity_token, form_authenticity_token, id: :form_token
+            = f.hidden_field :restaurant_id
+            table.table.table-striped
+              tbody
+                tr
+                  td
+                    label Date
+                    = f.date_field :booking_date
+                  td
+                    label Time
+                    = f.time_field :booking_time
+                  td
+                    label Party Name
+                    = f.text_field :party_name,class: "form-control"
+                  td 
+                    label Size
+                    = f.number_field :size,min: 0,class: "form-control"
+                  td
+                    label Phone
+                    = f.text_field :phone, class: "form-control"
+                  td
+                    label Notes
+                    = f.text_field :notes, class:"form-control"
+                  td
+                    = button_tag class: "btn btn-primary btn-xl m-r-sm" do
+                      i.fa.fa-plus.m-r-xs
+                      span Add
+                    = link_to "javascript:void(0);",class: "btn btn-default btn-xl reset_form_btn",form_id: "walk_in_form" do
+                      i.fa.fa-repeat.m-r-xs
+                      span Reset
+                    
+/ walkin subscriptions
+.row
+  .col-lg-12
+    .ibox.float-e-margins
+      .ibox-title
+        h5 Upcoming Reservations
+      .ibox-content
+        .table-responsive
+          table.table.table-striped
+            thead
+              tr
+                th Time
+                th Guest
+                th Size
+                th Notes
+                th Actions
+            tbody.reservations
+              - @reservations.each do |booking|
+                = render partial: "reservation",locals: {booking: booking}
+
+.modal-section

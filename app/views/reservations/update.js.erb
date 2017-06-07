@@ -1,0 +1,2 @@
+$(".reservations #booking_<%= @reservation.id%>").replaceWith("<%= j(render partial: 'reservation',locals: {booking: @reservation})%>");
+$("#reservation_form_modal").modal("hide");

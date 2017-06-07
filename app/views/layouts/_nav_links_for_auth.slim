@@ -27,6 +27,10 @@
     = link_to walk_ins_path do
       i.fa.fa-clock-o
       span.nav-label Wait List
+  li class="#{is_active_controller('reservations')}"
+    = link_to reservations_path do
+      i.fa.fa-calendar
+      span.nav-label Reservation
 - else
   li
     = link_to 'Signin', new_user_session_path

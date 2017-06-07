@@ -15,6 +15,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :reservations do
+    member do
+      post :change_status
+    end
+  end
+
   get "pricing" => "pages#pricing"
 
   # All theme routes
