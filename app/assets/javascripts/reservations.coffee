@@ -93,6 +93,10 @@ class App.Reservations extends App.Base
           error.insertAfter $(element)
 
         rules:
+          "reservation[booking_date]":
+            required: true
+          "reservation[booking_time]":
+            required: true
           "reservation[party_name]":
             required: true
           "reservation[size]":
