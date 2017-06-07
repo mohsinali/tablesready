@@ -6,7 +6,9 @@ tr id="booking_#{booking.id}"
     br
     span = booking.phone
   td = booking.size
-  td = booking.notes
+  td
+    span.badge.p-xxs.m-r-xs #{booking.type}
+    span = booking.notes
   td
     = link_to "#",class: "btn btn-primary" do
       i.fa.fa-bell.m-r-xs
