@@ -48,6 +48,7 @@ class App.WalkIns extends App.Base
         minutes = parseInt($("#time_in_minutes").val())
         time = calculateTime(minutes)
         $("#walk_in_booking_time").val(time)
+        $(".submit_btn").attr("disabled",true)
         return true
       # Prevent the form from being submitted:
       false

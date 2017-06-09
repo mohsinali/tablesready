@@ -45,6 +45,7 @@ class App.Reservations extends App.Base
           "reservation[notes]":
             required: true
       if $($reservationForm).valid()
+        $(".submit_btn").attr("disabled",true)
         return true
       
       # Prevent the form from being submitted:
