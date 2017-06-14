@@ -14,15 +14,17 @@
   li class="#{is_active_controller('dashboards')}"
     = link_to root_path do
       i.fa.fa-th-large
-      span.nav-label Home
-  li class="#{is_active_controller('subscriptions')}"
-    = link_to subscriptions_path do
+      span.nav-label Dashboard
+  li class="#{is_active_controller('subscriptions')} #{is_active_action('pricing')}"
+    a href="index.html"
       i.fa.fa-cog
-      span.nav-label Subscriptions
-  li class="#{is_active_action('pricing')}"
-    = link_to "/pricing" do
-      i.fa.fa-dollar
-      span.nav-label Pricing
+      span class="nav-label" Settings
+      span class="fa arrow"
+    ul class="nav nav-second-level collapse in"
+      li class="#{is_active_controller('subscriptions')}"
+        = link_to "Subscriptions", subscriptions_path
+      li class="#{is_active_action('pricing')}"
+        = link_to "Pricing","/pricing"
   li class="#{is_active_controller('walk_ins')}"
     = link_to walk_ins_path do
       i.fa.fa-clock-o
