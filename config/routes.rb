@@ -20,6 +20,11 @@ Rails.application.routes.draw do
     member do
       post :change_status
     end
+
+    collection do
+      get :import
+      post :upload
+    end
   end
 
   get "pricing" => "pages#pricing"

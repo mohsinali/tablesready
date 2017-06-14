@@ -10,6 +10,19 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.new(size: 2,restaurant_id: my_restaurant.id,booking_date: Date.today)
   end
 
+  def import
+  end
+
+  def upload
+    file_path = params[:csv_file].path
+    response = Reservation.import(my_restaurant,file_path)
+    if response[:error]
+      redirect_to import_reservations_path,alert: response[:message]
+    else
+      redirect_to reservations_path,notice: response[:message]
+    end
+  end
+
   def create
     @reservation = Reservation.create(reservation_params)
     respond_to do |format|

@@ -114,3 +114,25 @@ class App.Reservations extends App.Base
       false
     return
 
+  import: ->
+    $importCsvForm = $("#import_csv_form")
+    $importCsvForm.submit (event) ->
+      $($importCsvForm).validate
+        focusInvalid: false
+        errorClass: 'text-danger'
+        validClass: 'valid'
+        errorPlacement: (error, element) ->
+          error.insertAfter $(element)
+
+        rules:
+          "csv_file":
+            required: true
+        messages:
+          "csv_file":
+            required: "CSV file is required."
+      if $($importCsvForm).valid()
+        return true
+      # Prevent the form from being submitted:
+      false
+    return
+
