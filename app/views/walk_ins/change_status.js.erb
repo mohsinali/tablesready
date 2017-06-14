@@ -1,1 +1,1 @@
-$(".walk_ins #booking_<%= @walk_in.id%>").remove();
+$(".walk_ins #booking_<%= @walk_in.id%>").replaceWith("<%= j(render partial: 'walk_in',locals: {booking: @walk_in})%>");

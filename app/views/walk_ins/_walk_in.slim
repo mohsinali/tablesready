@@ -1,6 +1,8 @@
 tr id="booking_#{booking.id}"
   td
     = booking.booking_time.strftime("%I:%M %p")
+    br
+    = booking_time_in_words(booking)
   td
     span = booking.party_name
     br
@@ -25,17 +27,8 @@ tr id="booking_#{booking.id}"
         i.fa.fa-play.m-r-xs
         span Check In
   td
-    - if booking.checkin
-      = link_to change_status_walk_in_path(booking,status: "seated"),method: :post,remote: true,class: "btn btn-primary m-r-xs" do
-        i.fa.fa-check.m-r-xs
-        span Seated
-    - else
-      = button_tag class: "btn btn-default disabled m-r-xs" do
-        i.fa.fa-check.m-r-xs
-        span Seated
-    = link_to change_status_walk_in_path(booking,status: "no_show"),method: :post,remote: true,class: "btn btn-default m-r-xs" do
-      i.fa.fa-times.m-r-xs
-      span No-Show
+    = booking_seated_lnk(booking)
+    = booking_no_show_lnk(booking)
     = link_to walk_in_path(booking),method: :delete,remote: true,data: {confirm: "Are you sure to remove this booking?"},class: "btn btn-default m-r-xs" do
       i.fa.fa-trash.m-r-xs
       span Cancel
