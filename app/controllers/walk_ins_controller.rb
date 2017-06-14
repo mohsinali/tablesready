@@ -1,9 +1,9 @@
 class WalkInsController < ApplicationController
 
-  before_action :set_walkin,only: [:edit,:update,:destroy,:change_status]
+  before_action :set_walkin,only: [:edit,:update,:destroy,:change_status,:mark_checkin]
 
   def index
-    @walk_ins = WalkIn.by_restaurant(my_restaurant)
+    @walk_ins = Booking.by_restaurant(my_restaurant).where(booking_date: Date.today)
     @walk_in = WalkIn.new(size: 2,restaurant_id: my_restaurant.id,booking_date: Date.today)
   end
 
@@ -38,6 +38,13 @@ class WalkInsController < ApplicationController
     end
   end
 
+  def mark_checkin
+    @walk_in.set_checkin(true)
+    respond_to do |format|
+      format.js {render layout: false}
+    end
+  end
+
   def destroy
     @walk_in.cancelled!
     @walk_in.destroy
@@ -53,6 +60,6 @@ class WalkInsController < ApplicationController
     end
 
     def set_walkin
-      @walk_in = WalkIn.find(params[:id])
+      @walk_in = Booking.find(params[:id])
     end
 end

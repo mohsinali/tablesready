@@ -54,7 +54,9 @@
   .col-lg-12
     .ibox.float-e-margins
       .ibox-title
-        h5 Upcoming Reservations
+        h5 
+          | Upcoming Reservations
+          span #{@reservations.size > 0 ? " (#{@reservations.size})" : ''}
       .ibox-content
         .table-responsive
           table.table.table-striped

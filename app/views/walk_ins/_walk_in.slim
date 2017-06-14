@@ -7,19 +7,32 @@ tr id="booking_#{booking.id}"
     span = booking.phone
   td = booking.size
   td
-    span.badge.p-xxs.m-r-xs #{booking.type}
+    - if booking.is_a?(WalkIn)
+      span.badge.p-xxs.m-r-xs #{booking.type}
+    - else
+      span.badge.badge-primary.p-xxs.m-r-xs #{booking.type}
     span = booking.notes
     br
     span
       = "Arrived #{time_ago_in_words(booking.created_at)} ago"
   td
-    = link_to "#",class: "btn btn-primary" do
-      i.fa.fa-bell.m-r-xs
-      span Text
+    - if booking.checkin
+      = link_to "#",class: "btn btn-primary" do
+        i.fa.fa-bell.m-r-xs
+        span Text
+    - else
+      = link_to mark_checkin_walk_in_path(booking),method: :post,remote:true,class: "btn btn-primary" do
+        i.fa.fa-play.m-r-xs
+        span Check In
   td
-    = link_to change_status_walk_in_path(booking,status: "seated"),method: :post,remote: true,class: "btn btn-primary m-r-xs" do
-      i.fa.fa-check.m-r-xs
-      span Seated
+    - if booking.checkin
+      = link_to change_status_walk_in_path(booking,status: "seated"),method: :post,remote: true,class: "btn btn-primary m-r-xs" do
+        i.fa.fa-check.m-r-xs
+        span Seated
+    - else
+      = button_tag class: "btn btn-default disabled m-r-xs" do
+        i.fa.fa-check.m-r-xs
+        span Seated
     = link_to change_status_walk_in_path(booking,status: "no_show"),method: :post,remote: true,class: "btn btn-default m-r-xs" do
       i.fa.fa-times.m-r-xs
       span No-Show

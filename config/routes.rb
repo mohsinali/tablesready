@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :walk_ins do
     member do
       post :change_status
+      post :mark_checkin
     end
   end
 

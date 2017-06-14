@@ -53,7 +53,9 @@
   .col-lg-12
     .ibox.float-e-margins
       .ibox-title
-        h5 Tonight's Parties
+        h5 
+          | Upcoming Parties
+          span #{@walk_ins.size > 0 ? " (#{@walk_ins.size})" : ''}
       .ibox-content
         .table-responsive
           table.table.table-striped
