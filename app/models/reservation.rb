@@ -6,7 +6,7 @@ class Reservation < Booking
     begin
       if csv_file.present?
         content_type = csv_file.content_type
-        if content_type.include?("csv")
+        if content_type.include?("csv") or content_type.include?('octet-stream')
           CSV.foreach(csv_file.path) do |row|
             puts "row: #{row}"
             @reservations << Reservation.new(booking_date: row[0],booking_time: row[0],party_name: row[1],size: row[2],phone: row[3],notes: row[4],restaurant_id: restaurant.id)
