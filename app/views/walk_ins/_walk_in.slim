@@ -14,9 +14,10 @@ tr id="booking_#{booking.id}"
     - else
       span.badge.badge-primary.p-xxs.m-r-xs #{booking.type}
     span = booking.notes
-    br
-    span
-      = "Arrived #{time_ago_in_words(booking.created_at)} ago"
+    - if booking.is_a?(WalkIn)
+      br
+      span
+        = "Arrived #{time_ago_in_words(booking.created_at)} ago"
   td
     - if booking.checkin
       = link_to "#",class: "btn btn-primary" do

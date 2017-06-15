@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   layout :set_layout
   before_action :check_subscription
+  before_action :set_user_time_zone,if: :current_user
   helper_method :my_restaurant
 
   def my_restaurant
@@ -13,6 +14,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  
   private
 
   def set_layout
@@ -28,5 +30,9 @@ class ApplicationController < ActionController::Base
         redirect_to path,notice: msg
       end
     end
+  end
+
+  def set_user_time_zone
+    Time.zone = current_user.time_zone
   end
 end

@@ -16,5 +16,6 @@ module ReadyText
     # -- all .rb files in that directory are automatically loaded.
     config.stripe.secret_key = ENV["STRIPE_SECRET_KEY"]
     config.stripe.publishable_key = ENV["STRIPE_PUBLISHABLE_KEY"]
+    config.time_zone = "UTC"
   end
 end

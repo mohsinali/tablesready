@@ -4,7 +4,7 @@ class Booking < ApplicationRecord
   belongs_to :restaurant
 
   scope :by_restaurant, -> (restaurant) {where(restaurant: restaurant)}
-
+  scope :created, -> {where(status: nil)}
   validates :booking_date,:booking_time,:size,:party_name,:restaurant_id,presence: true
 
   def set_checkin flag=true

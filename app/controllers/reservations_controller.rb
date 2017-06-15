@@ -2,7 +2,7 @@ class ReservationsController < ApplicationController
   before_action :set_reservation,only: [:edit,:update,:destroy,:change_status]
 
   def index
-    @reservations = Reservation.by_restaurant(my_restaurant)
+    @reservations = Reservation.by_restaurant(my_restaurant).created
     @reservation = Reservation.new(size: 2,restaurant_id: my_restaurant.id,booking_date: Date.today)
   end
 
@@ -14,8 +14,7 @@ class ReservationsController < ApplicationController
   end
 
   def upload
-    file_path = params[:csv_file].path
-    response = Reservation.import(my_restaurant,file_path)
+    response = Reservation.import(my_restaurant,params[:csv_file])
     if response[:error]
       redirect_to import_reservations_path,alert: response[:message]
     else

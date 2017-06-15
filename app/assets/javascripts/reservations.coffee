@@ -114,7 +114,7 @@ class App.Reservations extends App.Base
       false
     return
 
-  import: ->
+  import: =>
     $importCsvForm = $("#import_csv_form")
     $importCsvForm.submit (event) ->
       $($importCsvForm).validate

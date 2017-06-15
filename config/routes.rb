@@ -27,6 +27,14 @@ Rails.application.routes.draw do
     end
   end
 
+
+  resources :settings do
+    collection do
+      get :profile
+      post :update_profile
+    end
+  end
+
   get "pricing" => "pages#pricing"
 
   # All theme routes
