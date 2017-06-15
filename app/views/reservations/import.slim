@@ -28,10 +28,10 @@
           .form-group
             label.col-sm-2.control-label Expected CSV format
             .col-sm-10
-              p 
+              p.m-t-xs
                 | Reservation time (DD/MM/YYYY hh:mm AM/PM), Party Name, Size, Phone, Notes
                 = link_to "#{root_url}/SampleCSV.csv" do
-                  = " Click to download sample CSV file..."
+                  strong = " Click to download sample CSV file..."
           br
           .form-group
             .col-sm-4.col-sm-offset-2
