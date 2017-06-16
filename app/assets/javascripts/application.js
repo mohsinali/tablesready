@@ -16,3 +16,4 @@
 //= require inspinia.js
 //= require rails_script
 //= require_tree .
+//= require_tree ./channels

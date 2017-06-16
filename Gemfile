@@ -43,6 +43,7 @@ gem "figaro"
 gem 'country_select'
 gem "yettings"
 gem "paranoia"
+gem "redis"
 group :development do
   gem 'better_errors'
   gem 'hub', :require=>nil

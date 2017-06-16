@@ -1,6 +1,7 @@
 require "csv"
 class Reservation < Booking
-
+  after_save :set_noshow_job
+  
   def self.import restaurant, csv_file
     @reservations = []
     begin

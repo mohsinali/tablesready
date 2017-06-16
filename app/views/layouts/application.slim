@@ -10,6 +10,7 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
     = yield :head
+    = action_cable_meta_tag
   body
     /! Skin configuration box
     /= render 'layouts/skinconfig'

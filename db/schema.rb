@@ -106,7 +106,6 @@ ActiveRecord::Schema.define(version: 20170615074643) do
     t.boolean "in_trial", default: true
     t.string "stripe_customer_id"
     t.string "time_zone", default: "UTC"
-    t.integer "threshold", default: 30
     t.integer "no_show_threshold", default: 30
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

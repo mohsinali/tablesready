@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   
-	devise_for :users, controllers: {registrations: "users/registrations",passwords: "users/passwords",sessions: "users/sessions"}
+	# Serve websocket cable requests in-process
+  mount ActionCable.server => '/cable'
+  
+  devise_for :users, controllers: {registrations: "users/registrations",passwords: "users/passwords",sessions: "users/sessions"}
   # You can have the root of your site routed with "root"
   root to: 'dashboards#index'
   resources :subscriptions do
