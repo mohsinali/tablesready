@@ -10,7 +10,7 @@ set :repo_url, "https://github.com/mohsinali/tablesready.git"
 # Default deploy_to directory is /var/www/my_app_name
  set :deploy_to, "/var/www/html/cap"
  append :linked_files, "config/database.yml", "config/secrets.yml" , "config/application.yml"
- append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/cache", "public/system", "public/uploads"
+ append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle", "public/system", "public/uploads"
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
