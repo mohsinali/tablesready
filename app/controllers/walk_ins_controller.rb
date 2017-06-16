@@ -26,6 +26,9 @@ class WalkInsController < ApplicationController
 
   def update
     @walk_in.update(walk_in_params)
+    ActionCable.server.broadcast 'bookings',
+        message: "#{@walk_in.id} is updated",
+        user: current_user.email
     respond_to do |format|
       format.js {render layout: false}
     end
