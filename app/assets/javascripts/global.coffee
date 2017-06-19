@@ -121,3 +121,19 @@ App.editPasswordFormValidator = ->
 # reset form hanlder
 App.resetForm = ($element)->
   $element.reset()
+
+
+App.currentTimeZone = ->
+  try
+    timezone = Intl.DateTimeFormat().resolved.timeZone
+  catch e
+    timezone = "UTC"
+
+  return timezone
+
+App.setCurrentTimeZone = ->
+  timezone = App.currentTimeZone()
+  if $("#current_time_zone").length > 0
+    $("#current_time_zone").val(timezone)
+  else
+    console.log("no timezone field defined!")
