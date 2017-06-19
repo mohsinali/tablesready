@@ -1,8 +1,8 @@
 tr id="booking_#{booking.id}"
-  td
+  td.booking_time time="#{Date.today} #{booking.booking_time.strftime("%I:%M %p")}"
     = booking.booking_time.strftime("%I:%M %p")
     br
-    = booking_time_in_words(booking)
+    span.counter
   td
     span = booking.party_name
     br

@@ -5,7 +5,7 @@ module WalkInsHelper
     t2 = Time.now.in_time_zone(current_user.time_zone).strftime("%I:%M %p")
 
     css_class = t1 < t2 ? "text-danger" : "text-navy"
-    "<span class='#{css_class}'>
+    "<span class='counter #{css_class}'>
       (#{distance_of_time_in_words(t1,t2)})
     </span>".html_safe
   end

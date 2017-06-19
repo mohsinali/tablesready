@@ -10,7 +10,6 @@ class App.WalkIns extends App.Base
 
 
   index: =>
-    
     $walkinForm = $("#walk_in_form")
 
     $(document).on "click",".reset_form_btn", (event) ->
@@ -62,7 +61,41 @@ class App.WalkIns extends App.Base
       bookingTime = new Date(currentTime)
       bookingTime = "#{bookingTime.getFullYear()}-#{bookingTime.getMonth()}-#{bookingTime.getDate()} #{bookingTime.getHours()}:#{bookingTime.getMinutes()}"
       return bookingTime
+
+    WalkIns.prototype.walkinList = ->
+      count = $(".walk_ins tr").length
+      intervals = intervals || {}
+      if count > 0
+        $(".walk_ins tr").each (index,tr) ->
+          id = $(tr).attr('id')
+          WalkIns.prototype.setBookingRemainingTime(id)
+          intervals[id] << setInterval ->
+            WalkIns.prototype.setBookingRemainingTime(id)
+          ,60000
+
+    WalkIns.prototype.setBookingRemainingTime = (element_id) ->
+      if $("##{element_id}").length > 0
+        bookingTime = $("##{element_id}").find('.booking_time').attr('time')
+        time1 = new Date(bookingTime)
+        time2 = new Date()
+        diff =  moment(time1).from(time2);
+        if time1 < time2
+          css_class = "text-danger"
+        else
+          css_class = "text-navy"
+
+        html = "
+          <span class='counter #{css_class}'>
+            (#{diff})
+          </span>
+        "
+        $("##{element_id} .counter").replaceWith(html)
+    this.walkinList()
+
+
+
     return
+
 
 
   show: =>
