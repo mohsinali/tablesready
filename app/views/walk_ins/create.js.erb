@@ -3,8 +3,8 @@ $(".walk_ins").append("<%= j(render partial: 'walk_in',locals: {booking: @walk_i
 elem_id = "booking_<%= @walk_in.id%>"
 new App.WalkIns().setBookingRemainingTime(elem_id);
 // timer for updating real time remaining
-var intervals = intervals || {}
-intervals[elem_id] = setInterval(function(){
+var time_intervals = time_intervals || {}
+time_intervals[elem_id] = setInterval(function(){
   new App.WalkIns().setBookingRemainingTime(elem_id);
 },60000);
 
