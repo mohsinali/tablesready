@@ -15,8 +15,8 @@ set :repo_url, "https://github.com/mohsinali/tablesready.git"
 
 
 # Capistrano Delayed Job
-set :delayed_job_workers, 2
-set :delayed_job_roles, [:app, :background]
+set :delayed_job_server_role, :worker
+set :delayed_job_args, "-n 2"
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
 
@@ -60,7 +60,6 @@ set :delayed_job_roles, [:app, :background]
 after 'deploy:publishing', 'deploy:restart'
 namespace :deploy do
   task :restart do
-    invoke 'cap delayed_job:stop'
-    invoke 'cap delayed_job:start'
+    invoke 'delayed_job:restart'
   end
 end
