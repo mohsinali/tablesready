@@ -17,5 +17,6 @@ module ReadyText
     config.stripe.secret_key = ENV["STRIPE_SECRET_KEY"]
     config.stripe.publishable_key = ENV["STRIPE_PUBLISHABLE_KEY"]
     config.time_zone = "UTC"
+    config.active_job.queue_adapter = :delayed_job
   end
 end

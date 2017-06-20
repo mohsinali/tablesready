@@ -13,6 +13,10 @@ set :repo_url, "https://github.com/mohsinali/tablesready.git"
  append :linked_files, "config/database.yml", "config/secrets.yml" , "config/application.yml"
  append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle", "public/system", "public/uploads"
 
+
+# Capistrano Delayed Job
+set :delayed_job_workers, 2
+set :delayed_job_roles, [:app, :background]
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
 
@@ -52,3 +56,11 @@ set :repo_url, "https://github.com/mohsinali/tablesready.git"
  # end
 
 #end
+
+after 'deploy:publishing', 'deploy:restart'
+namespace :deploy do
+  task :restart do
+    invoke 'cap delayed_job:stop'
+    invoke 'cap delayed_job:start'
+  end
+end

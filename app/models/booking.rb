@@ -61,6 +61,7 @@ class Booking < ApplicationRecord
     # booking time with threshold margin in user time zone
     bt = "#{date} #{time}".in_time_zone(user.time_zone) + threshold.minutes
     puts "in set_job_broadcast: bt: #{bt} ct: #{Time.now}"
-    BookingBroadcastJob.set(wait_until: bt).perform_later(self)
+    self.delay(run_at: bt).auto_no_show
+    #BookingBroadcastJob.set(wait_until: bt).perform_later(self)
   end
 end

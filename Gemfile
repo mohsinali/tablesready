@@ -44,6 +44,8 @@ gem 'country_select'
 gem "yettings"
 gem "paranoia"
 gem "redis"
+gem 'delayed_job_active_record'
+gem 'capistrano3-delayed-job', '~> 1.0'
 group :development do
   gem 'better_errors'
   gem 'hub', :require=>nil
