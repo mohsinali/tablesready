@@ -56,7 +56,6 @@ set :delayed_job_args, "-n 2"
  # end
 
 #end
-
 after 'deploy:publishing', 'deploy:restart'
 namespace :deploy do
   task :restart do
