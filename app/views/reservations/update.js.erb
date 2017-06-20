@@ -1,2 +1,10 @@
-$(".reservations #booking_<%= @reservation.id%>").replaceWith("<%= j(render partial: 'reservation',locals: {booking: @reservation})%>");
-$("#reservation_form_modal").modal("hide");
+<% if @from == "Walkin" %>
+  $(".walk_ins #booking_<%= @reservation.id%>").replaceWith("<%= j(render partial: 'walk_ins/walk_in',locals: {booking: @reservation})%>");
+  $("#walk_in_form_modal").modal("hide");
+  // set Booking Remaing Time
+  elem_id = "booking_<%= @reservation.id%>"
+  new App.WalkIns().setBookingRemainingTime(elem_id);
+<% else %>
+  $(".reservations #booking_<%= @reservation.id%>").replaceWith("<%= j(render partial: 'reservation',locals: {booking: @reservation})%>");
+  $("#reservation_form_modal").modal("hide");
+<% end %>

@@ -7,6 +7,7 @@
         h4.modal-title Edit Party
       = simple_form_for walk_in, html: { method: :put,role: 'form',id: "walk_in_update_form",class: "form-horizontal",remote: true,autocomplete: "off"} do |f|
         .modal-body
+          = hidden_field_tag :from,"Walkin"
           = hidden_field_tag :authenticity_token, form_authenticity_token, id: :form_token
           = f.hidden_field :restaurant_id
           = f.hidden_field :booking_date
