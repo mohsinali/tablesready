@@ -319,10 +319,11 @@ DEPENDENCIES
   capistrano-passenger (~> 0.2.0)
   capistrano-rails (~> 1.2)
   capistrano-rvm
-  capistrano3-delayed-job (~> 1.0)
+  capistrano3-delayed-job
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
   country_select
+  daemons
   delayed_job_active_record
   devise
   figaro

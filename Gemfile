@@ -6,10 +6,6 @@ end
 ruby '2.3.1'
 gem 'rails', '~> 5.1.1'
 gem 'puma', '~> 3.7'
-gem 'capistrano', '~> 3.7', '>= 3.7.1'
-gem 'capistrano-rails', '~> 1.2'
-gem 'capistrano-passenger', '~> 0.2.0'
-gem 'capistrano-rvm'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
@@ -44,12 +40,17 @@ gem 'country_select'
 gem "yettings"
 gem "paranoia"
 gem "redis"
+gem "daemons"
 gem 'delayed_job_active_record'
-gem 'capistrano3-delayed-job', '~> 1.0'
 group :development do
   gem 'better_errors'
   gem 'hub', :require=>nil
   gem 'rails_layout'
+  gem 'capistrano', '~> 3.7', '>= 3.7.1'
+  gem 'capistrano-rails', '~> 1.2'
+  gem 'capistrano-passenger', '~> 0.2.0'
+  gem 'capistrano-rvm'
+  gem 'capistrano3-delayed-job'
 end
 group :development, :test do
   gem 'pry-rails'

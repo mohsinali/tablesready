@@ -29,14 +29,13 @@ install_plugin Capistrano::SCM::Git
 # require "capistrano/rvm"
 # require "capistrano/rbenv"
 # require "capistrano/chruby"
- require "capistrano/bundler"
- require "capistrano/rails/assets"
- require "capistrano/rails/migrations"
- require "capistrano/passenger"
- require 'capistrano/delayed_job'
- require 'delayed/recipes'
- set :rvm_type, :user
- set :rvm_ruby_version, '2.3.1p112'
+require "capistrano/bundler"
+require "capistrano/rails/assets"
+require "capistrano/rails/migrations"
+require "capistrano/passenger"
+require 'capistrano/delayed_job'
+set :rvm_type, :user
+set :rvm_ruby_version, '2.3.1p112'
 
 # Load custom tasks from `lib/capistrano/tasks` if you have any defined
 Dir.glob("lib/capistrano/tasks/*.rake").each { |r| import r }
