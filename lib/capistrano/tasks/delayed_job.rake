@@ -35,6 +35,7 @@ namespace :delayed_job do
     on roles(delayed_job_roles) do
       within release_path do
         with rails_env: fetch(:rails_env) do
+          puts "********* in restart task *********"
           execute :bundle, :exec, :'bin/delayed_job', args, :restart
         end
       end
