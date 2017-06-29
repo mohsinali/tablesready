@@ -14,76 +14,76 @@ class CreatePlanService
     })
 
     Plan.create({
-      name: 'Basic',
+      name: 'Text Ready',
       price: 49.00,
       interval: 'month',
-      stripe_id: 'basic',
+      stripe_id: 'text_ready',
       features: "0-100 SMS",
       display_order: 1,
       plan_type: "Walkin"
     })
 
     Plan.create({
-      name: 'Startup',
+      name: 'Tier 2',
       highlight: true, # This highlights the plan on the pricing page.
-      price: 49.00,
+      price: 59.00,
       interval: 'month',
-      stripe_id: 'startup',
+      stripe_id: 'tier_2',
       features: "101-500 SMS",
       display_order: 2,
       plan_type: "Marketing"
     })
 
     Plan.create({
-      name: 'Bronze',
+      name: 'Tier 3',
       highlight: true, # This highlights the plan on the pricing page.
-      price: 79.00,
+      price: 89.00,
       interval: 'month',
-      stripe_id: 'bronze',
+      stripe_id: 'tier_3',
       features: "501-1000 SMS",
       display_order: 3,
       plan_type: "Marketing"
     })
 
     Plan.create({
-      name: 'Silver',
+      name: 'Tier 4',
       highlight: true, # This highlights the plan on the pricing page.
-      price: 140.00,
+      price: 149.00,
       interval: 'month',
-      stripe_id: 'silver',
+      stripe_id: 'tier_4',
       features: "1001-2500 SMS",
       display_order: 4,
       plan_type: "Marketing"
     })
 
     Plan.create({
-      name: 'Gold',
+      name: 'Tier 5',
       highlight: true, # This highlights the plan on the pricing page.
-      price: 280.00,
+      price: 299.00,
       interval: 'month',
-      stripe_id: 'gold',
+      stripe_id: 'tier_5',
       features: "2501-5000 SMS",
       display_order: 5,
       plan_type: "Marketing"
     })
 
     Plan.create({
-      name: 'Platinium',
+      name: 'Tier 6',
       highlight: true, # This highlights the plan on the pricing page.
-      price: 420.00,
+      price: 499.00,
       interval: 'month',
-      stripe_id: 'platinium',
+      stripe_id: 'tier_6',
       features: "5001-7500 SMS",
       display_order: 6,
       plan_type: "Marketing"
     })
 
     Plan.create({
-      name: 'Diamond',
+      name: 'Tier 7',
       highlight: true, # This highlights the plan on the pricing page.
-      price: 560.00,
+      price: 599.00,
       interval: 'month',
-      stripe_id: 'diamond',
+      stripe_id: 'tier_7',
       features: "7501-10000 SMS",
       display_order: 7,
       plan_type: "Marketing"

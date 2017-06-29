@@ -31,44 +31,44 @@
 # This will export any new plans to stripe.com so that you can
 # begin using them in your API calls.
 
-Stripe.plan :basic do |plan|
-  plan.name = 'Basic'
+Stripe.plan :text_ready do |plan|
+  plan.name = 'Text Ready'
   plan.amount = 4900 # $49.00
   plan.interval = 'month'
 end
 
-Stripe.plan :startup do |plan|
-  plan.name = 'Startup'
-  plan.amount = 4900 # $49.00
+Stripe.plan :tier_2 do |plan|
+  plan.name = 'Tier 2'
+  plan.amount = 5900 # $59.00
   plan.interval = 'month'
 end
 
-Stripe.plan :bronze do |plan|
-  plan.name = 'Bronze'
-  plan.amount = 7900 # $79.00
+Stripe.plan :tier_3 do |plan|
+  plan.name = 'Tier 3'
+  plan.amount = 8900 # $89.00
   plan.interval = 'month'
 end
 
-Stripe.plan :silver do |plan|
-  plan.name = 'Silver'
-  plan.amount = 14000 # $140.00
+Stripe.plan :tier_4 do |plan|
+  plan.name = 'Tier 4'
+  plan.amount = 14900 # $149.00
   plan.interval = 'month'
 end
 
-Stripe.plan :gold do |plan|
-  plan.name = 'Gold'
-  plan.amount = 28000 # $280.00
+Stripe.plan :tier_5 do |plan|
+  plan.name = 'Tier 5'
+  plan.amount = 29900 # $299.00
   plan.interval = 'month'
 end
 
-Stripe.plan :platinium do |plan|
-  plan.name = 'Platinium'
-  plan.amount = 42000 # $420.00
+Stripe.plan :tier_6 do |plan|
+  plan.name = 'Tier 6'
+  plan.amount = 44900 # $449.00
   plan.interval = 'month'
 end
 
-Stripe.plan :diamond do |plan|
-  plan.name = 'Diamond'
-  plan.amount = 56000 # $560.00
+Stripe.plan :tier_7 do |plan|
+  plan.name = 'Tier 7'
+  plan.amount = 59900 # $599.00
   plan.interval = 'month'
 end
