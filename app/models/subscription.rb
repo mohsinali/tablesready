@@ -1,6 +1,6 @@
 class Subscription < ApplicationRecord
   belongs_to :user
-  belongs_to :coupon
+  belongs_to :coupon,optional: true
   belongs_to :plan
 
   scope :trial, -> {where(subs_type: Yetting.subscription_types["trial"])}
