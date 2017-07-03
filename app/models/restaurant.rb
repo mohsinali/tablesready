@@ -6,4 +6,8 @@ class Restaurant < ApplicationRecord
   def user
     users.first
   end
+
+  def customers_count
+    bookings.select("distinct(phone)").count
+  end
 end
