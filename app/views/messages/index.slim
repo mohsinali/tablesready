@@ -1,0 +1,42 @@
+.row.wrapper.border-bottom.white-bg.page-heading
+  .col-lg-10
+    h2
+      strong Message Settings
+    ol.breadcrumb
+      li
+        = link_to "Home",root_path
+      li.active
+        strong Messages
+  .col-lg-2
+
+.row
+  .col-lg-12
+    .ibox.float-e-margins
+      .ibox-title
+        h5 Message Templates
+      .ibox-content
+        .row
+.row
+  .col-lg-12
+    .ibox.float-e-margins
+      .ibox-title
+        h5 Send Marketing Messages in Bulk
+      .ibox-content
+        - recipent_count = current_user.try(:restaurant).try(:customers_count).to_i
+        .row
+          h5.m-l-md.m-b-md 
+            | Message will be sent to 
+            strong = "#{recipent_count} "
+            | people
+        br
+        .row
+          = simple_form_for :message,url: send_in_bulk_messages_path,html:{role: 'form',id: "profile_setting_form",class: "form-horizontal",method: :post} do |f|
+            .form-group
+              label.col-sm-2.control-label Template
+              .col-sm-6
+                = f.text_area :template,class: "form-control",value: sample_marketing_template
+            .form-group
+              .col-sm-4.col-sm-offset-2
+                button.btn.btn-primary.submit.m-l-sm type="submit"  Send
+
+.modal-section

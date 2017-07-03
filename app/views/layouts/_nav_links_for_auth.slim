@@ -35,6 +35,10 @@
     = link_to reservations_path do
       i.fa.fa-calendar
       span.nav-label Reservation
+  li class="#{is_active_controller('messages')}"
+    = link_to messages_path do
+      i.fa.fa-envelope
+      span.nav-label Messages
 - else
   li
     = link_to 'Signin', new_user_session_path
