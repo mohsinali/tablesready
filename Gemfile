@@ -42,6 +42,7 @@ gem "paranoia"
 gem "redis"
 gem "daemons"
 gem 'delayed_job_active_record'
+gem 'rest-client'
 group :development do
   gem 'better_errors'
   gem 'hub', :require=>nil

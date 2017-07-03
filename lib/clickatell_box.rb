@@ -1,18 +1,24 @@
 require 'rest_client'
+
 class ClickatellBox
   def initialize
-    @url = "https://platform.clickatell.com/messages/http/send?apiKey=#{ENV['CLICKATELL_API_ID']}"
+    @headers = {"Content-Type"=> "application/json","Accept"=> "application/json","Authorization"=> ENV['CLICKATELL_API_ID']}
+    @url = "https://platform.clickatell.com/messages"
   end
 
-  # to could be comma seperated list
-  # eg: to=923314946924,92324234234 or: to=44123122121
-  def send_sms recipent,content
+  ######################################
+  ## send message method
+  ## @params:
+  ## recipents = ["+923314946924"]
+  ## content = "test message"
+  ######################################
+  def send_sms recipents,content
     begin
-      url = "#{@url}&to=recipent&content=#{content}"
-      response = RestClient.get(url)
-      response = Hash.from_xml(response)
+      payload = {content: content ,to: recipents}.to_json
+      response = RestClient.post(@url, payload, @headers)
     rescue Exception => e
       response = {error: true, message: e.message}
     end
+    response
   end
 end
