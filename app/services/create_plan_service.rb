@@ -9,6 +9,8 @@ class CreatePlanService
       interval: 'month',
       stripe_id: 'trial',
       features: "0-100 SMS",
+      lower_limit: 0,
+      upper_limit: 100,
       display_order: 0,
       plan_type: "Trial"
     })
@@ -19,6 +21,8 @@ class CreatePlanService
       interval: 'month',
       stripe_id: 'text_ready',
       features: "0-100 SMS",
+      lower_limit: 0,
+      upper_limit: 100,
       display_order: 1,
       plan_type: "Walkin"
     })
@@ -30,6 +34,8 @@ class CreatePlanService
       interval: 'month',
       stripe_id: 'tier_2',
       features: "101-500 SMS",
+      lower_limit: 101,
+      upper_limit: 500,
       display_order: 2,
       plan_type: "Marketing"
     })
@@ -41,6 +47,8 @@ class CreatePlanService
       interval: 'month',
       stripe_id: 'tier_3',
       features: "501-1000 SMS",
+      lower_limit: 501,
+      upper_limit: 1000,
       display_order: 3,
       plan_type: "Marketing"
     })
@@ -52,6 +60,8 @@ class CreatePlanService
       interval: 'month',
       stripe_id: 'tier_4',
       features: "1001-2500 SMS",
+      lower_limit: 1001,
+      upper_limit: 2500,
       display_order: 4,
       plan_type: "Marketing"
     })
@@ -63,6 +73,8 @@ class CreatePlanService
       interval: 'month',
       stripe_id: 'tier_5',
       features: "2501-5000 SMS",
+      lower_limit: 2501,
+      upper_limit: 5000,
       display_order: 5,
       plan_type: "Marketing"
     })
@@ -74,6 +86,8 @@ class CreatePlanService
       interval: 'month',
       stripe_id: 'tier_6',
       features: "5001-7500 SMS",
+      lower_limit: 5001,
+      upper_limit: 7500,
       display_order: 6,
       plan_type: "Marketing"
     })
@@ -85,6 +99,8 @@ class CreatePlanService
       interval: 'month',
       stripe_id: 'tier_7',
       features: "7501-10000 SMS",
+      lower_limit: 7501,
+      upper_limit: 10000,
       display_order: 7,
       plan_type: "Marketing"
     })
