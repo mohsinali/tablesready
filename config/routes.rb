@@ -44,7 +44,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :message_templates
+  resources :message_templates do
+    collection do
+      post :update_order
+    end
+  end
 
   get "pricing" => "pages#pricing"
 

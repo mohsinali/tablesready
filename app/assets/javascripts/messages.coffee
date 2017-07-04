@@ -10,6 +10,12 @@ class App.Messages extends App.Base
 
 
   index: =>
+    templates = []
+    $(".sortable").sortable
+      scroll: false
+      update: (event, ui) ->
+        updateTemplatesOrder()
+
     $bulkMessageForm = $("#bulk_message_form")
     $bulkMessageForm.submit (event) ->
       $($bulkMessageForm).validate
@@ -26,6 +32,13 @@ class App.Messages extends App.Base
         return true
       # Prevent the form from being submitted:
       false
+
+    updateTemplatesOrder = ->
+      $(".sortable .message_template").each (index,element) ->
+        templates.push({index: index,template_id: $(element).attr("template_id")})
+      $.post "/message_templates/update_order",{'templates': templates}
+      return
+
     return
 
 
