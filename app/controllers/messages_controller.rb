@@ -4,7 +4,8 @@ class MessagesController < ApplicationController
   # GET /messages
   # GET /messages.json
   def index
-    @messages = Message.all
+    #@messages = Message.all
+    @message_templates = my_restaurant.message_templates
   end
 
   # GET /messages/1

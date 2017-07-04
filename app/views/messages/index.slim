@@ -14,8 +14,15 @@
     .ibox.float-e-margins
       .ibox-title
         h5 Message Templates
-      .ibox-content
-        .row
+        .pull-right
+          = link_to new_message_template_path,remote: true,class: "btn btn-primary btn-sm" do
+            i class="fa fa-plus m-r-xs"
+            span Add Template
+      .ibox-content.message_templates
+        - @message_templates.each_slice(3).each do |templates|
+          .row
+            - templates.each do |template|
+              = render partial: "message_templates/message_template",locals: {message_template: template}
 .row
   .col-lg-12
     .ibox.float-e-margins

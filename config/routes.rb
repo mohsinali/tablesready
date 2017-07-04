@@ -44,6 +44,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :message_templates
+
   get "pricing" => "pages#pricing"
 
   # All theme routes
