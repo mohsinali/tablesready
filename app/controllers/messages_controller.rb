@@ -39,6 +39,15 @@ class MessagesController < ApplicationController
 
 
   def send_in_bulk
+    restaurant = current_user.restaurant
+    recipents = current_user.restaurant.customers.map(&:phone)
+    template = params[:message][:template]
+    response = Message.send_sms(recipents,template,restaurant)
+    if response[:error]
+      redirect_to messages_path,alert: response[:message]
+    else
+      redirect_to messages_path,notice: response[:message]
+    end
   end
 
   # PATCH/PUT /messages/1

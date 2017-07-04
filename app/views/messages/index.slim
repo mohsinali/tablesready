@@ -29,14 +29,19 @@
             strong = "#{recipent_count} "
             | people
         br
-        .row
-          = simple_form_for :message,url: send_in_bulk_messages_path,html:{role: 'form',id: "profile_setting_form",class: "form-horizontal",method: :post} do |f|
-            .form-group
-              label.col-sm-2.control-label Template
-              .col-sm-6
-                = f.text_area :template,class: "form-control",value: sample_marketing_template
-            .form-group
-              .col-sm-4.col-sm-offset-2
-                button.btn.btn-primary.submit.m-l-sm type="submit"  Send
+        - if current_user.can_send_marketing_messages?
+          .row
+            = simple_form_for :message,url: send_in_bulk_messages_path,html:{role: 'form',id: "bulk_message_form",class: "form-horizontal",method: :post} do |f|
+              .form-group
+                label.col-sm-2.control-label Template
+                .col-sm-6
+                  = f.text_area :template,class: "form-control",value: sample_marketing_template
+              .form-group
+                .col-sm-4.col-sm-offset-2
+                  button.btn.btn-primary.submit.m-l-sm type="submit"  Send
+        - else
+          p
+            strong You have crossed limit of this month for sending bulk messages. Please upgrade your marketing addon
+            = link_to " here.","/pricing"
 
 .modal-section

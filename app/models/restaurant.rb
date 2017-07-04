@@ -9,6 +9,10 @@ class Restaurant < ApplicationRecord
   end
 
   def customers_count
-    bookings.select("distinct(phone)").count
+    customers.count
+  end
+
+  def customers
+    bookings.unscoped.by_restaurant(self).select("distinct(phone)")
   end
 end

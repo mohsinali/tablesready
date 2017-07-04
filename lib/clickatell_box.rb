@@ -16,6 +16,7 @@ class ClickatellBox
     begin
       payload = {content: content ,to: recipents}.to_json
       response = RestClient.post(@url, payload, @headers)
+      response = {error: false,data: response}
     rescue Exception => e
       response = {error: true, message: e.message}
     end

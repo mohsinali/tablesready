@@ -77,6 +77,17 @@ class User < ApplicationRecord
     self.save
   end
 
+  def can_send_marketing_messages?
+    subscription = self.subscriptions.last
+    return false if subscription.nil?
+    plan = subscription.plan
+    restaurant = self.restaurant
+    start_date = subscription.updated_at.beginning_of_day
+    end_date = subscription.updated_at.end_of_day + 30.days
+    message_sent_count = restaurant.messages.marketing.where(created_at: [start_date..end_date]).count
+    return message_sent_count < plan.upper_limit
+  end
+
 
   private
   def set_trial_mode
