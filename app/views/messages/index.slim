@@ -19,10 +19,11 @@
             i class="fa fa-plus m-r-xs"
             span Add Template
       .ibox-content.message_templates
-        - @message_templates.each_slice(4).each do |templates|
-          .row.sortable
+        .row.sortable
+          - @message_templates.each_slice(4).each do |templates|
             - templates.each do |template|
               = render partial: "message_templates/message_template",locals: {message_template: template}
+            .clear
 .row
   .col-lg-12
     .ibox.float-e-margins

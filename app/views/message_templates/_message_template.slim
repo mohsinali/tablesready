@@ -12,7 +12,10 @@
     li.list-group-item
       | Sort Order:  #{message_template.sort_order}
     li.list-group-item
-      | Next message will be sent after #{message_template.next_delay} minutes
+      - if message_template.sort_order == 1
+        | Message will be sent immediately.
+      - else
+        | Message will be sent in #{message_template.next_delay} minutes after previous message
     li.list-group-item
       = message_template.template
     li.list-group-item.clear
