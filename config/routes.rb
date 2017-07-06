@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     member do
       post :change_status
       post :mark_checkin
+      post :send_message
     end
   end
 

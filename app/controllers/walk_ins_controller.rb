@@ -1,6 +1,6 @@
 class WalkInsController < ApplicationController
 
-  before_action :set_walkin,only: [:edit,:update,:destroy,:change_status,:mark_checkin]
+  before_action :set_walkin,only: [:edit,:update,:destroy,:change_status,:mark_checkin,:send_message]
 
   def index
     @walk_ins = Booking.by_restaurant(my_restaurant).where(booking_date: Date.today).created
@@ -53,6 +53,16 @@ class WalkInsController < ApplicationController
     @walk_in.destroy
     respond_to do |format|
       format.js {render layout: false}
+    end
+  end
+
+  def send_message
+    template = @walk_in.restaurant.message_templates.first
+    response = @walk_in.send_message(template)
+    if response[:error]
+      redirect_to walk_ins_path,alert: response[:message]
+    else
+      redirect_to walk_ins_path,notice: "Message is sent successfully to `#{@walk_in.phone}`."
     end
   end
 

@@ -6,7 +6,7 @@ class Message < ApplicationRecord
   scope :by_restaurant, -> (restaurant) {where(restaurant: restaurant)}
 
 
-  def self.send_sms recipents,content,restaurant
+  def self.send_sms recipents,content,restaurant,message_type = 'marketing'
     sent_count = 0
     message_sender = ClickatellBox.new
     recipents.each_slice(100).to_a.each do |phones|
@@ -17,7 +17,7 @@ class Message < ApplicationRecord
         parsed_response['messages'].each do |message_json|
           unless message_json['error']
             sent_count +=1
-            Message.create(message_type: :marketing,restaurant_id: restaurant.id,template: content,api_message_id: message_json['apiMessageId'],recipent: message_json['to'])
+            Message.create(message_type: message_type,restaurant_id: restaurant.id,template: content,api_message_id: message_json['apiMessageId'],recipent: message_json['to'])
           end
         end
       end

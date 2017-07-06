@@ -20,7 +20,7 @@ tr id="booking_#{booking.id}"
         = "Arrived #{time_ago_in_words(booking.created_at)} ago"
   td
     - if booking.checkin
-      = link_to "#",class: "btn btn-primary" do
+      = link_to send_message_walk_in_path(booking),method: :post,class: "btn btn-primary" do
         i.fa.fa-bell.m-r-xs
         span Text
     - else
