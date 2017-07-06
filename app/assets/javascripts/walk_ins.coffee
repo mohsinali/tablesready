@@ -41,8 +41,6 @@ class App.WalkIns extends App.Base
           "walk_in[phone]":
             required: true
             phoneCheck: true
-          "walk_in[notes]":
-            required: true
       if $($walkinForm).valid()
         minutes = parseInt($("#time_in_minutes").val())
         time = calculateTime(minutes)
@@ -129,8 +127,6 @@ class App.WalkIns extends App.Base
           "walk_in[phone]":
             required: true
             phoneCheck: true
-          "walk_in[notes]":
-            required: true
       if $($updateWalkinForm).valid()
         return true
       # Prevent the form from being submitted:

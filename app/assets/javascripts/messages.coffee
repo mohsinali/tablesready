@@ -52,3 +52,29 @@ class App.Messages extends App.Base
 
   edit: =>
     return
+
+
+  # update form validation
+  messageTemplateFormValidator: ->
+    $messageTemplateForm = $("#message_template_form")
+    $messageTemplateForm.submit (event) ->
+      $($messageTemplateForm).validate
+        focusInvalid: false
+        errorClass: 'text-danger'
+        validClass: 'valid'
+        errorPlacement: (error, element) ->
+          error.insertAfter $(element)
+
+        rules:
+          "message_template[name]":
+            required: true
+          "message_template[next_delay]":
+            required: true
+            number: true
+          "message_template[template]":
+            required: true
+      if $($messageTemplateForm).valid()
+        return true
+      # Prevent the form from being submitted:
+      false
+    return

@@ -42,8 +42,6 @@ class App.Reservations extends App.Base
           "reservation[phone]":
             required: true
             phoneCheck: true
-          "reservation[notes]":
-            required: true
       if $($reservationForm).valid()
         $(".submit_btn").attr("disabled",true)
         return true
@@ -106,8 +104,6 @@ class App.Reservations extends App.Base
           "reservation[phone]":
             required: true
             phoneCheck: true
-          "reservation[notes]":
-            required: true
       if $($updateReservationForm).valid()
         return true
       # Prevent the form from being submitted:

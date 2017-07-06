@@ -15,7 +15,7 @@
           .form-group
             label.col-sm-3.control-label Delay(in minutes)
             .col-sm-9
-              = f.text_field :next_delay,class: 'form-control'
+              = f.number_field :next_delay,class: 'form-control',min: 5,max: 30
           .form-group
             label.col-sm-3.control-label Template
             .col-sm-9

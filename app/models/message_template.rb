@@ -1,6 +1,6 @@
 class MessageTemplate < ApplicationRecord
   belongs_to :restaurant
-  validates :name,:template,presence: true
+  validates :name,:next_delay,:template,presence: true
   default_scope { order(sort_order: :asc) }
   
   after_create :set_sort_order
