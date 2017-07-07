@@ -36,6 +36,8 @@
             | Message will be sent to 
             strong = "#{recipent_count} "
             | people
+          p.alert.alert-success.msg_counter_notification.hide
+
         br
         - if current_user.can_send_marketing_messages?
           .row
