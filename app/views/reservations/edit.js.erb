@@ -2,3 +2,4 @@ $(".modal-section").html("<%= j(render partial: 'reservation_form_modal',locals:
 $("#reservation_form_modal").modal("show");
 // call update form validator
 new App.Reservations().updateReservationFormValidator();
+App.applyDatePicker($('#edit_reservation_datepicker'));

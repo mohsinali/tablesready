@@ -137,3 +137,9 @@ App.setCurrentTimeZone = ->
     $("#current_time_zone").val(timezone)
   else
     console.log("no timezone field defined!")
+
+App.applyDatePicker = (element)->
+  $(element).datepicker
+    dateFormat: "mm/dd/yy"
+    altFormat: "mm/dd/yy"
+    minDate: new Date()

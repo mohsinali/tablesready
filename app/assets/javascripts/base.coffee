@@ -9,6 +9,7 @@ class App.Base
     App.newPasswordFormValidator()
     App.editPasswordFormValidator()
     App.setCurrentTimeZone()
+    App.applyDatePicker($('.datepicker'))
     return this
 
 

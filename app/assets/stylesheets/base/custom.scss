@@ -21,3 +21,8 @@
 .clear{
   clear: both;
 }
+
+/* for datepicker in modal*/
+.ui-widget.ui-widget-content{
+  z-index: 9999 !important;
+}
