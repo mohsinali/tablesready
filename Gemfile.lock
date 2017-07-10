@@ -131,6 +131,9 @@ GEM
     i18n (0.8.4)
     i18n_data (0.7.0)
     interception (0.5)
+    intl-tel-input-rails (11.0.14)
+      railties (>= 3.1)
+      sass-rails
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
@@ -335,6 +338,7 @@ DEPENDENCIES
   font-awesome-rails
   high_voltage
   hub
+  intl-tel-input-rails
   jbuilder (~> 2.5)
   jquery-datetimepicker-rails
   jquery-rails

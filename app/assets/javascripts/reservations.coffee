@@ -12,6 +12,7 @@ class App.Reservations extends App.Base
   index: =>
     App.applyDatePicker($('.datepicker'))
     App.applyTimePicker($('.timepicker'))
+    App.applyIntlInput($("#reservation_phone"))
     
     $reservationForm = $("#reservation_form")
 

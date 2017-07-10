@@ -17,7 +17,7 @@
           | Add New Reservation
           = link_to " Import from CSV ...",import_reservations_path
       .ibox-content
-        .table-responsive
+        .table-responsive.booking_form_table
           = simple_form_for @reservation, html: { role: 'form',id: "reservation_form",class: "form-horizontal",remote: true,autocomplete: "off"} do |f|
             = hidden_field_tag :authenticity_token, form_authenticity_token, id: :form_token
             = f.hidden_field :restaurant_id
@@ -38,7 +38,7 @@
                     = f.number_field :size,min: 0,class: "form-control"
                   td
                     label Phone
-                    = f.text_field :phone, class: "form-control"
+                    = f.text_field :phone, class: "form-control",id: "reservation_phone"
                   td
                     label Notes
                     = f.text_field :notes, class:"form-control"

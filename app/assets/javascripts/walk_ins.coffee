@@ -11,6 +11,7 @@ class App.WalkIns extends App.Base
 
   index: =>
     $walkinForm = $("#walk_in_form")
+    App.applyIntlInput($("#walk_in_phone"))
 
     $(document).on "click",".reset_form_btn", (event) ->
       event.preventDefault()

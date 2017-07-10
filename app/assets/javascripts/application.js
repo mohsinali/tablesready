@@ -16,5 +16,7 @@
 //= require inspinia.js
 //= require jquery.datetimepicker
 //= require rails_script
+//= require intlTelInput
+//= require libphonenumber/utils
 //= require_tree .
 //= require_tree ./channels

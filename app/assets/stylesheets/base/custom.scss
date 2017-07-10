@@ -1,3 +1,4 @@
+@import "intlTelInput";
 /* Only demo */
 @media (max-width: 1000px) {
   .welcome-message {
@@ -22,7 +23,18 @@
   clear: both;
 }
 
+.booking_form_table{
+  min-height: 150px;
+}
+
 /* for datepicker in modal*/
 .ui-widget.ui-widget-content{
   z-index: 9999 !important;
+}
+
+/*Override the path to flags.png for intlTelInput*/
+.iti-flag {background-image: url("flags.png");}
+  
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+  .iti-flag {background-image: url("flags@2x.png");}
 }

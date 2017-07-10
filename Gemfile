@@ -45,6 +45,7 @@ gem "daemons"
 gem 'delayed_job_active_record'
 gem 'rest-client'
 gem 'jquery-datetimepicker-rails'
+gem 'intl-tel-input-rails'
 group :development do
   gem 'better_errors'
   gem 'hub', :require=>nil

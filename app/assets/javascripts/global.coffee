@@ -5,7 +5,8 @@
 ## Author: Sarwan Kumar
 App.formValidators = ->
   $.validator.addMethod 'phoneCheck', ((phone_number, element) ->
-    this.optional(element) or phone_number.match /^[+]{0,1}(?:[0-9]●?){6,14}[0-9]$/
+    errors = $(element).intlTelInput("getValidationError")
+    errors == 0
   ), 'Please enter a valid phone number'
 
 ############# END OF Method: FormValidators ##############
@@ -149,3 +150,29 @@ App.applyTimePicker = (element) ->
     datepicker:false
     format:'H:i'
     step: 15
+
+App.applyIntlInput = ($element) ->
+  $element.intlTelInput
+    initialCountry: 'auto'
+    formatOnInit: true
+    separateDialCode: false
+    utilsScript: 'assets/libphonenumber/utils.js'
+    geoIpLookup: (callback) ->
+      $.get('https://ipinfo.io', (->
+      ), 'jsonp').always (resp) ->
+        countryCode = if resp and resp.country then resp.country else ''
+        callback countryCode
+        return
+      return
+
+  $element.on 'change', ->
+    App.setIntlValue($element)
+
+  # default set initial value.
+  App.setIntlValue($element)
+
+App.setIntlValue = ($element) ->
+  intlNumber = $element.intlTelInput('getNumber')
+  if intlNumber
+    $element.val intlNumber
+
