@@ -143,3 +143,9 @@ App.applyDatePicker = (element)->
     dateFormat: "mm/dd/yy"
     altFormat: "mm/dd/yy"
     minDate: new Date()
+
+App.applyTimePicker = (element) ->
+  $(element).datetimepicker
+    datepicker:false
+    format:'H:i'
+    step: 15

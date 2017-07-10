@@ -14,6 +14,7 @@
 //= require peity/jquery.peity.min.js
 //= require slimscroll/jquery.slimscroll.min.js
 //= require inspinia.js
+//= require jquery.datetimepicker
 //= require rails_script
 //= require_tree .
 //= require_tree ./channels

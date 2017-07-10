@@ -10,7 +10,17 @@ class App.Reservations extends App.Base
 
 
   index: =>
+    App.applyDatePicker($('.datepicker'))
+    App.applyTimePicker($('.timepicker'))
+    
     $reservationForm = $("#reservation_form")
+
+    $.validator.addMethod 'validTimeCheck', ((time, element) ->
+      date = $(".datepicker").val()
+      time = new Date("#{date} #{time}")
+      time > new Date()
+    ), 'Please enter a valid future time.'
+
     $(document).on "click",".reset_form_btn", (event) ->
       event.preventDefault()
       App.resetForm($reservationForm[0])
@@ -34,6 +44,7 @@ class App.Reservations extends App.Base
             required: true
           "reservation[booking_time]":
             required: true
+            validTimeCheck: true
           "reservation[party_name]":
             required: true
           "reservation[size]":
@@ -83,6 +94,13 @@ class App.Reservations extends App.Base
   # update form validation
   updateReservationFormValidator: ->
     $updateReservationForm = $("#reservation_update_form")
+
+    $.validator.addMethod 'validUpdateTimeCheck', ((time, element) ->
+      date = $("#edit_reservation_datepicker").val()
+      time = new Date("#{date} #{time}")
+      time > new Date()
+    ), 'Please enter a valid future time.'
+    
     $updateReservationForm.submit (event) ->
       $($updateReservationForm).validate
         focusInvalid: false
@@ -96,6 +114,7 @@ class App.Reservations extends App.Base
             required: true
           "reservation[booking_time]":
             required: true
+            validUpdateTimeCheck: true
           "reservation[party_name]":
             required: true
           "reservation[size]":

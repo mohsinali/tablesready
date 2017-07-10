@@ -44,6 +44,7 @@ gem "redis"
 gem "daemons"
 gem 'delayed_job_active_record'
 gem 'rest-client'
+gem 'jquery-datetimepicker-rails'
 group :development do
   gem 'better_errors'
   gem 'hub', :require=>nil

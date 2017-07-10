@@ -26,10 +26,10 @@
                 tr
                   td
                     label Date
-                    = f.text_field :booking_date,class: "datepicker"
+                    = f.text_field :booking_date,class: "datepicker form-control"
                   td
                     label Time
-                    = f.time_field :booking_time
+                    = f.text_field :booking_time,class: "timepicker form-control"
                   td
                     label Party Name
                     = f.text_field :party_name,class: "form-control"

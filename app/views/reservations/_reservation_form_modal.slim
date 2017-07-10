@@ -12,11 +12,11 @@
           .form-group
             label.col-sm-3.control-label Date
             .col-sm-9
-              = f.text_field :booking_date,id: "edit_reservation_datepicker"
+              = f.text_field :booking_date,id: "edit_reservation_datepicker",class: "form-control"
           .form-group
             label.col-sm-3.control-label Time
             .col-sm-9
-              = f.time_field :booking_time,value: reservation.booking_time.strftime("%H:%M")
+              = f.text_field :booking_time,value: reservation.booking_time.strftime("%H:%M"),id: "edit_reservation_timepicker",class: "form-control"
           .form-group
             label.col-sm-3.control-label Party Name
             .col-sm-9
