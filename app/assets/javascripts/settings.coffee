@@ -37,7 +37,7 @@ class App.Settings extends App.Base
     $profileForm.submit (event) ->
       $($profileForm).validate
         focusInvalid: false
-        errorClass: 'text-danger'
+        errorClass: 'invalid'
         validClass: 'valid'
         errorPlacement: (error, element) ->
           error.insertAfter $(element)

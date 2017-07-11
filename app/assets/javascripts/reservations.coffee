@@ -29,7 +29,7 @@ class App.Reservations extends App.Base
     $reservationForm.submit (event) ->
       $($reservationForm).validate
         focusInvalid: false
-        errorClass: 'text-danger'
+        errorClass: 'invalid'
         validClass: 'valid'
         invalidHandler: (form, validator) ->
           return  unless validator.numberOfInvalids()
@@ -105,7 +105,7 @@ class App.Reservations extends App.Base
     $updateReservationForm.submit (event) ->
       $($updateReservationForm).validate
         focusInvalid: false
-        errorClass: 'text-danger'
+        errorClass: 'invalid'
         validClass: 'valid'
         errorPlacement: (error, element) ->
           error.insertAfter $(element)

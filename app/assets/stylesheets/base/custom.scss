@@ -24,7 +24,20 @@
 }
 
 .booking_form_table{
-  min-height: 150px;
+  min-height: 170px;
+  .country-list{
+    max-height: 100px;
+  }
+}
+
+.invalid{
+  border: 1px solid #ed5565;
+}
+label{
+  &.invalid{
+    border: none;
+    color: #ed5565;
+  }
 }
 
 /* for datepicker in modal*/

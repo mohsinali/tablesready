@@ -20,7 +20,7 @@ class App.WalkIns extends App.Base
     $walkinForm.submit (event) ->
       $($walkinForm).validate
         focusInvalid: false
-        errorClass: 'text-danger'
+        errorClass: 'invalid'
         validClass: 'valid'
         invalidHandler: (form, validator) ->
           return  unless validator.numberOfInvalids()
@@ -114,7 +114,7 @@ class App.WalkIns extends App.Base
     $updateWalkinForm.submit (event) ->
       $($updateWalkinForm).validate
         focusInvalid: false
-        errorClass: 'text-danger'
+        errorClass: 'invalid'
         validClass: 'valid'
         errorPlacement: (error, element) ->
           error.insertAfter $(element)
