@@ -36,6 +36,7 @@ App.signinFormValidator = ->
 
 #### signup form validations ####
 App.signUpFormValidator = ->
+  App.applyIntlInput($("#user_phone"))
   $("#signup_form").validate
     errorClass: 'text-danger'
     validClass: 'valid'
@@ -156,7 +157,7 @@ App.applyIntlInput = ($element) ->
     initialCountry: 'auto'
     formatOnInit: true
     separateDialCode: false
-    utilsScript: 'assets/libphonenumber/utils.js'
+    utilsScript: "/assets/libphonenumber/utils.js"
     geoIpLookup: (callback) ->
       $.get('https://ipinfo.io', (->
       ), 'jsonp').always (resp) ->

@@ -26,6 +26,14 @@ class App.Settings extends App.Base
 
   profile: =>
     $profileForm = $("#profile_setting_form")
+    App.applyIntlInput($("#user_phone"))
+
+    # to set phone in proper format.
+    setTimeout (->
+      $('#user_phone').trigger 'change'
+      return
+    ), 5000
+
     $profileForm.submit (event) ->
       $($profileForm).validate
         focusInvalid: false
