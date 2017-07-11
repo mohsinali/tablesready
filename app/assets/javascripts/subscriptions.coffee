@@ -68,7 +68,7 @@ class App.Subscriptions extends App.Base
     $form.submit (event) ->
       $($form).validate
         focusInvalid: false
-        errorClass: 'text-danger'
+        errorClass: 'invalid'
         validClass: 'valid'
         invalidHandler: (form, validator) ->
           return  unless validator.numberOfInvalids()

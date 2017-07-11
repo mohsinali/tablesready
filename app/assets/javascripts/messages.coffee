@@ -20,7 +20,7 @@ class App.Messages extends App.Base
     $bulkMessageForm.submit (event) ->
       $($bulkMessageForm).validate
         focusInvalid: false
-        errorClass: 'text-danger'
+        errorClass: 'invalid'
         validClass: 'valid'
         errorPlacement: (error, element) ->
           error.insertAfter $(element)
@@ -60,7 +60,7 @@ class App.Messages extends App.Base
     $messageTemplateForm.submit (event) ->
       $($messageTemplateForm).validate
         focusInvalid: false
-        errorClass: 'text-danger'
+        errorClass: 'invalid'
         validClass: 'valid'
         errorPlacement: (error, element) ->
           error.insertAfter $(element)

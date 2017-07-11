@@ -15,7 +15,7 @@ App.formValidators = ->
 #### signin form validations ####
 App.signinFormValidator = ->
   $("#signin_form").validate
-    errorClass: 'text-danger'
+    errorClass: 'invalid'
     validClass: 'valid'
     errorPlacement: (error, element) ->
       error.insertAfter $(element)
@@ -38,7 +38,7 @@ App.signinFormValidator = ->
 App.signUpFormValidator = ->
   App.applyIntlInput($("#user_phone"))
   $("#signup_form").validate
-    errorClass: 'text-danger'
+    errorClass: 'invalid'
     validClass: 'valid'
     errorPlacement: (error, element) ->
       error.insertAfter $(element)
@@ -82,7 +82,7 @@ App.signUpFormValidator = ->
 #### new password form validations ####
 App.newPasswordFormValidator = ->
   $("#new_password_form").validate
-    errorClass: 'text-danger'
+    errorClass: 'invalid'
     validClass: 'valid'
     errorPlacement: (error, element) ->
       error.insertAfter $(element)
@@ -99,7 +99,7 @@ App.newPasswordFormValidator = ->
 #### edit password form validations ####
 App.editPasswordFormValidator = ->
   $("#edit_password_form").validate
-    errorClass: 'text-danger'
+    errorClass: 'invalid'
     validClass: 'valid'
     errorPlacement: (error, element) ->
       error.insertAfter $(element)
