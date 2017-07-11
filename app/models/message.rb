@@ -11,6 +11,7 @@ class Message < ApplicationRecord
     message_sender = ClickatellBox.new
     recipents.each_slice(100).to_a.each do |phones|
       response = message_sender.send_sms(phones,content)
+      puts "response: #{response}"
       unless response[:error]
         parsed_response = JSON.parse(response[:data])
         # log messages
