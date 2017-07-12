@@ -5,13 +5,14 @@
     h3 Sign Up
     = form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: { role: 'form',id: "signup_form",class: "m-t"}) do |f|
       = f.hidden_field :role,value:'restaurant'
-      = f.hidden_field :time_zone,id: "current_time_zone"
       .text-left.text-danger
         = devise_error_messages!
       .form-group.text-left
         = text_field_tag :restaurant_name,nil,placeholder: "Restaurant Name",autofocus: true,class: "form-control"
       .form-group.text-left
         = f.select :country_id, Country.all.collect{|c| [c.name,c.id]},{},class: "form-control"
+      .form-group.text-left
+        = f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones,{},{class: "form-control",id: "current_time_zone"}
       .form-group.text-left
         = f.text_field :name,class: 'form-control',placeholder: "Name"
       .form-group.text-left
