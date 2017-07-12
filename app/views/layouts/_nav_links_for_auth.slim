@@ -15,18 +15,6 @@
     = link_to root_path do
       i.fa.fa-th-large
       span.nav-label Dashboard
-  li class="#{is_active_controller('settings')} #{is_active_controller('subscriptions')} #{is_active_action('pricing')}"
-    a href="index.html"
-      i.fa.fa-cog
-      span class="nav-label" Settings
-      span class="fa arrow"
-    ul class="nav nav-second-level collapse"
-      li class="#{is_active_action('profile')}"
-        = link_to "Profile",profile_settings_path
-      li class="#{is_active_controller('subscriptions')}"
-        = link_to "Subscriptions", subscriptions_path
-      li class="#{is_active_action('pricing')}"
-        = link_to "Pricing","/pricing"
   li class="#{is_active_controller('walk_ins')}"
     = link_to walk_ins_path do
       i.fa.fa-clock-o
@@ -39,6 +27,18 @@
     = link_to messages_path do
       i.fa.fa-envelope
       span.nav-label Messages
+  li class="#{is_active_controller('settings')} #{is_active_controller('subscriptions')} #{is_active_action('pricing')}"
+    a href="index.html"
+      i.fa.fa-cog
+      span class="nav-label" Settings
+      span class="fa arrow"
+    ul class="nav nav-second-level collapse"
+      li class="#{is_active_action('profile')}"
+        = link_to "Profile",profile_settings_path
+      li class="#{is_active_controller('subscriptions')}"
+        = link_to "Subscriptions", subscriptions_path
+      li class="#{is_active_action('pricing')}"
+        = link_to "Pricing","/pricing"
 - else
   li
     = link_to 'Signin', new_user_session_path

@@ -58,6 +58,10 @@ class WalkInsController < ApplicationController
 
   def send_message
     template = @walk_in.restaurant.message_templates.first
+    if template.nil?
+      redirect_to messages_path,alert: "You don't have any message template. Please create message template first."
+      return
+    end
     response = @walk_in.send_message(template)
     if response[:error]
       redirect_to walk_ins_path,alert: response[:message]

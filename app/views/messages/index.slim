@@ -20,10 +20,13 @@
             span Add Template
       .ibox-content.message_templates
         .row.sortable
-          - @message_templates.each_slice(4).each do |templates|
-            - templates.each do |template|
-              = render partial: "message_templates/message_template",locals: {message_template: template}
-            .clear
+          - if @message_templates.any?
+            - @message_templates.each_slice(4).each do |templates|
+              - templates.each do |template|
+                = render partial: "message_templates/message_template",locals: {message_template: template}
+              .clear
+          - else
+            p No message template found.
 .row
   .col-lg-12
     .ibox.float-e-margins
