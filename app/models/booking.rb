@@ -84,6 +84,10 @@ class Booking < ApplicationRecord
       self.delay(run_at: next_scheduled_time).send_message(next_template)
     else
       self.update(sequence_in_progress: false)
+      ActionCable.server.broadcast 'message_sequence',
+        booking_id: self.id,html_template: ApplicationController.render(
+          partial: 'walk_ins/walk_in',locals: { booking: self }
+        )
     end
     response
   end
