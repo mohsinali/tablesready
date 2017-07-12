@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170704100646) do
+ActiveRecord::Schema.define(version: 20170712074017) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20170704100646) do
     t.datetime "deleted_at"
     t.integer "status"
     t.boolean "checkin", default: false
+    t.boolean "sequence_in_progress", default: false
     t.index ["deleted_at"], name: "index_bookings_on_deleted_at"
   end
 
@@ -143,7 +144,6 @@ ActiveRecord::Schema.define(version: 20170704100646) do
     t.boolean "in_trial", default: true
     t.string "stripe_customer_id"
     t.string "time_zone", default: "UTC"
-    t.integer "threshold", default: 30
     t.integer "no_show_threshold", default: 30
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

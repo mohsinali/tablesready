@@ -20,9 +20,15 @@ tr id="booking_#{booking.id}"
         = "Arrived #{time_ago_in_words(booking.created_at)} ago"
   td
     - if booking.checkin
-      = link_to send_message_walk_in_path(booking),method: :post,class: "btn btn-primary" do
-        i.fa.fa-bell.m-r-xs
-        span Text
+      - if booking.sequence_in_progress
+        = link_to stop_sequence_walk_in_path(booking),method: :post,remote: true,class: "btn btn-danger" do
+          i.fa.fa-bell.m-r-xs
+          span Stop
+        p Message sequence is in progress
+      - else
+        = link_to send_message_walk_in_path(booking),method: :post,class: "btn btn-primary" do
+          i.fa.fa-bell.m-r-xs
+          span Text
     - else
       = link_to mark_checkin_walk_in_path(booking),method: :post,remote:true,class: "btn btn-primary" do
         i.fa.fa-play.m-r-xs

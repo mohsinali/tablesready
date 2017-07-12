@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       post :change_status
       post :mark_checkin
       post :send_message
+      post :stop_sequence
     end
   end
 

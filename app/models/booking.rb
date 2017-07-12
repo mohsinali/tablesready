@@ -64,4 +64,27 @@ class Booking < ApplicationRecord
     self.delay(run_at: bt).auto_no_show
     #BookingBroadcastJob.set(wait_until: bt).perform_later(self)
   end
+
+  ##########################################
+  ## Send message to customer, and schedule
+  ## next message, if next template exists
+  ## @params: message_template
+  ##########################################
+  def send_message message_template
+    # return if sequence in progress is false
+    return {error: false,message: "Message Sequence is stopped by user."} unless self.sequence_in_progress
+    
+    next_template = MessageTemplate.next_template(message_template)
+    recipents = [self.phone]
+    content = message_template.template
+    response = Message.send_sms(recipents,content,self.restaurant,'text_ready')
+    if next_template.present? and !response[:error]
+      # schedule next message, if next template exists
+      next_scheduled_time = Time.now + next_template.next_delay.to_i.minutes
+      self.delay(run_at: next_scheduled_time).send_message(next_template)
+    else
+      self.update(sequence_in_progress: false)
+    end
+    response
+  end
 end

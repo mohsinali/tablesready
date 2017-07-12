@@ -1,6 +1,6 @@
 class WalkInsController < ApplicationController
 
-  before_action :set_walkin,only: [:edit,:update,:destroy,:change_status,:mark_checkin,:send_message]
+  before_action :set_walkin,only: [:edit,:update,:destroy,:change_status,:mark_checkin,:send_message,:stop_sequence]
 
   def index
     @walk_ins = Booking.by_restaurant(my_restaurant).where(booking_date: Date.today).created
@@ -62,11 +62,20 @@ class WalkInsController < ApplicationController
       redirect_to messages_path,alert: "You don't have any message template. Please create message template first."
       return
     end
+    # update sequence in progress for template
+    @walk_in.update(sequence_in_progress: true)
     response = @walk_in.send_message(template)
     if response[:error]
       redirect_to walk_ins_path,alert: response[:message]
     else
       redirect_to walk_ins_path,notice: "Message is sent successfully to `#{@walk_in.phone}`."
+    end
+  end
+
+  def stop_sequence
+    @walk_in.update(sequence_in_progress: false)
+    respond_to do |format|
+      format.js {render layout: false}
     end
   end
 
