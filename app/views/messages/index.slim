@@ -48,7 +48,10 @@
               .form-group
                 label.col-sm-2.control-label Template
                 .col-sm-6
-                  = f.text_area :template,class: "form-control",value: sample_marketing_template
+                  = f.text_area :template,rows: 5,class: "form-control",value: sample_marketing_template,onkeyup: "App.countChar(this)"
+                  p
+                    = "Length of message: "
+                    b.character-count #{sample_marketing_template.try(:length).to_i}
               .form-group
                 .col-sm-4.col-sm-offset-2
                   button.btn.btn-primary.submit.m-l-sm type="submit"  Send

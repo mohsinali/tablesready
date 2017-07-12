@@ -177,3 +177,7 @@ App.setIntlValue = ($element) ->
   if intlNumber
     $element.val intlNumber
 
+App.countChar = ($element) ->
+  count = $element.value.length
+  $($element).next().find(".character-count").text(count)
+

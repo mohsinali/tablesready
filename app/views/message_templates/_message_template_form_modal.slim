@@ -19,7 +19,10 @@
           .form-group
             label.col-sm-3.control-label Template
             .col-sm-9
-              = f.text_area :template,class: 'form-control'
+              = f.text_area :template,rows: 5,class: 'form-control',onkeyup: "App.countChar(this)"
+              p
+                = "Length of message: "
+                b.character-count #{f.object.template.try(:length).to_i}
         .modal-footer
           button.btn.btn-white data-dismiss="modal" type="button"  Cancel
           button.btn.btn-primary  type="submit"  #{message_template.new_record? ? 'Add' : 'Update'}
