@@ -1,7 +1,7 @@
 ##########################################################
 ## All the regular experession validators will be
 ## defined in this method: FormValidators
-## Scope: Globally used throughout the jobseeker theme
+## Scope: Globally used throughout the application
 ## Author: Sarwan Kumar
 App.formValidators = ->
   $.validator.addMethod 'phoneCheck', ((phone_number, element) ->
