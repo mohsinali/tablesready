@@ -7,6 +7,7 @@ class Booking < ApplicationRecord
   scope :created, -> {where(status: nil)}
   validates :booking_date,:booking_time,:size,:party_name,:restaurant_id,presence: true
 
+  after_save :stop_sequence
   
 
   def set_checkin flag=true
@@ -83,12 +84,30 @@ class Booking < ApplicationRecord
       next_scheduled_time = Time.now + next_template.next_delay.to_i.minutes
       self.delay(run_at: next_scheduled_time).send_message(next_template)
     else
-      self.update(sequence_in_progress: false)
-      ActionCable.server.broadcast 'message_sequence',
-        booking_id: self.id,html_template: ApplicationController.render(
-          partial: 'walk_ins/walk_in',locals: { booking: self }
-        )
+      self.broadcast_stop_sequence
     end
     response
   end
+
+
+  
+  # stop message sequence if status is changed from nil
+  # reset sequence in progress and broadcast stop sequence
+  def stop_sequence
+    if self.sequence_in_progress and self.status != nil
+      broadcast_stop_sequence
+    end
+
+  end
+
+  #broadcast message sequence stop
+  def broadcast_stop_sequence
+    self.update(sequence_in_progress: false)
+    ActionCable.server.broadcast 'message_sequence',
+      booking_id: self.id,html_template: ApplicationController.render(
+        partial: 'walk_ins/walk_in',locals: { booking: self }
+      )
+  end
+
+
 end
