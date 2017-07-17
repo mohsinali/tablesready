@@ -27,7 +27,8 @@ Rails.application.routes.draw do
     end
 
     collection do
-      get :import
+      # removed import feature for now
+      # get :import
       post :upload
     end
   end

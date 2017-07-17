@@ -15,7 +15,8 @@
       .ibox-title
         h5 
           | Add New Reservation
-          = link_to " Import from CSV ...",import_reservations_path
+          / removed import feature for now
+          /= link_to " Import from CSV ...",import_reservations_path
       .ibox-content
         .table-responsive.booking_form_table
           = simple_form_for @reservation, html: { role: 'form',id: "reservation_form",class: "form-horizontal",remote: true,autocomplete: "off"} do |f|
