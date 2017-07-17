@@ -12,6 +12,8 @@
       .form-group.text-left
         = f.select :country_id, Country.all.collect{|c| [c.name,c.id]},{},class: "form-control"
       .form-group.text-left
+        label type="button" class="" data-toggle="tooltip" data-placement="auto right" data-content="popup" data-original-title="tooltip" title="Select proper TimeZone to display booking timings in correct timezone"
+          | TimeZone (?)
         = f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones,{},{class: "form-control",id: "current_time_zone"}
       .form-group.text-left
         = f.text_field :name,class: 'form-control',placeholder: "Name"
