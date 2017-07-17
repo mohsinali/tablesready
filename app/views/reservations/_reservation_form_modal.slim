@@ -16,7 +16,7 @@
           .form-group
             label.col-sm-3.control-label Time
             .col-sm-9
-              = f.text_field :booking_time,value: reservation.booking_time.strftime("%H:%M"),id: "edit_reservation_timepicker",class: "form-control"
+              = f.text_field :booking_time,value: reservation.booking_time.strftime("%I:%M %p"),id: "edit_reservation_timepicker",class: "form-control"
           .form-group
             label.col-sm-3.control-label Party Name
             .col-sm-9

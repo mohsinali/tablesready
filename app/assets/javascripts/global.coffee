@@ -149,7 +149,8 @@ App.applyDatePicker = (element)->
 App.applyTimePicker = (element) ->
   $(element).datetimepicker
     datepicker:false
-    format:'H:i'
+    format:'h:i A'
+    formatTime: "h:i A"
     step: 15
 
 App.applyIntlInput = ($element) ->
