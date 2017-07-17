@@ -5,8 +5,9 @@
 ## Author: Sarwan Kumar
 App.formValidators = ->
   $.validator.addMethod 'phoneCheck', ((phone_number, element) ->
-    errors = $(element).intlTelInput("getValidationError")
-    errors == 0
+    # # set country to US, currently only US number accepted.
+    # $(element).intlTelInput("setCountry", "us");
+    $(element).intlTelInput("isValidNumber")
   ), 'Please enter a valid phone number'
 
 ############# END OF Method: FormValidators ##############
@@ -155,9 +156,10 @@ App.applyTimePicker = (element) ->
 
 App.applyIntlInput = ($element) ->
   $element.intlTelInput
-    initialCountry: 'auto'
+    initialCountry: 'us'
     formatOnInit: true
     separateDialCode: false
+    # onlyCountries: ['us']
     utilsScript: "/assets/libphonenumber/utils.js"
     geoIpLookup: (callback) ->
       $.get('https://ipinfo.io', (->
