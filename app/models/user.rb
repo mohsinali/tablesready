@@ -80,12 +80,27 @@ class User < ApplicationRecord
   def can_send_marketing_messages?
     subscription = self.subscriptions.last
     return false if subscription.nil?
-    plan = subscription.plan
     restaurant = self.restaurant
     start_date = subscription.updated_at.beginning_of_day
     end_date = subscription.updated_at.end_of_day + 30.days
-    message_sent_count = restaurant.messages.marketing.where(created_at: [start_date..end_date]).count
-    return message_sent_count < plan.upper_limit
+    message_sent_count = restaurant.marketing_messages_count(start_date,end_date)
+    return message_sent_count < total_message_credits(subscription)
+  end
+
+  def total_message_credits subscription
+    return 0 if subscription.nil?
+    plan = subscription.plan
+    plan.upper_limit
+  end
+
+  def remaining_messages_credits
+    subscription = self.subscriptions.last
+    return 0 if subscription.nil?
+    restaurant = self.restaurant
+    start_date = subscription.updated_at.beginning_of_day
+    end_date = subscription.updated_at.end_of_day + 30.days
+    total_credits = total_message_credits(subscription)
+    restaurant.remaining_messages_credits(total_credits,start_date,end_date)
   end
 
 

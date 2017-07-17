@@ -39,6 +39,9 @@
             | Message will be sent to 
             strong = "#{recipent_count} "
             | people
+          p.m-l-md
+            | Your remaining marketing message credits:
+            strong = " #{current_user.remaining_messages_credits}"
           p.alert.alert-success.msg_counter_notification.hide
 
         br
@@ -57,7 +60,7 @@
                   button.btn.btn-primary.submit.m-l-sm type="submit"  Send
         - else
           p
-            strong You have crossed limit of this month for sending bulk messages. Please upgrade your marketing addon
+            strong You are out of limit of this month for sending bulk messages. Please upgrade your marketing addon
             = link_to " here.","/pricing"
 
 .modal-section
