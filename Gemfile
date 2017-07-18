@@ -55,6 +55,7 @@ group :development do
   gem 'capistrano-passenger', '~> 0.2.0'
   gem 'capistrano-rvm'
   gem 'capistrano3-delayed-job'
+  gem 'capistrano-rails-console', require: false
 end
 group :development, :test do
   gem 'pry-rails'

@@ -34,6 +34,7 @@ require "capistrano/rails/assets"
 require "capistrano/rails/migrations"
 require "capistrano/passenger"
 require 'capistrano/delayed_job'
+require 'capistrano/rails/console'
 set :rvm_type, :user
 set :rvm_ruby_version, '2.3.1p112'
 
