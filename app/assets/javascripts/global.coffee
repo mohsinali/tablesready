@@ -160,7 +160,7 @@ App.applyIntlInput = ($element) ->
     formatOnInit: true
     separateDialCode: false
     # onlyCountries: ['us']
-    utilsScript: "/assets/libphonenumber/utils.js"
+    utilsScript: "assets/libphonenumber/utils.js"
     geoIpLookup: (callback) ->
       $.get('https://ipinfo.io', (->
       ), 'jsonp').always (resp) ->
