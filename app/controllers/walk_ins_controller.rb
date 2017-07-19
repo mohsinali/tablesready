@@ -26,6 +26,7 @@ class WalkInsController < ApplicationController
 
   def update
     @walk_in.update(walk_in_params)
+    @walk_in.set_customer
     ActionCable.server.broadcast 'bookings',
         message: "#{@walk_in.id} is updated",
         user: current_user.email
@@ -82,7 +83,7 @@ class WalkInsController < ApplicationController
   private
 
     def walk_in_params
-      params.require(:walk_in).permit(:booking_date,:booking_time,:size,:phone,:party_name,:notes,:restaurant_id)
+      params.require(:walk_in).permit(:booking_date,:booking_time,:wait_in_minutes,:size,:phone,:party_name,:notes,:restaurant_id)
     end
 
     def set_walkin

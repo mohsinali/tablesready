@@ -53,6 +53,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :reports
+
   get "pricing" => "pages#pricing"
 
   # All theme routes

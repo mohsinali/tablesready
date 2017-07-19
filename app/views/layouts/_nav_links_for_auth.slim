@@ -39,6 +39,10 @@
         = link_to "Subscriptions", subscriptions_path
       li class="#{is_active_action('pricing')}"
         = link_to "Pricing","/pricing"
+  li class="#{is_active_controller('reports')}"
+    = link_to reports_path do
+      i.fa.fa-file-text-o
+      span.nav-label Reports
 - else
   li
     = link_to 'Signin', new_user_session_path

@@ -2,12 +2,14 @@ class Booking < ApplicationRecord
   acts_as_paranoid
   enum status: [ :seated,:no_show,:cancelled]
   belongs_to :restaurant
+  belongs_to :customer,optional: true
 
   scope :by_restaurant, -> (restaurant) {where(restaurant: restaurant)}
   scope :created, -> {where(status: nil)}
   validates :booking_date,:booking_time,:size,:party_name,:restaurant_id,presence: true
 
   after_save :stop_sequence
+  after_create :set_customer
   
 
   def set_checkin flag=true
@@ -107,6 +109,11 @@ class Booking < ApplicationRecord
       booking_id: self.id,html_template: ApplicationController.render(
         partial: 'walk_ins/walk_in',locals: { booking: self }
       )
+  end
+
+  def set_customer
+    customer = Customer.find_or_create_by(phone: self.phone,restaurant: self.restaurant)
+    update(customer: customer)
   end
 
 

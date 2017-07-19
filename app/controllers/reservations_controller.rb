@@ -38,6 +38,7 @@ class ReservationsController < ApplicationController
   def update
     @from = params[:from]
     @reservation.update(reservation_params)
+    @reservation.set_customer
     respond_to do |format|
       format.js {render layout: false}
     end

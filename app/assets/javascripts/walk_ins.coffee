@@ -32,7 +32,7 @@ class App.WalkIns extends App.Base
           error.insertAfter $(element)
 
         rules:
-          "time_in_minutes":
+          "walk_in[wait_in_minutes]":
             required: true
           "walk_in[party_name]":
             required: true
