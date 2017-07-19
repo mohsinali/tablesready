@@ -141,11 +141,14 @@ App.setCurrentTimeZone = ->
   else
     console.log("no timezone field defined!")
 
-App.applyDatePicker = (element)->
+App.applyDatePicker = (element,prev = false)->
+  # can select previous date, if prev is true
+  # default prev: false
+  minDate = new Date() unless prev
   $(element).datepicker
     dateFormat: "mm/dd/yy"
     altFormat: "mm/dd/yy"
-    minDate: new Date()
+    minDate: minDate unless prev
 
 App.applyTimePicker = (element) ->
   $(element).datetimepicker

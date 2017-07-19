@@ -1,2 +1,33 @@
-h1 Reports#index
-p Find me in app/views/reports/index.html.slim
+.row.wrapper.border-bottom.white-bg.page-heading
+  .col-lg-10
+    h2 Reports
+    ol.breadcrumb
+      li
+        = link_to "Home",root_path
+      li.active
+        strong Reports
+  .col-lg-2
+
+/ walkin subscriptions
+.row
+  .col-lg-12
+    .ibox.float-e-margins
+      .ibox-title
+        h5 Reports
+      .ibox-content
+        .row
+          .col-lg-12
+            h3 Select Reporting Period
+        .row
+           = simple_form_for :reports,url: reports_path,html:{role: 'form',id: "reports_form",class: "form-horizontal",method: :get} do |f|
+            .form-group
+              label.col-sm-2.control-label From
+              .col-sm-6
+                = f.text_field :from,class: "form-control",value: @from
+            .form-group
+              label.col-sm-2.control-label To
+              .col-sm-6
+                = f.text_field :to,class: "form-control",value: @to
+            .form-group
+              .col-sm-4.col-sm-offset-2
+                button.btn.btn-primary.submit_btn.m-l-sm type="submit"  Get Reports
