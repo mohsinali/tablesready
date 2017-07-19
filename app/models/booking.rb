@@ -12,8 +12,23 @@ class Booking < ApplicationRecord
   after_create :set_customer
   
 
+  def booking_time
+    "#{self.booking_date} #{super}".to_datetime
+  end
   def set_checkin flag=true
-    self.update(checkin: flag)
+    wait_time = self.calculate_wait_time
+    self.update(checkin: flag,wait_in_minutes: wait_time)
+  end
+
+  def calculate_wait_time
+    time1 = self.booking_time.utc
+    time2 = Time.now.utc
+    wait_time = 0
+    if time2 < time1
+      # calculate wait time in minutes
+      wait_time = (time1 - time2)/60
+    end
+    wait_time
   end
 
   def booked_by
