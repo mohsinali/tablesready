@@ -14,7 +14,5 @@ class ReportsController < ApplicationController
         @from = "#{from_date[2]}-#{from_date[0]}-#{from_date[1]}".to_date
         @to = "#{to_date[2]}-#{to_date[0]}-#{to_date[1]}".to_date
       end
-      @from = @from.strftime("%m/%d/%Y")
-      @to = @to.strftime("%m/%d/%Y")
     end
 end
