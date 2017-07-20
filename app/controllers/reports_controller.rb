@@ -1,6 +1,17 @@
 class ReportsController < ApplicationController
   before_action :set_report_dates
   def index
+    start_time = @from.beginning_of_day
+    end_time = @to.end_of_day
+    @customers_count = my_restaurant.customers.where(created_at: [start_time .. end_time]).count
+    @bookings = my_restaurant.bookings.where(created_at: [start_time .. end_time]).select("avg(wait_in_minutes) as avg_time,max(wait_in_minutes) as max_time")
+    if @bookings.any?
+      @longest_wait_time = @bookings[0].try(:max_time).to_i
+      @avg_wait_time = @bookings[0].try(:avg_time).to_i
+    else
+      @longest_wait_time = 0
+      @avg_wait_time = 0
+    end
   end
 
 

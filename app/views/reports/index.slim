@@ -31,3 +31,25 @@
             .form-group
               .col-sm-4.col-sm-offset-2
                 button.btn.btn-primary.submit_btn.m-l-sm type="submit"  Get Reports
+        .row
+          .col-lg-12
+            h3 Reports from #{@from} - #{@to}
+        .row
+          .col-lg-4
+            .panel.panel-default
+              .panel-heading Number Signups
+              .panel-body
+                p
+                  | No. of Signups: #{@customers_count}
+          .col-lg-4
+            .panel.panel-default
+              .panel-heading Longest Wait Time
+              .panel-body
+                p
+                  | Longest wait time: #{@longest_wait_time} minutes.
+          .col-lg-4
+            .panel.panel-default
+              .panel-heading Average Wait Time
+              .panel-body
+                p
+                  | Avg. wait time: #{@avg_wait_time} minutes.
