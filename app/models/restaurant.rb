@@ -4,6 +4,7 @@ class Restaurant < ApplicationRecord
   has_many :messages
   has_many :messages
   has_many :message_templates
+  has_many :customers,dependent: :destroy
 
   def user
     users.first
@@ -11,10 +12,6 @@ class Restaurant < ApplicationRecord
 
   def customers_count
     customers.count
-  end
-
-  def customers
-    bookings.unscoped.by_restaurant(self).select("distinct(phone)")
   end
 
   def marketing_messages_count start_date,end_date
