@@ -8,6 +8,15 @@ class ReportsController < ApplicationController
     calculate_wait_timings(@bookings)
   end
 
+  def customer_csv
+    @customers = my_restaurant.customers.includes(:bookings)
+    respond_to do |format|
+      format.html
+      format.csv { send_data(Customer.to_csv(@customers),filename: "#{my_restaurant.name.upcase}-CUSTOMERS.csv") }
+      format.js { render layout: false }
+    end
+  end
+
   
 
 

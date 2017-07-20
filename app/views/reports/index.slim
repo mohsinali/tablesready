@@ -14,6 +14,10 @@
     .ibox.float-e-margins
       .ibox-title
         h5 Reports
+        .pull-right
+          = link_to customer_csv_reports_path(format: :csv),class: "btn btn-primary btn-xl" do
+            span.m-r-xs Customer CSV List
+            i.fa.fa-arrow-down
       .ibox-content
         .row
           .col-lg-12

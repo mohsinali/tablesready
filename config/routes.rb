@@ -53,7 +53,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :reports
+  resources :reports do
+    collection do
+      get :customer_csv
+    end
+  end
 
   get "pricing" => "pages#pricing"
 
