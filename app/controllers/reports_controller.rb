@@ -4,19 +4,37 @@ class ReportsController < ApplicationController
     start_time = @from.beginning_of_day
     end_time = @to.end_of_day
     @bookings = my_restaurant.bookings.where(created_at: [start_time .. end_time])
-    @bookings_count = @bookings.size
-    @bookings = @bookings.select("avg(wait_in_minutes) as avg_time,max(wait_in_minutes) as max_time")
-    if @bookings.any?
-      @longest_wait_time = @bookings[0].try(:max_time).to_i
-      @avg_wait_time = @bookings[0].try(:avg_time).to_i
-    else
-      @longest_wait_time = 0
-      @avg_wait_time = 0
-    end
+    gon.hourly_bookings_json = calculate_activity_per_hour(@bookings)
+    calculate_wait_timings(@bookings)
   end
+
+  
+
 
 
   private
+    def calculate_activity_per_hour bookings
+      hourly_bookings = bookings.group_by(&:created_hour)
+      # make data in json of all 24 hours
+      data = {}
+      (0..23).each do |hour|
+        hour = hour < 10 ? "0#{hour}": "#{hour}"
+        data[hour.to_i] = hourly_bookings[hour].blank? ? 0 : hourly_bookings[hour].size
+      end
+      data
+    end
+    def calculate_wait_timings bookings
+      @bookings_count = bookings.size
+      bookings = bookings.select("avg(wait_in_minutes) as avg_time,max(wait_in_minutes) as max_time")
+      if bookings.any?
+        @longest_wait_time = bookings[0].try(:max_time).to_i
+        @avg_wait_time = bookings[0].try(:avg_time).to_i
+      else
+        @longest_wait_time = 0
+        @avg_wait_time = 0
+      end
+    end
+    
     def set_report_dates
       @from = Date.today - 7.days
       @to = Date.today

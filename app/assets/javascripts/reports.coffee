@@ -41,6 +41,38 @@ class App.Reports extends App.Base
       false
 
 
+    generateGraph = (json_data)->
+      barOptions = 
+        series: lines:
+          show: true
+          lineWidth: 2
+          fill: true
+          fillColor: colors: [
+            { opacity: 0.0 }
+            { opacity: 0.0 }
+          ]
+        xaxis:
+          mode: 'time'
+          tickDecimals: 0
+        colors: [ '#1ab394',"#ddd" ]
+        grid:
+          color: '#999999'
+          hoverable: true
+          clickable: true
+          tickColor: '#D4D4D4'
+          borderWidth: 0
+        legend: show: false
+        tooltip: true
+        tooltipOpts: content: "Time: %x, bookings: %y"
+      
+      barData = []
+      hour = 0
+      while hour < 24
+        barData.push([Date.UTC(2017,7,20,hour,0),json_data[hour]])
+        hour +=1
+      $.plot $('#flot-line-chart'), [ barData ], barOptions
+      return
+    generateGraph(gon.hourly_bookings_json)
     return
 
 

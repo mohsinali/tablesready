@@ -53,3 +53,11 @@
               .panel-body
                 p
                   | Avg. wait time: #{@avg_wait_time} minutes.
+        .row
+          .col-lg-12
+            .panel.panel-default
+              .panel-heading
+                | Number of bookings per hour Activity
+              .panel-body
+                .flot-chart style="height: 300px"
+                  .flot-chart-content id="flot-line-chart"  

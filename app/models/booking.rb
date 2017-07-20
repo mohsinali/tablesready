@@ -53,6 +53,11 @@ class Booking < ApplicationRecord
     end
   end
 
+  def created_hour
+    self.created_at.strftime('%H')
+  end
+
+
 
 
   
