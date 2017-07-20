@@ -185,5 +185,5 @@ App.setIntlValue = ($element) ->
 
 App.countChar = ($element) ->
   count = $element.value.length
-  $($element).next().find(".character-count").text(count)
+  $($element).parent().find(".character-count").text(count)
 
