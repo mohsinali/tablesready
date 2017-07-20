@@ -11,7 +11,7 @@ class App.Reports extends App.Base
 
   index: =>
     App.applyDatePicker($("#reports_from"),true)
-    App.applyDatePicker($("#reports_to"))
+    App.applyDatePicker($("#reports_to"),true)
 
     $reportsForm = $("#reports_form")
     $reportsForm.submit (event) ->
