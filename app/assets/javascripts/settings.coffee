@@ -32,7 +32,7 @@ class App.Settings extends App.Base
     setTimeout (->
       $('#user_phone').trigger 'change'
       return
-    ), 5000
+    ), 3000
 
     $profileForm.submit (event) ->
       $($profileForm).validate

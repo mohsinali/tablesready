@@ -8,7 +8,6 @@ class App.Base
     App.signinFormValidator()
     App.newPasswordFormValidator()
     App.editPasswordFormValidator()
-    App.setCurrentTimeZone()
     return this
 
 

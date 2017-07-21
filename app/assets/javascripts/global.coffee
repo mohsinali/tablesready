@@ -38,6 +38,11 @@ App.signinFormValidator = ->
 #### signup form validations ####
 App.signUpFormValidator = ->
   App.applyIntlInput($("#user_phone"))
+  # to set phone in proper format.
+  setTimeout (->
+    $('#user_phone').trigger 'change'
+    return
+  ), 3000
   $("#signup_form").validate
     errorClass: 'invalid'
     validClass: 'valid'
@@ -62,7 +67,7 @@ App.signUpFormValidator = ->
       "user[password_confirmation]":
         required: true
         minlength: 8
-        equalTo: "#user_password_confirmation"
+        equalTo: "#user_password"
     messages:
       "restaurant_name":
         required: "Restaurant Name is required."
@@ -113,7 +118,7 @@ App.editPasswordFormValidator = ->
       "user[password_confirmation]":
         required: true
         minlength: 8
-        equalTo: "#user_password_confirmation"
+        equalTo: "#user_password"
     messages:
       "user[password]":
         required: "Password is required."
@@ -125,21 +130,6 @@ App.editPasswordFormValidator = ->
 App.resetForm = ($element)->
   $element.reset()
 
-
-App.currentTimeZone = ->
-  try
-    timezone = Intl.DateTimeFormat().resolved.timeZone
-  catch e
-    timezone = "UTC"
-
-  return timezone
-
-App.setCurrentTimeZone = ->
-  timezone = App.currentTimeZone()
-  if $("#current_time_zone").length > 0
-    $("#current_time_zone").val(timezone)
-  else
-    console.log("no timezone field defined!")
 
 App.applyDatePicker = (element,prev = false)->
   # can select previous date, if prev is true
