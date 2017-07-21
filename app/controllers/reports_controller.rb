@@ -3,7 +3,12 @@ class ReportsController < ApplicationController
   def index
     start_time = @from.beginning_of_day
     end_time = @to.end_of_day
-    @bookings = my_restaurant.bookings.where(created_at: [start_time .. end_time])
+    @bookings = Booking.unscoped.by_restaurant(my_restaurant).where(created_at: [start_time .. end_time])
+    @bookings_count = @bookings.size
+    @new_bookings_count = @bookings.new_bookings.size
+    @seated_count = @bookings.seated.size
+    @no_show_count = @bookings.no_show.size
+    @cancelled_count = @bookings.cancelled.size
     gon.hourly_bookings_json = calculate_activity_per_hour(@bookings)
     calculate_wait_timings(@bookings)
   end
@@ -33,7 +38,6 @@ class ReportsController < ApplicationController
       data
     end
     def calculate_wait_timings bookings
-      @bookings_count = bookings.size
       bookings = bookings.select("avg(wait_in_minutes) as avg_time,max(wait_in_minutes) as max_time")
       if bookings.any?
         @longest_wait_time = bookings[0].try(:max_time).to_i

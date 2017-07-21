@@ -39,19 +39,44 @@
           .col-lg-12
             h3 Reports from #{@from} - #{@to}
         .row
-          .col-lg-4
+          .col-lg-3
             .panel.panel-default
               .panel-heading Total Bookings
               .panel-body
                 p
                   | No. of Bookings: #{@bookings_count}
-          .col-lg-4
+          .col-lg-3
+            .panel.panel-default
+              .panel-heading New Bookings
+              .panel-body
+                p
+                  | No. of New Bookings: #{@new_bookings_count}
+          .col-lg-3
+            .panel.panel-default
+              .panel-heading Seated Bookings
+              .panel-body
+                p
+                  | No. of Seated Bookings: #{@seated_count}
+          .col-lg-3
+            .panel.panel-default
+              .panel-heading No Show Bookings
+              .panel-body
+                p
+                  | No. of NoShow Bookings: #{@no_show_count}
+        .row
+          .col-lg-3
+            .panel.panel-default
+              .panel-heading Cancelled Bookings
+              .panel-body
+                p
+                  | No. of Cancelled Bookings: #{@cancelled_count}
+          .col-lg-3
             .panel.panel-default
               .panel-heading Longest Wait Time
               .panel-body
                 p
                   | Longest wait time: #{@longest_wait_time} minutes.
-          .col-lg-4
+          .col-lg-3
             .panel.panel-default
               .panel-heading Average Wait Time
               .panel-body
