@@ -28,6 +28,18 @@ class CreatePlanService
     })
 
     Plan.create({
+      name: 'Tier 1',
+      highlight: true, # This highlights the plan on the pricing page.
+      price: 0.00,
+      interval: 'month',
+      stripe_id: 'tier_1',
+      features: "0-100 SMS",
+      lower_limit: 0,
+      upper_limit: 100,
+      display_order: 1,
+      plan_type: "Marketing"
+    })
+    Plan.create({
       name: 'Tier 2',
       highlight: true, # This highlights the plan on the pricing page.
       price: 59.00,

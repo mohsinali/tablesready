@@ -37,6 +37,12 @@ Stripe.plan :text_ready do |plan|
   plan.interval = 'month'
 end
 
+Stripe.plan :tier_1 do |plan|
+  plan.name = 'Tier 1'
+  plan.amount = 0 # $0.00
+  plan.interval = 'month'
+end
+
 Stripe.plan :tier_2 do |plan|
   plan.name = 'Tier 2'
   plan.amount = 5900 # $59.00
