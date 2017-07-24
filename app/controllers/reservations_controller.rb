@@ -62,6 +62,10 @@ class ReservationsController < ApplicationController
   private
 
     def reservation_params
+      booking_date = params[:reservation][:booking_date]
+      if booking_date.include?("/")
+        params[:reservation][:booking_date] = Date.strptime(booking_date,"%m/%d/%Y")
+      end
       params.require(:reservation).permit(:booking_date,:booking_time,:size,:phone,:party_name,:notes,:restaurant_id)
     end
 
