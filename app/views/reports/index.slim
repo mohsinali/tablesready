@@ -14,7 +14,7 @@
     .ibox.float-e-margins
       .ibox-title
         h5 Reports
-        .pull-right
+        /.pull-right
           = link_to customer_csv_reports_path(format: :csv),class: "btn btn-primary btn-xl" do
             span.m-r-xs Customer CSV List
             i.fa.fa-arrow-down
@@ -99,5 +99,4 @@
               .panel-heading
                 | Number of bookings per hour Activity
               .panel-body
-                .flot-chart style="height: 300px"
-                  .flot-chart-content id="flot-line-chart"  
+                canvas id="lineChart" height="114"
