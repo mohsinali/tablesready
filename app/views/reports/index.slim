@@ -40,48 +40,59 @@
             h3 Reports from #{@from} - #{@to}
         .row
           .col-lg-3
-            .panel.panel-default
-              .panel-heading Total Bookings
-              .panel-body
-                p
-                  | No. of Bookings: #{@bookings_count}
+            .ibox.float-e-margins
+              .ibox-title
+                h5 Total Bookings
+              .ibox-content
+                h1.no-margins #{number_with_delimiter @bookings_count}
+                small Total Bookings
           .col-lg-3
-            .panel.panel-default
-              .panel-heading New Bookings
-              .panel-body
-                p
-                  | No. of New Bookings: #{@new_bookings_count}
+            .ibox.float-e-margins
+              .ibox-title
+                h5 New Bookings
+              .ibox-content
+                h1.no-margins #{number_with_delimiter @new_bookings_count}
+                small New Bookings
           .col-lg-3
-            .panel.panel-default
-              .panel-heading Seated Bookings
-              .panel-body
-                p
-                  | No. of Seated Bookings: #{@seated_count}
+           .ibox.float-e-margins
+              .ibox-title
+                h5 Seated Bookings
+              .ibox-content
+                h1.no-margins #{number_with_delimiter @seated_count}
+                small Seated Bookings
           .col-lg-3
-            .panel.panel-default
-              .panel-heading No Show Bookings
-              .panel-body
-                p
-                  | No. of NoShow Bookings: #{@no_show_count}
+            .ibox.float-e-margins
+              .ibox-title
+                h5 No Show Bookings
+              .ibox-content
+                h1.no-margins #{number_with_delimiter @no_show_count}
+                small No Show Bookings
+        br
+        br
         .row
           .col-lg-3
-            .panel.panel-default
-              .panel-heading Cancelled Bookings
-              .panel-body
-                p
-                  | No. of Cancelled Bookings: #{@cancelled_count}
+            .ibox.float-e-margins
+              .ibox-title
+                h5 Cancelled Bookings
+              .ibox-content
+                h1.no-margins #{number_with_delimiter @cancelled_count}
+                small Cancelled Bookings
           .col-lg-3
-            .panel.panel-default
-              .panel-heading Longest Wait Time
-              .panel-body
-                p
-                  | Longest wait time: #{formatted_duration(@longest_wait_time)}
+            .ibox.float-e-margins
+              .ibox-title
+                h5 Longest Wait Time
+              .ibox-content
+                h2.no-margins #{formatted_duration(@longest_wait_time)}
+                small Longest wait time
           .col-lg-3
-            .panel.panel-default
-              .panel-heading Average Wait Time
-              .panel-body
-                p
-                  | Avg. wait time: #{formatted_duration(@avg_wait_time)}
+            .ibox.float-e-margins
+              .ibox-title
+                h5 Average Wait Time
+              .ibox-content
+                h2.no-margins #{formatted_duration(@avg_wait_time)}
+                small Avg. wait time
+        br
+        br
         .row
           .col-lg-12
             .panel.panel-default
