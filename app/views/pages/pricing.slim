@@ -43,9 +43,10 @@
           p.m-l-md.m-b-md
             span
               b Your Customer Count: #{current_user.try(:restaurant).try(:customers_count).to_i}
-        .row
-          - @marketing_plans.each do |plan|
-            .col-lg-2.plan-content plan_id="#{plan.id}"
-              = render partial: "shared/plan",locals: {plan: plan}
+          - @marketing_plans.each_slice(6).each do |plans|
+            .row
+              - plans.each do |plan|
+                .col-lg-2.plan-content plan_id="#{plan.id}"
+                  = render partial: "shared/plan",locals: {plan: plan}
 
 .modal-section
