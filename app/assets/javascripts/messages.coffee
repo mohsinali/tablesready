@@ -74,6 +74,7 @@ class App.Messages extends App.Base
           "message_template[template]":
             required: true
       if $($messageTemplateForm).valid()
+        $($messageTemplateForm).find("button[type='submit']").attr('disabled',true)
         return true
       # Prevent the form from being submitted:
       false
