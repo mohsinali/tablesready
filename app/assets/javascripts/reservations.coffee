@@ -24,7 +24,10 @@ class App.Reservations extends App.Base
 
     $(document).on "click",".reset_form_btn", (event) ->
       event.preventDefault()
+      prev_time = $("#reservation_booking_time").val()
       App.resetForm($reservationForm[0])
+      # reset time value to only time
+      $("#reservation_booking_time").val(prev_time)
       
     $reservationForm.submit (event) ->
       $($reservationForm).validate
