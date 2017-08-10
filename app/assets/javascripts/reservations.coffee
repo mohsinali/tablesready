@@ -65,19 +65,20 @@ class App.Reservations extends App.Base
       false
     
     initBookingTime = ->
-      # current time + 1 hour
-      time = new Date().getTime() + 60*60*1000
+      # current time + 15 minutes
+      time = new Date().getTime() + 15*60*1000
       time = new Date(time)
       hours = parseInt(time.getHours())
       minutes = parseInt(time.getMinutes())
-      seconds = parseInt(time.getSeconds())
+      minutes = minutes - (minutes % 15)
+      ampm = if hours >= 12 then 'PM' else 'AM'
+      hours = hours % 12
+      hours = if hours then hours else 12
       if hours < 10
         hours = "0#{hours}"
       if minutes < 10
         minutes = "0#{minutes}"
-      if seconds < 10
-        seconds = "0#{seconds}"
-      time = "#{hours}:#{minutes}:#{seconds}"
+      time = "#{hours}:#{minutes} #{ampm}"
       $("#reservation_booking_time").val(time)
 
     initBookingTime()
