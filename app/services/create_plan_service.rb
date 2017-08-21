@@ -8,19 +8,19 @@ class CreatePlanService
       price: 0.00,
       interval: 'month',
       stripe_id: 'trial',
-      features: "0-100 SMS",
+      features: "0 SMS",
       lower_limit: 0,
-      upper_limit: 100,
+      upper_limit: 0,
       display_order: 0,
       plan_type: "Trial"
     })
 
     Plan.create({
-      name: 'Text Ready',
+      name: 'Ready Text',
       price: 49.00,
       interval: 'month',
       stripe_id: 'text_ready',
-      features: "0-100 SMS",
+      features: "Unlimited SMS",
       lower_limit: 0,
       upper_limit: 100,
       display_order: 1,
