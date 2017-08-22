@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
 	# Serve websocket cable requests in-process
   mount ActionCable.server => '/cable'
   

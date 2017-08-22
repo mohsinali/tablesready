@@ -64,3 +64,4 @@ group :development, :test do
 end
 gem 'gon'
 gem 'rabl-rails'
+gem 'activeadmin', github: 'activeadmin'

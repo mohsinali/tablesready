@@ -14,3 +14,6 @@ Country.create(name: "United States of America",code: "USA",phone_code: "+1")
 Country.create(name: "Canada",code: "CA",phone_code: "+1")
 Country.create(name: "United Kingdom",code: "UK",phone_code: "+44")
 Country.create(name: "Pakistan",code: "PK",phone_code: "+92")
+
+CreateAdminService.new.call
+puts "AdminUser created!"
