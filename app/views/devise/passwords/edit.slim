@@ -8,8 +8,8 @@
       .text-left.text-danger
         = devise_error_messages!
       .form-group.text-left
-        = f.password_field :password,placeholder: "New password" autocomplete: 'off', class: 'form-control'
+        = f.password_field :password,placeholder: "New password", autocomplete: 'off', class: 'form-control'
       .form-group.text-left
         = f.password_field :password_confirmation,placeholder: "Confirm new password", autocomplete: 'off', class: 'form-control'
       div
-        = f.submit 'Change my Password', :class => 'btn btn-primary block full-width m-b'
+        = f.submit 'Change my Password', class: 'btn btn-primary block full-width m-b'
