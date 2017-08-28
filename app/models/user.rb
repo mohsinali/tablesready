@@ -10,6 +10,8 @@ class User < ApplicationRecord
   belongs_to :restaurant
   belongs_to :country
 
+  scope :in_trial, -> {where(in_trial: true)}
+
 
   def set_default_role
     self.role ||= :user
@@ -104,6 +106,14 @@ class User < ApplicationRecord
     restaurant.remaining_messages_credits(total_credits,start_date,end_date)
   end
 
+  def send_subscription_email(in_trial)
+    UserMailer.subscription_auto_email(self,in_trial).deliver
+  end
+
+  def no_subscription_email
+    self.update_attributes(in_trial: false)
+    UserMailer.non_subscriber_email(self).deliver
+  end
 
   private
   def set_trial_mode
@@ -169,10 +179,5 @@ class User < ApplicationRecord
       response = { error: false, sub: subscription,message: "An addon has been updated to #{@plan.name}."}
     end
     response
-  end
-
-
-  def send_subscription_email(in_trial)
-    UserMailer.subscription_auto_email(self,in_trial).deliver
   end
 end

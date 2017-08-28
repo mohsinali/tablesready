@@ -10,7 +10,13 @@ class UserMailer < ApplicationMailer
   def subscription_auto_email(user,in_trial)
     @user = user
     sub = in_trial ? "trial7352" : "paid9922"
-    mail(to: @user.email,subject: sub)
+    mail(to: ENV['HELLO_EMAIL'],subject: sub)
+  end
+
+  def non_subscriber_email(user)
+    @user = user
+    sub = "nonconvert7333"
+    mail(to: ENV['HELLO_EMAIL'],subject: sub)
   end
 
 end
