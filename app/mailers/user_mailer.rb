@@ -1,10 +1,10 @@
 class UserMailer < ApplicationMailer
-  # default from: "Admin <admin@ready-text.com>"
+  #default from: "Admin <admin@ready-text.com>"
+  default from: ENV['GMAIL_USERNAME']
   # layout 'mailer'
 
-  def test_email(user)
-    @user = user
-    mail(to: @user.email, subject: @subject)
+  def test_email(email_address)
+    mail(to: email_address, subject: @subject)
   end
 
   def subscription_auto_email(user,in_trial)
