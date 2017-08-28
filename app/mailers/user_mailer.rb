@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
-  default from: "Admin <admin@ready-text.com>"
+  # default from: "Admin <admin@ready-text.com>"
   # layout 'mailer'
 
   def test_email(user)
