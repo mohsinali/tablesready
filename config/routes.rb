@@ -62,6 +62,7 @@ Rails.application.routes.draw do
   end
 
   get "pricing" => "pages#pricing"
+  get "/admin/reports/download_csv"=>"admin/reports#download_csv"
 
   # All theme routes
   get "dashboards/dashboard_1"

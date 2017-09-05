@@ -1,12 +1,5 @@
 ActiveAdmin.register_page "Reports" do
-  
-  content do
-    render partial: 'reports'
-  end
 
-end
-
-ActiveAdmin.register_page "Reports" do
 
   sidebar :filters, partial: 'filters'
 
@@ -48,6 +41,50 @@ ActiveAdmin.register_page "Reports" do
           end
         end
       end
+    end
+  end
+
+  action_item :export_reports do
+    if params[:reports]
+      @from = params[:reports][:from]
+      @to = params[:reports][:to]
+    else
+      @from  = Date.today - 1.month
+      @to = Date.today
+    end
+    link_to "Export User Reports", admin_reports_download_csv_path(format: :csv,from: @from,to: @to)
+  end
+
+  controller do
+    def download_csv
+      options = {}
+
+      @from = params[:from].to_date.beginning_of_day
+      @to = params[:to].to_date.end_of_day
+
+      header_columns = [
+        "Name",
+        "Email",
+        "No. of Subscribers",
+        "No. of Wait List SMS Sent",
+        "No. of Marketing SMS Sent"
+      ]
+
+      csv_data = CSV.generate(options) do |csv|
+        csv << header_columns
+        User.all.each do |user|
+          restaurant = user.restaurant
+          row = [
+            user.name,
+            user.email,
+            restaurant.customers.count,
+            restaurant.messages.text_ready.where(created_at: [@from .. @to]).count,
+            restaurant.messages.marketing.where(created_at: [@from .. @to]).count
+          ]
+          csv << row if restaurant
+        end
+      end
+      send_data(csv_data,filename: "USERS-REPORT.csv")
     end
   end
 end
