@@ -148,4 +148,6 @@ Rails.application.routes.draw do
   get "gallery/bootstrap_carusela"
 
   get "cssanimations/index"
+  match "/404", :to => "pages#not_found_error", :via => :all
+  match "/500", :to => "pages#internal_server_error", :via => :all
 end

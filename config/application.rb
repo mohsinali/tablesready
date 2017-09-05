@@ -18,5 +18,6 @@ module ReadyText
     config.stripe.publishable_key = ENV["STRIPE_PUBLISHABLE_KEY"]
     config.time_zone = "UTC"
     config.active_job.queue_adapter = :delayed_job
+    config.exceptions_app = self.routes
   end
 end
