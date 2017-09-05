@@ -43,6 +43,10 @@
     = link_to reports_path do
       i.fa.fa-file-text-o
       span.nav-label Reports
+  li
+    = link_to "http://ready-text.com/training",target: "_blank" do
+      i.fa.fa-file-video-o
+      span.nav-label Training/Setup
 - else
   li
     = link_to 'Signin', new_user_session_path
@@ -50,3 +54,5 @@
     = link_to "Signup",new_user_registration_path
   li
     = link_to "Forgot Password",new_user_password_path
+  li
+    = link_to "Training/Setup","http://ready-text.com/training",target: "_blank"
