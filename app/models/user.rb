@@ -167,18 +167,22 @@ class User < ApplicationRecord
       subscription = current_subscription(type)
       @card = response[:card]
       @stripe_sub = update_subscription(subscription.stripe_id,plan_id )
-      @stripe_sub = @stripe_sub[:sub]
-      subscription.update_attributes(stripe_id: @stripe_sub.id, 
-                                      started_at: DateTime.strptime(@stripe_sub.current_period_start.to_s,'%s'),
-                                      expired_at: DateTime.strptime(@stripe_sub.current_period_end.to_s,'%s'),
-                                      status: @stripe_sub.status,
-                                      plan_id: @plan.id,
-                                      card_type: @card.brand,
-                                      last_four: @card.last4,
-                                      subs_type: Yetting.subscription_types[type],
-                                      in_trial: false
-                                    )
-      response = { error: false, sub: subscription,message: "An addon has been updated to #{@plan.name}."}
+      if @stripe_sub[:error]
+        response = @stripe_sub
+      else
+        @stripe_sub = @stripe_sub[:sub]
+        subscription.update_attributes(stripe_id: @stripe_sub.id, 
+                                        started_at: DateTime.strptime(@stripe_sub.current_period_start.to_s,'%s'),
+                                        expired_at: DateTime.strptime(@stripe_sub.current_period_end.to_s,'%s'),
+                                        status: @stripe_sub.status,
+                                        plan_id: @plan.id,
+                                        card_type: @card.brand,
+                                        last_four: @card.last4,
+                                        subs_type: Yetting.subscription_types[type],
+                                        in_trial: false
+                                      )
+        response = { error: false, sub: subscription,message: "An addon has been updated to #{@plan.name}."}
+      end
     end
     response
   end
