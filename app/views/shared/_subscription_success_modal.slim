@@ -9,5 +9,8 @@
       .modal-body
         p
           = msg
+          = " Click "
+          a href="#{new_subscription_path(plan_id: plan.stripe_id)}" here
+          = " to change your credit card."
       .modal-footer
         button.btn.btn-white data-dismiss="modal" type="button"  Close
