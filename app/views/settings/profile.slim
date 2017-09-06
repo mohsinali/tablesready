@@ -20,6 +20,11 @@
         .row
           = simple_form_for @user,url: update_profile_settings_path,html:{role: 'form',id: "profile_setting_form",class: "form-horizontal",method: :post} do |f|
             = hidden_field_tag :id,@user.id
+            = f.fields_for :restaurant do |r|
+              .form-group
+                label.col-sm-2.control-label Restaurant Name
+                .col-sm-6
+                  = r.text_field :name,class: "form-control"
             .form-group
               label.col-sm-2.control-label Name
               .col-sm-6

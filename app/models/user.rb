@@ -10,6 +10,8 @@ class User < ApplicationRecord
   belongs_to :restaurant
   belongs_to :country
 
+  accepts_nested_attributes_for :restaurant
+
   scope :in_trial, -> {where(in_trial: true)}
 
 

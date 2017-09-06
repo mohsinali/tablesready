@@ -2,6 +2,7 @@ class SettingsController < ApplicationController
   
   def profile
     @user = current_user
+    @restaurant = @user.restaurant
   end
 
   def update_profile
@@ -13,6 +14,6 @@ class SettingsController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(:name,:phone,:no_show_threshold,:time_zone)
+      params.require(:user).permit(:name,:phone,:no_show_threshold,:time_zone,restaurant_attributes: [:id,:name])
     end
 end
