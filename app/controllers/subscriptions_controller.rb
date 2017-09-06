@@ -79,16 +79,27 @@ class SubscriptionsController < ApplicationController
   end
 
   def destroy
-    @subcription = Subscription.find(params[:id])
-    @plan = @subcription.plan
-    response = cancel_subscription(@subcription.stripe_id)
+    @subscription = Subscription.find(params[:id])
+    @plan = @subscription.plan
+    response = cancel_subscription(@subscription.stripe_id)
     if response[:error]
       msg = response[:message]
     else
-      @subcription.destroy
+      @subscription.destroy
       msg = "Your #{@plan.walkin? ? 'subcription' : 'addon'} has been cancelled!"
     end
     redirect_to subscriptions_path, notice: msg
+  end
+
+  def extend_trial
+    @subscription = Subscription.find(params[:id])
+    if current_user and !current_user.trial_extended
+      current_user.update(trial_extended: true,trial_ends_at: current_user.trial_ends_at + ENV['TRIAL_EXTENDABLE_DAYS'].to_i.days)
+      @subscription.update(expired_at: current_user.trial_ends_at)
+      redirect_to root_path,notice: "Your trial is extended upto #{current_user.trial_ends_at.to_date}"
+    else
+      redirect_to "/pricing"
+    end
   end
 
   private

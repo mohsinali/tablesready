@@ -12,6 +12,9 @@ Rails.application.routes.draw do
     collection do
       post :create_customer
     end
+    member do
+      post :extend_trial
+    end
   end
 
   resources :walk_ins do

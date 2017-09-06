@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
     if current_user
       unless current_user.valid_subscription
         msg = "Please subscribe to basic plan for using ReadyText"
-        path = current_user.stripe_customer_id.blank? ? new_subscription_path : "/pricing"
+        path = "/pricing"
 
         redirect_to path,notice: msg
       end
