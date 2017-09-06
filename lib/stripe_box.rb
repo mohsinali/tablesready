@@ -32,7 +32,10 @@ module StripeBox
   def create_card customer_id, token
     begin
       customer = Stripe::Customer.retrieve(customer_id)
-      card = customer.sources.create(:card => token)
+      card = customer.sources.create(card: token)
+      card.save
+      customer.default_source = card.id
+      customer.save
       response = { error: false,  card: card }
     rescue Exception => e
       puts "=============== EXCEPTION - StripeBox::create_card() " + e.message
