@@ -33,8 +33,14 @@
 
 Stripe.plan :text_ready do |plan|
   plan.name = 'Text Ready'
-  plan.amount = 4900 # $49.00
+  plan.amount = 2900 # $29.00
   plan.interval = 'month'
+end
+
+Stripe.plan :text_ready_yearly do |plan|
+  plan.name = 'Text Ready Yearly'
+  plan.amount = 29900 # $299.00
+  plan.interval = 'year'
 end
 
 Stripe.plan :tier_1 do |plan|
