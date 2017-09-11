@@ -9,11 +9,11 @@ module ApplicationHelper
 
   def main_subscription_link
     if current_user and current_user.in_trial
-      extend_trial_msg = "Or extend your trial for #{ENV['TRIAL_EXTENDABLE_DAYS']} days more by #{link_to 'Clicking here',extend_trial_subscription_path(id: current_user.subscriptions.first),method: :post}" unless current_user.trial_extended
+      extend_trial_msg = "If you need an additional #{ENV['TRIAL_EXTENDABLE_DAYS']} days to evaluate, please email us a request at #{link_to ENV['HELLO_EMAIL'],"javascript:void(0);"}" unless current_user.trial_extended
       info = <<-INFO
         <div class="alert alert-info">
           <strong> You are using trial account: </strong>
-          You trial #{current_user.trial_expired? ?  'has been expired' : 'will expire'} on #{current_user.trial_ends_at.to_date},
+          Your trial #{current_user.trial_expired? ?  'expired' : 'will expire'} on #{current_user.trial_ends_at.to_date},
           #{link_to "Click here","/pricing"} to upgrade subscription.
           #{extend_trial_msg}
         </div>
