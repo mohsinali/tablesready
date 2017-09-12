@@ -8,6 +8,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def create
+    @plan = get_plan(params[:plan])
     build_resource(sign_up_params)
 
     resource.save
@@ -16,7 +17,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
       if resource.active_for_authentication?
         set_flash_message! :notice, :signed_up
         sign_up(resource_name, resource)
-        respond_with resource, location: after_sign_up_path_for(resource)
+        if @plan
+          path = new_subscription_path(plan_id: @plan.stripe_id)
+        else
+          path = after_sign_up_path_for(resource)
+        end
+        respond_with resource, location: path
       else
         set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
         expire_data_after_sign_in!
@@ -42,6 +48,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
         # set restaurant id in params 
         params[:user][:restaurant_id] = restaurant.id if restaurant.save
       end
+    end
+
+    def get_plan plan_id
+      Plan.find_by(stripe_id: plan_id)
     end
 
 end
