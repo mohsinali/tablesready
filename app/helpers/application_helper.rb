@@ -10,8 +10,9 @@ module ApplicationHelper
   def main_subscription_link
     if current_user and current_user.in_trial
       extend_trial_msg = "If you need an additional #{ENV['TRIAL_EXTENDABLE_DAYS']} days to evaluate, please email us a request at #{link_to ENV['HELLO_EMAIL'],"javascript:void(0);"}" unless current_user.trial_extended
+      alert_class = current_user.trial_expired? ? "alert-danger" : "alert-info"
       info = <<-INFO
-        <div class="alert alert-info">
+        <div class="alert #{alert_class}">
           <strong> You are using trial account: </strong>
           Your trial #{current_user.trial_expired? ?  'expired' : 'will expire'} on #{current_user.trial_ends_at.to_date},
           #{link_to "Click here","/pricing"} to upgrade subscription.
