@@ -53,7 +53,7 @@ class User < ApplicationRecord
       else
         response = new_subscription(plan_id,type)
       end
-      send_subscription_email(false) unless response[:error]
+      send_subscription_email(response[:sub]) unless response[:error]
     rescue Exception => e
       puts "================= Exception User::subscribe ================="
       puts e.message
@@ -108,8 +108,8 @@ class User < ApplicationRecord
     restaurant.remaining_messages_credits(total_credits,start_date,end_date)
   end
 
-  def send_subscription_email(in_trial)
-    UserMailer.subscription_auto_email(self,in_trial).deliver
+  def send_subscription_email(subscription)
+    UserMailer.subscription_auto_email(self,subscription).deliver
   end
 
   def no_subscription_email
@@ -123,7 +123,7 @@ class User < ApplicationRecord
     return true unless self.can_avail_trial
     self.update(in_trial:true,trial_ends_at: Time.now + ENV["TRIAL_PERIOD_DAYS"].to_i.days)
     self.subscriptions.create(in_trial: true,started_at: Time.now,expired_at: self.trial_ends_at,current_price: 0,plan_id: Plan.first.try(:id),status: "Trial",subs_type: Yetting.subscription_types["trial"])
-    send_subscription_email(true)
+    send_subscription_email(self.subscriptions.last)
   end
 
   def new_subscription plan_id,type

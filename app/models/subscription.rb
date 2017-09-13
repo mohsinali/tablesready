@@ -12,4 +12,16 @@ class Subscription < ApplicationRecord
     self.expired_at.to_i < Time.now.to_i
   end
 
+  def trial?
+    self.subs_type == Yetting.subscription_types["trial"]
+  end
+
+  def walkin?
+    self.subs_type == Yetting.subscription_types["walkin"]
+  end
+
+  def marketing?
+    self.subs_type == Yetting.subscription_types["marketing"]
+  end
+
 end

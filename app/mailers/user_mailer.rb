@@ -7,9 +7,10 @@ class UserMailer < ApplicationMailer
     mail(to: email_address, subject: @subject)
   end
 
-  def subscription_auto_email(user,in_trial)
+  def subscription_auto_email(user,subscription)
     @user = user
-    sub = in_trial ? "trial7352" : "paid9922"
+    @subscription = subscription
+    sub = subscription.trial? ? "trial7352" : (subscription.walkin? ? "paid9922" : "marketing7222")
     mail(to: ENV['HELLO_EMAIL'],subject: sub)
   end
 
