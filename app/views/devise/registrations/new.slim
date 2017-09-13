@@ -4,6 +4,7 @@
       h1.logo-name TR
     h3 Sign Up
     = form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: { role: 'form',id: "signup_form",class: "m-t"}) do |f|
+      - resource.time_zone = ENV['DEFAULT_TIME_ZONE']
       - if params[:plan]
         = hidden_field_tag :plan,params[:plan]
         = f.hidden_field :can_avail_trial,value: false
