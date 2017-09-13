@@ -96,7 +96,7 @@ class SubscriptionsController < ApplicationController
     if current_user and !current_user.trial_extended
       current_user.update(trial_extended: true,trial_ends_at: current_user.trial_ends_at + ENV['TRIAL_EXTENDABLE_DAYS'].to_i.days)
       @subscription.update(expired_at: current_user.trial_ends_at)
-      redirect_to root_path,notice: "Your trial is extended upto #{current_user.trial_ends_at.to_date}"
+      redirect_to root_path,notice: "Your trial is extended until #{current_user.trial_ends_at.to_date}"
     else
       redirect_to "/pricing"
     end
