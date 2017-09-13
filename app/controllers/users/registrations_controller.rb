@@ -39,7 +39,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   private
     def configure_permitted_parameters
-      devise_parameter_sanitizer.permit(:sign_up, keys: [:name,:email,:phone,:password,:password_confirmation,:role,:time_zone,:country_id,:restaurant_id])
+      devise_parameter_sanitizer.permit(:sign_up, keys: [:name,:email,:phone,:password,:password_confirmation,:role,:time_zone,:in_trial,:can_avail_trial,:country_id,:restaurant_id])
     end
   
     def set_restaurant

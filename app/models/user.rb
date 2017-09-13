@@ -119,6 +119,8 @@ class User < ApplicationRecord
 
   private
   def set_trial_mode
+    # don't subscribe in trial mode, if user can't avail trial
+    return true unless self.can_avail_trial
     self.update(in_trial:true,trial_ends_at: Time.now + ENV["TRIAL_PERIOD_DAYS"].to_i.days)
     self.subscriptions.create(in_trial: true,started_at: Time.now,expired_at: self.trial_ends_at,current_price: 0,plan_id: Plan.first.try(:id),status: "Trial",subs_type: Yetting.subscription_types["trial"])
     send_subscription_email(true)
@@ -130,8 +132,8 @@ class User < ApplicationRecord
     unless response[:error]
       @card = response[:card]
       ## Create Subscription
-      trial = (type == "walkin" ? self.trial_availed? : true)
-      @stripe_sub = create_subscription(self.stripe_customer_id, plan_id, trial,self)
+      trial_availed = true
+      @stripe_sub = create_subscription(self.stripe_customer_id, plan_id, trial_availed,self)
       if @stripe_sub[:error]
         response = @stripe_sub
       else
