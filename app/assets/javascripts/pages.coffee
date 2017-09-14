@@ -11,6 +11,11 @@ class App.Pages extends App.Base
 
   pricing: =>
     
+    $(document).on "click",".walkin_subscribe_modal_lnk", (event) ->
+      window.scroll(0,0)
+      $("#walkin_subscribe_modal").modal("show")
+      event.preventDefault()
+      return false
     $(document).on "click",".subscription_lnk", (event) ->
       if $(this).hasClass('disabled')
         event.preventDefault()

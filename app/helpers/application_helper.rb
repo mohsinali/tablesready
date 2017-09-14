@@ -34,6 +34,12 @@ module ApplicationHelper
   # only called when user signed in
   def user_subscription_lnk plan
     current_subscription = current_user.current_subscription(plan.plan_type.downcase)
+    if plan.marketing?
+      walkin_subscription = current_user.subscriptions.walkin.last
+      if walkin_subscription.nil?
+        return link_to "SUBSCRIBE","javascript:void(0);",class: "btn btn-primary btn-xl walkin_subscribe_modal_lnk"
+      end
+    end
     if current_subscription.present?
       current_plan = current_subscription.plan
       if Plan.match_plan?(current_plan,plan)
