@@ -28,6 +28,18 @@ class CreatePlanService
     })
 
     Plan.create({
+      name: 'Ready Text Yearly',
+      price: 299.00,
+      interval: 'year',
+      stripe_id: 'text_ready_yearly',
+      features: "Unlimited SMS",
+      lower_limit: 0,
+      upper_limit: 100,
+      display_order: 2,
+      plan_type: "Walkin"
+    })
+
+    Plan.create({
       name: 'Tier 1',
       highlight: true, # This highlights the plan on the pricing page.
       price: 0.00,
@@ -115,18 +127,6 @@ class CreatePlanService
       upper_limit: 10000,
       display_order: 7,
       plan_type: "Marketing"
-    })
-
-    Plan.create({
-      name: 'Ready Text Yearly',
-      price: 299.00,
-      interval: 'year',
-      stripe_id: 'text_ready_yearly',
-      features: "Unlimited SMS",
-      lower_limit: 0,
-      upper_limit: 100,
-      display_order: 1,
-      plan_type: "Walkin"
     })
   end
 end

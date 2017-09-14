@@ -183,7 +183,7 @@ class User < ApplicationRecord
                                         subs_type: Yetting.subscription_types[type],
                                         in_trial: false
                                       )
-        response = { error: false, sub: subscription,message: "An addon has been updated to #{@plan.name}."}
+        response = { error: false, sub: subscription,message: "#{ @plan.walkin? ? 'Subscription' : 'An addon'} has been updated to #{@plan.name}."}
       end
     end
     response
