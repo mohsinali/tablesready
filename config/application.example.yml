@@ -27,3 +27,8 @@ SECRET_KEY_BASE: 2bef2ea6bec1d20c2099a77e0f4e73aa818124eaab83caf9a102fabedad1f01
 CLICKATELL_API_ID: sdfdsfdssssssssss
 HELLO_EMAIL: hello@test.com
 DEFAULT_TIME_ZONE: "Indiana (East)" # Default set to -05:00
+SENDGRID_USERNAME: "sendgrid-user"
+SENDGRID_PASSWORD: "password"
+SENDGRID_ADDRESS: "smtp.sendgrid.net"
+SENDGRID_API_KEY: sendgrid_api_key
+
