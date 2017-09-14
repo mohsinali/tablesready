@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "Admin <admin@ready-text.com>"
+  default from: ENV['HELLO_EMAIL']
   layout 'mailer'
 end

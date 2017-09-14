@@ -1,6 +1,5 @@
 class UserMailer < ApplicationMailer
-  #default from: "Admin <admin@ready-text.com>"
-  default from: ENV['GMAIL_USERNAME']
+  default from: ENV['HELLO_EMAIL']
   # layout 'mailer'
 
   def test_email(sender,recipent)
