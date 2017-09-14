@@ -10,7 +10,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     @plan = get_plan(params[:plan])
     build_resource(sign_up_params)
-
+    # skip confirmation and redirect to subscription if it comes for payment
+    resource.skip_confirmation! if @plan
     resource.save
     yield resource if block_given?
     if resource.persisted?
