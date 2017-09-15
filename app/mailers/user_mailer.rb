@@ -13,6 +13,13 @@ class UserMailer < ApplicationMailer
     mail(from: @user.email,to: ENV['HELLO_EMAIL'],subject: sub)
   end
 
+  def subscription_cancel_email(user,plan)
+    @user = user
+    @plan = plan
+    sub = "cancel911"
+    mail(from: @user.email,to: ENV['HELLO_EMAIL'],subject: sub)
+  end
+
   def non_subscriber_email(user)
     @user = user
     sub = "nonconvert7333"

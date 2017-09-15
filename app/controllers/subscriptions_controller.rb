@@ -85,6 +85,7 @@ class SubscriptionsController < ApplicationController
     if response[:error]
       msg = response[:message]
     else
+      UserMailer.subscription_cancel_email(current_user,@plan).deliver
       @subscription.destroy
       msg = "Your #{@plan.walkin? ? 'subcription' : 'addon'} has been cancelled!"
     end
