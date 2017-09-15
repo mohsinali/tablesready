@@ -44,3 +44,26 @@ class App.Pages extends App.Base
     show_loader = (plan_id) ->
       $(".plan-content[plan_id=#{plan_id}] .pre-loader").removeClass('hide')  
     return
+
+  support: =>
+    $form = $('#support_form')
+    $form.submit (event) ->
+      $($form).validate
+        focusInvalid: false
+        errorClass: 'invalid'
+        validClass: 'valid'
+        errorPlacement: (error, element) ->
+          error.insertAfter $(element)
+
+        rules:
+          "name":
+            required: true
+          "email":
+            required: true
+          "body":
+            required: true
+      if $($form).valid()
+        return true
+      # Prevent the form from being submitted:
+      false
+    return

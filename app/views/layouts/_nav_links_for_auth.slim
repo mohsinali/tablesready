@@ -47,6 +47,10 @@
     = link_to "http://ready-text.com/training",target: "_blank" do
       i.fa.fa-file-video-o
       span.nav-label Training/Setup
+  li class="#{is_active_action('support')}"
+    = link_to "/support" do
+      i.fa.fa-phone
+      span.nav-label Support
 - else
   li
     = link_to 'Signin', new_user_session_path
@@ -56,3 +60,5 @@
     = link_to "Forgot Password",new_user_password_path
   li
     = link_to "Training/Setup","http://ready-text.com/training",target: "_blank"
+  li
+    = link_to "Support","/support"

@@ -5,6 +5,13 @@ class PagesController < ApplicationController
     @marketing_plans = Plan.marketing
   end
 
+  def support
+    if request.post?
+      UserMailer.support_email(params[:name],params[:email],params[:body]).deliver
+      redirect_to root_path,notice: "Thanks for your feedback." and return
+    end
+  end
+
   def search_results
   end
 

@@ -32,4 +32,11 @@ class UserMailer < ApplicationMailer
     mail(from: @user.email,to: ENV['HELLO_EMAIL'],subject: sub)
   end
 
+  def support_email(name,email,body)
+    @name = name
+    @email = email
+    @body = body
+    mail(to: ENV['HELLO_EMAIL'],subject: "Support")
+  end
+
 end
