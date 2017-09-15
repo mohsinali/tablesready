@@ -23,6 +23,8 @@ ActiveAdmin.register User do
     column :country
     column :trial_ends_at
     column :trial_extended
+    column :walkin_status
+    column :marketing_status
     column :created_at
     actions do |user|
       link_to 'Extend Trial', extend_trial_admin_user_path(user),method: :put,title: "Extend Trial for #{ENV['TRIAL_EXTENDABLE_DAYS']} days"

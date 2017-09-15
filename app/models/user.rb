@@ -5,6 +5,8 @@ class User < ApplicationRecord
   has_many :subscriptions
 
   enum role: [:user, :restaurant, :admin]
+  enum walkin_status: [:nonavailed,:trial,:paid,:cancelled]
+  enum marketing_status: [:unavailed,:marketing,:unsubscribed]
   after_initialize :set_default_role, :if => :new_record?
   after_create :set_trial_mode
   belongs_to :restaurant
@@ -53,7 +55,10 @@ class User < ApplicationRecord
       else
         response = new_subscription(plan_id,type)
       end
-      send_subscription_email(response[:sub]) unless response[:error]
+      unless response[:error]
+        type == "walkin" ? self.paid! : self.marketing!
+        send_subscription_email(response[:sub])
+      end
     rescue Exception => e
       puts "================= Exception User::subscribe ================="
       puts e.message
@@ -121,7 +126,7 @@ class User < ApplicationRecord
   def set_trial_mode
     # don't subscribe in trial mode, if user can't avail trial
     return true unless self.can_avail_trial
-    self.update(in_trial:true,trial_ends_at: Time.now + ENV["TRIAL_PERIOD_DAYS"].to_i.days)
+    self.update(walkin_status: 'trial',in_trial:true,trial_ends_at: Time.now + ENV["TRIAL_PERIOD_DAYS"].to_i.days)
     self.subscriptions.create(in_trial: true,started_at: Time.now,expired_at: self.trial_ends_at,current_price: 0,plan_id: Plan.first.try(:id),status: "Trial",subs_type: Yetting.subscription_types["trial"])
     send_subscription_email(self.subscriptions.last)
   end
