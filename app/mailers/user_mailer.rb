@@ -26,4 +26,10 @@ class UserMailer < ApplicationMailer
     mail(to: ENV['HELLO_EMAIL'],subject: sub)
   end
 
+  def abandoment_email(user)
+    @user = user
+    sub = "abandon123"
+    mail(from: @user.email,to: ENV['HELLO_EMAIL'],subject: sub)
+  end
+
 end

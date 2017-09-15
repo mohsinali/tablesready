@@ -9,6 +9,7 @@
         = hidden_field_tag :plan,params[:plan]
         = f.hidden_field :can_avail_trial,value: false
         = f.hidden_field :in_trial,value: false
+        = f.hidden_field :can_send_abandoment_email,value: true
       = f.hidden_field :role,value:'restaurant'
       .text-left.text-danger
         = devise_error_messages!

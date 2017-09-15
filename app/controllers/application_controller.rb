@@ -24,6 +24,7 @@ class ApplicationController < ActionController::Base
   def check_subscription
     if current_user
       unless current_user.valid_subscription
+        check_for_abandoment
         msg = "Please subscribe to basic plan for using ReadyText"
         path = "/pricing"
 
@@ -34,5 +35,13 @@ class ApplicationController < ActionController::Base
 
   def set_user_time_zone
     Time.zone = current_user.time_zone
+  end
+
+  def check_for_abandoment
+    # send abandoment email, if not sent before
+    if current_user.can_send_abandoment_email
+      current_user.update(can_send_abandoment_email: false)
+      UserMailer.abandoment_email(current_user).deliver
+    end
   end
 end
