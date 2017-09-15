@@ -8,7 +8,7 @@ class PagesController < ApplicationController
   def support
     if request.post?
       UserMailer.support_email(params[:name],params[:email],params[:body]).deliver
-      redirect_to root_path,notice: "Thanks for your feedback." and return
+      redirect_to "/support",notice: "Thanks for your feedback." and return
     end
   end
 
