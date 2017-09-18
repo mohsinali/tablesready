@@ -36,7 +36,7 @@ class UserMailer < ApplicationMailer
     @name = name
     @email = email
     @body = body
-    mail(to: ENV['HELLO_EMAIL'],subject: "Support")
+    mail(from: @email,to: ENV['HELLO_EMAIL'],subject: "Support")
   end
 
 end

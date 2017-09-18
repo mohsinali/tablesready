@@ -16,7 +16,7 @@
         h5 Contact us
       .ibox-content
         .row
-          = simple_form_for :support, html: { url: "/support",role: 'form',id: "support_form",class: "form-horizontal",remote: true,autocomplete: "off",method: :post} do |f|
+          = simple_form_for :support, html: { url: "/support",role: 'form',id: "support_form",class: "form-horizontal",remote: true,autocomplete: "off",method: :post,remote: true} do |f|
             .form-group
               label.col-sm-2.control-label Name
               .col-sm-10
@@ -36,3 +36,6 @@
             .form-group
               .col-sm-4.col-sm-offset-2
                 button.btn.btn-primary.submit.m-l-sm type="submit"  Submit
+
+.thanks_modal
+  = render partial: "shared/support_success_modal"

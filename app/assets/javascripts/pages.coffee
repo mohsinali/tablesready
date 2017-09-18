@@ -63,6 +63,7 @@ class App.Pages extends App.Base
           "body":
             required: true
       if $($form).valid()
+        $($form).find("button").attr("disabled",true)
         return true
       # Prevent the form from being submitted:
       false
