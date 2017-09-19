@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :admin_only, :except => :show
+  before_action :admin_only, :except => [:show,:trial_extend_request]
 
   def index
     @users = User.all
@@ -28,6 +28,15 @@ class UsersController < ApplicationController
     user = User.find(params[:id])
     user.destroy
     redirect_to users_path, :notice => "User deleted."
+  end
+
+  def trial_extend_request
+    user = User.find(params[:id])
+    UserMailer.trial_extend_request(user).deliver
+    respond_to do |format|
+      format.js {render layout: false}
+      format.html
+    end
   end
 
   private

@@ -39,4 +39,9 @@ class UserMailer < ApplicationMailer
     mail(from: @email,to: ENV['HELLO_EMAIL'],subject: "Support")
   end
 
+  def trial_extend_request(user)
+    @user = user
+    mail(from: @user.email,to: ENV['HELLO_EMAIL'],subject: "Trial Extend Request")
+  end
+
 end

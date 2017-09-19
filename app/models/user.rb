@@ -17,6 +17,14 @@ class User < ApplicationRecord
   scope :in_trial, -> {where(in_trial: true)}
 
 
+  def first_name
+    name.split(" ").first
+  end
+
+  def last_name
+    name.split(" ").last
+  end
+
   def set_default_role
     self.role ||= :user
   end

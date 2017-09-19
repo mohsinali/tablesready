@@ -8,6 +8,11 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {registrations: "users/registrations",passwords: "users/passwords",sessions: "users/sessions"}
   # You can have the root of your site routed with "root"
   root to: 'dashboards#index'
+  resources :users do
+    member do
+      post :trial_extend_request
+    end
+  end
   resources :subscriptions do
     collection do
       post :create_customer

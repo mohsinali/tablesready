@@ -9,7 +9,7 @@ module ApplicationHelper
 
   def main_subscription_link
     if current_user and current_user.in_trial
-      extend_trial_msg = "If you need an additional #{ENV['TRIAL_EXTENDABLE_DAYS']} days to evaluate, please email us a request at #{link_to ENV['HELLO_EMAIL'],"javascript:void(0);"}" unless current_user.trial_extended
+      extend_trial_msg = "If you need an additional #{ENV['TRIAL_EXTENDABLE_DAYS']} days to evaluate, please email us a request at #{link_to ENV['HELLO_EMAIL'],trial_extend_request_user_path(id: current_user.id),method: :post,remote: true}" unless current_user.trial_extended
       alert_class = current_user.trial_expired? ? "alert-danger" : "alert-info"
       info = <<-INFO
         <div class="alert #{alert_class}">
