@@ -1,5 +1,6 @@
 class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :edit, :update, :destroy]
+  skip_before_action :check_subscription,only: [:reply_callbacks]
 
   # GET /messages
   # GET /messages.json
@@ -69,6 +70,11 @@ class MessagesController < ApplicationController
       format.html { redirect_to messages_url, notice: 'Message was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def reply_callbacks
+    CallbackLog.create(name: "ClickATell Reply",detail: params)
+    render json: {status: 200}
   end
 
   private

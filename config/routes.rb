@@ -54,6 +54,7 @@ Rails.application.routes.draw do
   resources :messages do
     collection do
       post :send_in_bulk
+      post :reply_callbacks
     end
   end
 
