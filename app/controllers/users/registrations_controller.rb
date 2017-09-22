@@ -23,6 +23,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         else
           path = after_sign_up_path_for(resource)
         end
+        UserMailer.confirmation_email(resource).deliver
         respond_with resource, location: path
       else
         set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"

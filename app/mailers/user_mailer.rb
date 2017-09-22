@@ -44,4 +44,9 @@ class UserMailer < ApplicationMailer
     mail(from: @user.email,to: ENV['HELLO_EMAIL'],subject: "Trial Extend Request")
   end
 
+  def confirmation_email(user)
+    @user = user
+    mail(from: ENV['HELLO_EMAIL'],to: @user.email,subject: "Account Confirmation")
+  end
+
 end
