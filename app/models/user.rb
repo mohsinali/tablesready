@@ -64,7 +64,6 @@ class User < ApplicationRecord
         response = new_subscription(plan_id,type)
       end
       unless response[:error]
-        type == "walkin" ? self.paid! : self.marketing!
         send_subscription_email(response[:sub])
       end
     rescue Exception => e

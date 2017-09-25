@@ -6,6 +6,7 @@ class Subscription < ApplicationRecord
   scope :trial, -> {where(subs_type: Yetting.subscription_types["trial"])}
   scope :walkin, -> {where(subs_type: Yetting.subscription_types["walkin"])}
   scope :marketing, -> {where(subs_type: Yetting.subscription_types["marketing"])}
+  after_create :set_user_status
 
 
   def expired?
@@ -23,5 +24,16 @@ class Subscription < ApplicationRecord
   def marketing?
     self.subs_type == Yetting.subscription_types["marketing"]
   end
+
+  private
+    def set_user_status
+      return true if self.trial?
+      subscribed_user = self.user
+      if self.walkin?
+        subscribed_user.paid!
+      else
+        subscribed_user.marketing!
+      end
+    end
 
 end
