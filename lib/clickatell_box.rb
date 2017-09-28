@@ -1,8 +1,10 @@
 require 'rest_client'
 
 class ClickatellBox
-  def initialize
-    @headers = {"Content-Type"=> "application/json","Accept"=> "application/json","Authorization"=> ENV['CLICKATELL_API_ID']}
+  def initialize type="one-way"
+    @type = type
+    @authorization = @type == 'one-way' ? ENV['CLICKATELL_ONE_WAY_KEY'] : ENV['CLICKATELL_TWO_WAY_KEY']
+    @headers = {"Content-Type"=> "application/json","Accept"=> "application/json","Authorization"=> @authorization}
     @url = "https://platform.clickatell.com/messages"
   end
 
@@ -14,7 +16,11 @@ class ClickatellBox
   ######################################
   def send_sms recipents,content
     begin
-      payload = {content: content ,to: recipents}.to_json
+      if @type == 'one-way'
+        payload = {content: content ,to: recipents}.to_json
+      else
+        payload = {content: content ,to: recipents,from: ENV['CLICKATELL_FROM_NUMBER']}.to_json
+      end
       response = RestClient.post(@url, payload, @headers)
       response = {error: false,data: response}
     rescue Exception => e

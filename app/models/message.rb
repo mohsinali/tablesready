@@ -8,7 +8,7 @@ class Message < ApplicationRecord
 
   def self.send_sms recipents,content,restaurant,message_type = 'marketing'
     sent_count = 0
-    message_sender = ClickatellBox.new
+    message_sender = ClickatellBox.new(message_type)
     recipents.each_slice(100).to_a.each do |phones|
       response = message_sender.send_sms(phones,content)
       puts "response: #{response}"
@@ -20,7 +20,7 @@ class Message < ApplicationRecord
             sent_count +=1
             Message.create(message_type: message_type,restaurant_id: restaurant.id,template: content,api_message_id: message_json['apiMessageId'],recipent: message_json['to'])
             # count will be broad cast only for marketing messages
-            bulk_sms_sent_count(recipents.size,sent_count) if message_type == "marketing"
+            # bulk_sms_sent_count(recipents.size,sent_count) if message_type == "marketing"
           end
         end
       end
