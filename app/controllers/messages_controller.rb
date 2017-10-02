@@ -1,6 +1,7 @@
 class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :edit, :update, :destroy]
   skip_before_action :check_subscription,only: [:reply_callbacks]
+  skip_before_filter :verify_authenticity_token,only: [:reply_callbacks]
 
   # GET /messages
   # GET /messages.json
@@ -74,6 +75,7 @@ class MessagesController < ApplicationController
 
   def reply_callbacks
     CallbackLog.create(name: "ClickATell Reply",detail: params)
+    puts "***** in callbacks: reply: message id: #{params['messageId']}"
     render json: {status: 200}
   end
 
