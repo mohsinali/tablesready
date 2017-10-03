@@ -16,6 +16,9 @@ Rails.application.routes.draw do
   resources :subscriptions do
     collection do
       post :create_customer
+      # webhook via get & post both will fire on same action
+      get :webhook
+      post :webhook
     end
     member do
       post :extend_trial

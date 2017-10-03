@@ -2,6 +2,7 @@ require 'stripe_box'
 class SubscriptionsController < ApplicationController
   before_action :authenticate_user!
   skip_before_action :check_subscription
+  skip_before_action :verify_authenticity_token,only: [:webhook]
   include StripeBox
 
   def index
@@ -103,6 +104,22 @@ class SubscriptionsController < ApplicationController
     else
       redirect_to "/pricing"
     end
+  end
+
+  def webhook
+    puts "******* in webhook params: #{params}******"
+    details = ""
+    params.each do |k,v|
+      if v.is_a? Hash
+        v.each do |i,j|
+          details+= "#{k}[#{i}]: #{j}"
+        end
+      else
+        details += "#{k}: #{v}"
+      end
+    end
+    CallbackLog.create(name: "Stripe webhook",detail: detail)
+    render json: {status: 200,message: 'success'}
   end
 
   private
