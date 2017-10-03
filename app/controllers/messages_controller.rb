@@ -88,7 +88,11 @@ class MessagesController < ApplicationController
       customer = Message.find_by(api_message_id: api_message_id).try(:customer)
       customer.unsubscribe_marketing_messaging if customer
     end
-    CallbackLog.create(name: "ClickATell Reply",detail: "messageId: #{api_message_id}, content: #{content}")
+    detail = ""
+    params.each do |k,v|
+      detail += "#{k}: #{v} ,"
+    end
+    CallbackLog.create(name: "ClickATell Reply",detail: detail)
     render json: {status: 200}
   end
 
