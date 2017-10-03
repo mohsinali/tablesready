@@ -3,6 +3,7 @@ class SubscriptionsController < ApplicationController
   before_action :authenticate_user!,except: [:webhook]
   skip_before_action :check_subscription
   protect_from_forgery except: :webhook
+  skip_before_action :verify_authenticity_token,only: [:webhook]
   include StripeBox
 
   def index
@@ -117,7 +118,7 @@ class SubscriptionsController < ApplicationController
         details += "#{v} ,"
       end
     end
-    CallbackLog.create(name: "Stripe webhook",detail: detail)
+    CallbackLog.create(name: "Stripe webhook",detail: details)
     render json: {status: 200,message: 'success'}
   end
 
