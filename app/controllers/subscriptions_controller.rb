@@ -2,7 +2,7 @@ require 'stripe_box'
 class SubscriptionsController < ApplicationController
   before_action :authenticate_user!,except: [:webhook]
   skip_before_action :check_subscription
-  skip_before_action :verify_authenticity_token,only: [:webhook]
+  protect_from_forgery except: :webhook
   include StripeBox
 
   def index
@@ -110,12 +110,11 @@ class SubscriptionsController < ApplicationController
     puts "******* in webhook params: #{params}******"
     details = ""
     params.each do |k,v|
+      details += "#{k}: "
       if v.is_a? Hash
-        v.each do |i,j|
-          details+= "#{k}[#{i}]: #{j}"
-        end
+        details += parse_hash(v,details)
       else
-        details += "#{k}: #{v}"
+        details += "#{v} ,"
       end
     end
     CallbackLog.create(name: "Stripe webhook",detail: detail)
@@ -136,5 +135,17 @@ class SubscriptionsController < ApplicationController
   def get_plans
     @walkin_plans = Plan.walkin
     @marketing_plans = Plan.marketing
+  end
+
+  def parse_hash(hash,details)
+    hash.each do |k,v|
+      details += "#{k}: "
+      if v.is_a? Hash
+        details += parse_hash(v,details)
+      else
+        details += "#{v}, "
+      end
+    end
+    details
   end
 end
