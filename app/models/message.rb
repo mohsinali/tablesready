@@ -48,4 +48,8 @@ class Message < ApplicationRecord
       response: {msg: msg,show_modal: show_modal}
   end
 
+  def customer
+    Customer.by_phone_and_restaurant(self.phone,self.restaurant).last
+  end
+
 end

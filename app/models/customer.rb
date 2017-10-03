@@ -2,7 +2,7 @@ class Customer < ApplicationRecord
   belongs_to :restaurant
   has_many :bookings,dependent: :destroy
   scope :by_phone_and_restaurant , ->(phone,restaurant) {where(restaurant: restaurant,phone: phone)}
-
+  scope :marketing_messageable , ->{where(marketing_messageable: true)}
 
 
   def self.to_csv(customers,options = {})
@@ -30,4 +30,13 @@ class Customer < ApplicationRecord
       end
     end
   end
+
+  def subscribe_marketing_messaging
+    self.update(marketing_messageable: true)
+  end
+
+  def unsubscribe_marketing_messaging
+    self.update(marketing_messageable: false)
+  end
+
 end

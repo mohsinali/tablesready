@@ -43,8 +43,16 @@ class MessagesController < ApplicationController
 
   def send_in_bulk
     restaurant = current_user.restaurant
-    recipents = current_user.restaurant.customers.map(&:phone)
+    recipents = current_user.restaurant.customers.marketing_messageable.map(&:phone)
     template = params[:message][:template]
+    # append reply text in template
+    if ["!",".","\r","\n"].include? template[-1]
+      # if already contain new line or sentence stop character, then just append
+      template = "#{template} #{ENV['REPLY_HALT_TEXT']}"
+    else
+      # add sentence stop mark before appending reply text
+      template = "#{template}. #{ENV['REPLY_HALT_TEXT']}"
+    end
     response = Message.delay.send_sms(recipents,template,restaurant)
     redirect_to messages_path,notice: "Your message is scheduled and will be sent to #{recipents.size} people."
   end
@@ -74,8 +82,13 @@ class MessagesController < ApplicationController
   end
 
   def reply_callbacks
-    CallbackLog.create(name: "ClickATell Reply",detail: params)
-    puts "***** in callbacks: reply: message id: #{params['messageId']}"
+    api_message_id = params['messageId']
+    content = params['text']
+    if content.to_s.upcase.include? "HALT"
+      customer = Message.find_by(api_message_id: api_message_id).try(:customer)
+      customer.unsubscribe_marketing_messaging if customer
+    end
+    CallbackLog.create(name: "ClickATell Reply",detail: "messageId: #{api_message_id}, content: #{content}")
     render json: {status: 200}
   end
 

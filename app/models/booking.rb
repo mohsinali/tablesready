@@ -134,6 +134,8 @@ class Booking < ApplicationRecord
 
   def set_customer
     customer = Customer.find_or_create_by(phone: self.phone,restaurant: self.restaurant)
+    # subcribe customer to messaging
+    customer.subscribe_marketing_messaging
     update(customer: customer)
   end
 

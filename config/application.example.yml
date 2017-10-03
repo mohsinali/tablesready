@@ -33,4 +33,5 @@ SENDGRID_USERNAME: "sendgrid-user"
 SENDGRID_PASSWORD: "password"
 SENDGRID_ADDRESS: "smtp.sendgrid.net"
 SENDGRID_API_KEY: sendgrid_api_key
+REPLY_HALT_TEXT: "reply HALT to opt-out"
 
