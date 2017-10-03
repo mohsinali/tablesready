@@ -108,17 +108,16 @@ class SubscriptionsController < ApplicationController
   end
 
   def webhook
-    puts "******* in webhook params: #{params}******"
-    details = ""
-    params.each do |k,v|
-      details += "#{k}: "
-      if v.is_a? Hash
-        details += parse_hash(v,details)
-      else
-        details += "#{v} ,"
+    if params["type"] == "customer.subscription.updated"
+      begin
+        id = params["data"]["object"]["id"]
+        current_period_end = params["data"]["object"]["current_period_end"]
+        subscription = Subscription.find_by(stripe_id: id)
+        subscription.update(expired_at: DateTime.strptime(current_period_end.to_s,'%s')) if subscription
+      rescue Exception => e
+        puts "Exception: #{e.message}"
       end
     end
-    CallbackLog.create(name: "Stripe webhook",detail: details)
     render json: {status: 200,message: 'success'}
   end
 
@@ -136,17 +135,5 @@ class SubscriptionsController < ApplicationController
   def get_plans
     @walkin_plans = Plan.walkin
     @marketing_plans = Plan.marketing
-  end
-
-  def parse_hash(hash,details)
-    hash.each do |k,v|
-      details += "#{k}: "
-      if v.is_a? Hash
-        details += parse_hash(v,details)
-      else
-        details += "#{v}, "
-      end
-    end
-    details
   end
 end
