@@ -1,6 +1,6 @@
 require 'stripe_box'
 class SubscriptionsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!,except: [:webhook]
   skip_before_action :check_subscription
   skip_before_action :verify_authenticity_token,only: [:webhook]
   include StripeBox
