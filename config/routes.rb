@@ -76,6 +76,7 @@ Rails.application.routes.draw do
   get "pricing" => "pages#pricing"
   get "support" => "pages#support"
   post "support" => "pages#support"
+  get "thanks" => "pages#thanks"
   get "/admin/reports/download_csv"=>"admin/reports#download_csv"
 
   # All theme routes

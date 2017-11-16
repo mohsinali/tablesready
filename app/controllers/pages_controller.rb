@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  skip_before_action :check_subscription  
+  skip_before_action :check_subscription,except: :thanks
   def pricing
     @walkin_plans = Plan.walkin
     @marketing_plans = Plan.marketing
@@ -13,6 +13,10 @@ class PagesController < ApplicationController
       format.js {render layout: false}
       format.html
     end
+  end
+
+  def thanks
+    redirect_to root_path unless current_user
   end
 
   def search_results
