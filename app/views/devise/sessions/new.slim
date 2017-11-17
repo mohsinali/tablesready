@@ -1,7 +1,7 @@
 .middle-box.loginscreen.animated.fadeInDown.text-center
   div
     div
-      h1.logo-name TR
+      h1.logo-name RT
     h3 Sign in 
     = form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :role => 'form',id: "signin_form",class: "m-t"}) do |f|
       = render "layouts/messages"
