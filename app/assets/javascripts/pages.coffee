@@ -68,3 +68,9 @@ class App.Pages extends App.Base
       # Prevent the form from being submitted:
       false
     return
+
+  thanks: =>
+    if gon.redirect_to_path
+      setTimeout ->
+        window.location = gon.redirect_to_path
+      , 5000

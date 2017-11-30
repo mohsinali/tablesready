@@ -60,7 +60,7 @@ class App.Subscriptions extends App.Base
               else
                 $alert.html("Redirecting now ...")
                 $alert.addClass("alert-success")
-                window.location = "/thanks"
+                window.location = "/"
 
       return
 

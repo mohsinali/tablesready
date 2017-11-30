@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
-  skip_before_action :check_subscription,except: :thanks
+  layout 'application'
+  skip_before_action :check_subscription
   def pricing
     @walkin_plans = Plan.walkin
     @marketing_plans = Plan.marketing
@@ -16,7 +17,10 @@ class PagesController < ApplicationController
   end
 
   def thanks
-    redirect_to root_path unless current_user
+    redirect_to root_path unless thankable?
+    if @plan
+      gon.redirect_to_path = new_subscription_path(plan_id: @plan.stripe_id)
+    end
   end
 
   def search_results
@@ -55,5 +59,18 @@ class PagesController < ApplicationController
   def not_found_error
     render :layout => "empty"
   end
+
+
+  private
+    def thankable?
+      result = false
+      @plan = Plan.find_by(stripe_id: cookies[:plan_id])
+      if cookies[:thanks_path].present?
+        cookies.delete :thanks_path
+        cookies.delete :plan_id
+        result = true
+      end
+      result
+    end
 
 end
