@@ -49,6 +49,7 @@ class Booking < ApplicationRecord
   end
 
   def set_noshow_job
+    return true unless booked_by.auto_noshowable
     if self.saved_change_to_attribute?(:booking_date) or self.saved_change_to_attribute?(:booking_time)
       set_job_broadcast
     end

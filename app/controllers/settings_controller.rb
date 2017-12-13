@@ -14,6 +14,6 @@ class SettingsController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(:name,:phone,:no_show_threshold,:time_zone,restaurant_attributes: [:id,:name])
+      params.require(:user).permit(:name,:phone,:no_show_threshold,:auto_noshowable,:time_zone,restaurant_attributes: [:id,:name])
     end
 end

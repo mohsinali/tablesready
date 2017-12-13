@@ -38,6 +38,10 @@
               .col-sm-6
                 = f.number_field :no_show_threshold,min: 5,class: "form-control"
             .form-group
+              label.col-sm-2.control-label Can Mark Auto Noshow
+              .col-sm-6
+                = f.check_box :auto_noshowable,class: "form-control auto-noshow"
+            .form-group
               label.col-sm-2.control-label Time Zone
               .col-sm-6
                 = f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones,{},{class: "form-control"}
